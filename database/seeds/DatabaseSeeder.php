@@ -17,5 +17,14 @@ class DatabaseSeeder extends Seeder
         $this->call(InitiativesTableSeeder::class);
         $this->call(RelationsTableSeeder::class);
         $this->call(ActionPlansTableSeeder::class);
+        $this->call(ScaffoldinterfacesTableSeeder::class);
+        $this->call(MigrationsTableSeeder::class);
+        $this->call(PasswordResetsTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(RoleHasPermissionsTableSeeder::class);
+        $this->call(UserHasPermissionsTableSeeder::class);
+        $this->call(UserHasRolesTableSeeder::class);
+        $this->call(ActionPlanAttachmentsTableSeeder::class);
     }
 }

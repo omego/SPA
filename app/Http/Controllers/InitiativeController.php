@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Initiative;
+use App\Action_plan;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -106,9 +107,10 @@ class InitiativeController extends Controller
         {
             return URL::to('initiative/'.$id);
         }
-
+        $action_plans = Action_plan::paginate(6);
+        //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
-        return view('initiative.show',compact('title','initiative'));
+        return view('initiative.show',compact('title','initiative','action_plans','title'));
     }
 
     /**
