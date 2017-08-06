@@ -87,5 +87,28 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+
+<table>
+        <thead>
+            <th>action_plan_title</th>
+            <th>actions</th>
+        </thead>
+        <tbody>
+            @foreach($action_plans as $action_plan) 
+            <tr>
+                <td>{!!$action_plan->action_plan_title!!}</td>
+                <td>
+                    <div class = 'row'>
+                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/action_plan/{!!$action_plan->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
+                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/action_plan/{!!$action_plan->id!!}/edit'><i class = 'material-icons'>edit</i></a>
+                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/action_plan/{!!$action_plan->id!!}'><i class = 'material-icons'>info</i></a>
+                    </div>
+                </td>
+            </tr>
+            @endforeach 
+        </tbody>
+    </table>
+    {!! $action_plans->render() !!}
+
                                         </div>
                                         @endsection
