@@ -16,24 +16,12 @@
       <div class="col s6">
           
           <table class = 'highlight bordered'>
-        <thead>
-            <th>Key</th>
-            <th>Value</th>
+           <thead>
+            <th>kpi_previous</th>
+            <th>kpi_current</th>
+            <th>kpi_target</th>
         </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <b><i>initiative_title : </i></b>
-                </td>
-                <td>{!!$initiative->initiative_title!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>initiative_description : </i></b>
-                </td>
-                <td>{!!$initiative->initiative_description!!}</td>
-            </tr>
-            <tr>
+                      <tr>
                 <td>
                     <b><i>kpi_previous : </i></b>
                 </td>
@@ -51,6 +39,24 @@
                 </td>
                 <td>{!!$initiative->kpi_target!!}</td>
             </tr>
+        <thead>
+            <th>Key</th>
+            <th>Value</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <b><i>initiative_title : </i></b>
+                </td>
+                <td>{!!$initiative->initiative_title!!}</td>
+            </tr>
+            <tr>
+                <td>
+                    <b><i>initiative_description : </i></b>
+                </td>
+                <td>{!!$initiative->initiative_description!!}</td>
+            </tr>
+
             <tr>
                 <td>
                     <b>
