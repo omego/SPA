@@ -2,14 +2,20 @@
 @section('title','Show')
 @section('content')
 
+ 
+
 <div class = 'container'>
-    <h1>
+<div class="row">
+      <div class="col s12"><h1>
         Show initiative
     </h1>
     <form method = 'get' action = '{!!url("initiative")!!}'>
         <button class = 'btn blue'>initiative Index</button>
     </form>
-    <table class = 'highlight bordered'>
+    </div>
+      <div class="col s6">
+          
+          <table class = 'highlight bordered'>
         <thead>
             <th>Key</th>
             <th>Value</th>
@@ -87,5 +93,13 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+
+      </div>
+      <div class="col s6">6-columns (one-half)</div>
+    </div>
+
+    
+
+    
                                         </div>
                                         @endsection
