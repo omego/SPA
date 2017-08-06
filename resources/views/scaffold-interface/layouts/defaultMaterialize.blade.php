@@ -9,6 +9,17 @@
 		<title>@yield('title')</title>
 	</head>
 	<body>
+		  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">SPA</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="goal">Goal</a></li>
+        <li><a href="project">Project</a></li>
+        <li><a href="initiative">initiative</a></li>
+        <li><a href="action_plan">Action Plans</a></li>
+      </ul>
+    </div>
+  		</nav>
 		@yield('content')
 		<div id="modal1" class="modal">
 			<div class = "row AjaxisModal">
