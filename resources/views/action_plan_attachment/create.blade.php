@@ -10,7 +10,7 @@
         <button class = 'btn blue'>action_plan_attachment Index</button>
     </form>
     <br>
-    <form method = 'POST' action = '{!!url("action_plan_attachment")!!}'>
+    <form enctype="multipart/form-data" method = 'POST' action = '{!!url("action_plan_attachment")!!}'>
         <input type = 'hidden' name = '_token' value = '{{ Session::token() }}'>
        <div class="file-field input-field">
       <div class="btn">

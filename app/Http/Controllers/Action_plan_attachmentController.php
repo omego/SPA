@@ -55,15 +55,36 @@ class Action_plan_attachmentController extends Controller
     public function store(Request $request)
     {
         $action_plan_attachment = new Action_plan_attachment();
-
-        
-        $action_plan_attachment->file_name = $request->file_name;
-
         
         
         $action_plan_attachment->action_plan_id = $request->action_plan_id;
 
+
+        $file = $request->file('file_name');
+
+        //File Name
+        $file->getClientOriginalName();
+
+        //Display File Extension
+        $file->getClientOriginalExtension();
+
+        //Display File Real Path
+        $file->getRealPath();
+
+        //Display File Size
+        $file->getSize();
+
+        //Display File Mime Type
+        $file->getMimeType();
+
+        //Move Uploaded File
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$file->getClientOriginalName());
+
+        $filename = $file->getClientOriginalName();
         
+        $action_plan_attachment->file_name = $filename;
+
         $action_plan_attachment->save();
 
         $pusher = App::make('pusher');
