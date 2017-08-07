@@ -6,19 +6,12 @@
 
 <div class = 'container'>
 <div class="row">
-      <div class="col s12"> 
-                    </div><div class = 'row'><h4>
-        Show initiative <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/initiative/{!!$initiative->id!!}/edit'><i class = 'material-icons'>edit</i></a></h4>
-    </div>
-    
-                        
+      <div class="col s12"><h1>
+        Show initiative
+    </h1>
     <form method = 'get' action = '{!!url("initiative")!!}'>
-        <button class = 'btn blue'>initiative list</button>
+        <button class = 'btn blue'>initiative Index</button>
     </form>
-    
-    <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New initiative</button>
-        </form>
     </div>
       <div class="col s6">
           
@@ -28,14 +21,24 @@
             <th>kpi_current</th>
             <th>kpi_target</th>
         </thead>
+                      <tr>
+                <td>
+                    <b><i>kpi_previous : </i></b>
+                </td>
                 <td>{!!$initiative->kpi_previous!!}</td>
-        
+            </tr>
+            <tr>
+                <td>
+                    <b><i>kpi_current : </i></b>
+                </td>
                 <td>{!!$initiative->kpi_current!!}</td>
-          
+            </tr>
+            <tr>
+                <td>
+                    <b><i>kpi_target : </i></b>
+                </td>
                 <td>{!!$initiative->kpi_target!!}</td>
-                                            </table>
-
-        <table class = 'highlight bordered'>
+            </tr>
         <thead>
             <th>Key</th>
             <th>Value</th>
