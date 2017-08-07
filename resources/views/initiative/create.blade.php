@@ -32,6 +32,10 @@
             <input id="kpi_target" name = "kpi_target" type="text" class="validate">
             <label for="kpi_target">kpi_target</label>
         </div>
+        <div class="input-field col s6">
+            <input id="status" name = "status" type="checkbox" value="Complete" class="validate">
+            <label for="status">status</label>
+        </div>
         <div class="input-field col s12">
             <select name = 'project_id'>
                 @foreach($projects as $key => $value) 
