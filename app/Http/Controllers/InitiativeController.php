@@ -73,6 +73,10 @@ class InitiativeController extends Controller
         $initiative->kpi_target = $request->kpi_target;
 
         $initiative->status = $request->status;
+
+        $initiative->why_if_not = $request->why_if_not;
+
+        $initiative->dod_note = $request->dod_note;
         
         $initiative->project_id = $request->project_id;
 
@@ -157,6 +161,10 @@ class InitiativeController extends Controller
         $initiative->kpi_target = $request->kpi_target;
         
         $initiative->status = $request->status;
+
+        $initiative->why_if_not = $request->why_if_not;
+
+        $initiative->dod_note = $request->dod_note;
        
         $initiative->project_id = $request->project_id;
 

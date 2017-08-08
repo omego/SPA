@@ -53,6 +53,18 @@
                 </td>
                 <td>{!!$initiative->status!!}</td>
             </tr>
+             <tr>
+                <td>
+                    <b><i>Why if not : </i></b>
+                </td>
+                <td>{!!$initiative->why_if_not!!}</td>
+            </tr>
+             <tr>
+                <td>
+                    <b><i>DOD Comment : </i></b>
+                </td>
+                <td>{!!$initiative->dod_note!!}</td>
+            </tr>
             <tr>
                 <td>
                     <b>

@@ -75,3 +75,11 @@ Route::group(['middleware'=> 'web'],function(){
   Route::get('action_plan_attachment/{id}/delete','\App\Http\Controllers\Action_plan_attachmentController@destroy');
   Route::get('action_plan_attachment/{id}/deleteMsg','\App\Http\Controllers\Action_plan_attachmentController@DeleteMsg');
 });
+
+//initiative_attachment Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('initiative_attachment','\App\Http\Controllers\Initiative_attachmentController');
+  Route::post('initiative_attachment/{id}/update','\App\Http\Controllers\Initiative_attachmentController@update');
+  Route::get('initiative_attachment/{id}/delete','\App\Http\Controllers\Initiative_attachmentController@destroy');
+  Route::get('initiative_attachment/{id}/deleteMsg','\App\Http\Controllers\Initiative_attachmentController@DeleteMsg');
+});

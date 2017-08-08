@@ -23,6 +23,8 @@
             <th>kpi_current</th>
             <th>kpi_target</th>
             <th>status</th>
+            <th>Why If Not</th>
+            <th>DOD Comment</th>
             <th>project_title</th>
             <th>project_discerption</th>
             <th>created_at</th>
@@ -39,6 +41,8 @@
                 <td>{!!$initiative->kpi_current!!}</td>
                 <td>{!!$initiative->kpi_target!!}</td>
                 <td>{!!$initiative->status!!}</td>
+                <td>{!!$initiative->why_if_not!!}</td>
+                <td>{!!$initiative->dod_note!!}</td>
                 <td>{!!$initiative->project->project_title!!}</td>
                 <td>{!!$initiative->project->project_discerption!!}</td>
                 <td>{!!$initiative->project->created_at!!}</td>
