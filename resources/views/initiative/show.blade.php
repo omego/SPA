@@ -56,7 +56,12 @@
                 </td>
                 <td>{!!$initiative->initiative_description!!}</td>
             </tr>
-
+            <tr>
+                <td>
+                    <b><i>status : </i></b>
+                </td>
+                <td>{!!$initiative->status!!}</td>
+            </tr>
             <tr>
                 <td>
                     <b>

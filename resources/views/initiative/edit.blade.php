@@ -38,6 +38,20 @@
             kpi_target!!}"> 
             <label for="kpi_target">kpi_target</label>
         </div>
+        <div class="input-field col s6">
+            <input id="status" name = "status" type="checkbox" value="Complete" class="checkbox" {{ $initiative->status == 'Complete' ? 'checked' : '' }}> 
+            <label for="status">Complete</label>
+        </div>
+
+<!--          <div class="input-field col s6">
+    
+     <input name="status" type="radio" class="with-gap" id="status2" checked="checked" value="Not Complete" {{ $initiative->status == 'Not Complete' ? 'checked' : '' }} />
+      <label for="status2">Not Complete</label>
+
+      <input name="status" type="radio" class="with-gap" id="status1" value="Complete" {{ $initiative->status == 'Complete' ? 'checked' : '' }} />
+      <label for="status1">Complete</label>
+    
+  </div> -->
         <div class="input-field col s12">
             <select name = 'project_id'>
                 @foreach($projects as $key => $value) 
