@@ -31,7 +31,12 @@ class ProjectController extends Controller
         $projects = Project::paginate(6);
         return view('project.index',compact('projects','title'));
     }
-
+    public function list($id,Request $request)
+    {
+        $title = 'list - project';
+        $projects = Project::where('goal_id', $id)->paginate(6);
+        return view('project.list',compact('projects','title'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -95,7 +100,7 @@ class ProjectController extends Controller
 
         if($request->ajax())
         {
-            return URL::to('project/'.$id);
+            return URL::to('initiative/list/'.$id);
         }
 
         $project = Project::findOrfail($id);
