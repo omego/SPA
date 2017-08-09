@@ -9,17 +9,34 @@
 		<title>@yield('title')</title>
 	</head>
 	<body>
+	<div class="row">
 		  <nav>
     <div class="nav-wrapper">
-      <a href='{!!url("goal")!!}' class="brand-logo">SPA</a>
+      <div class="col s12"><a href='{!!url("goal")!!}' class="brand-logo">SPA</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href='{!!url("goal")!!}'>Goal</a></li>
         <li><a href='{!!url("project")!!}'>Project</a></li>
         <li><a href='{!!url("initiative")!!}'>initiative</a></li>
         <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
       </ul>
-    </div>
+    </div></div>
   		</nav>
+  		</div>
+  		<div class="row">
+  		<div class="container">
+  		  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
+        <a href="#!" class="breadcrumb">@isset($GoalTitle)
+    {!!$GoalTitle!!}
+@endisset</a>
+        <a href="#!" class="breadcrumb">@isset($ProjectTitle)
+    {!!$ProjectTitle!!}
+@endisset</a>
+      </div>
+    </div>
+  </nav></div></div>
 		@yield('content')
 		<div id="modal1" class="modal">
 			<div class = "row AjaxisModal">

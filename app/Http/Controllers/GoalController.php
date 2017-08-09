@@ -27,9 +27,9 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $title = 'Index - goal';
+        $GoalTitle = '> Index - goal';
         $goals = Goal::paginate(6);
-        return view('goal.index',compact('goals','title'));
+        return view('goal.index',compact('goals','GoalTitle'));
     }
 
 

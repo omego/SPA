@@ -27,15 +27,18 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $title = 'Index - project';
+        $title = '> Index - project';
         $projects = Project::paginate(6);
         return view('project.index',compact('projects','title'));
     }
     public function list($id,Request $request)
     {
-        $title = 'list - project';
+        // $title = 'list - project';
         $projects = Project::where('goal_id', $id)->paginate(6);
-        return view('project.list',compact('projects','title'));
+        $GoalName = Goal::findOrfail($id);
+        $GoalTitle = '> ' . $GoalName->goal_title;
+        return view('project.list',compact('projects','GoalTitle'));
+        //return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','title'));
     }
     /**
      * Show the form for creating a new resource.

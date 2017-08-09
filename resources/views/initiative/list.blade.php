@@ -4,7 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        initiative Index
+        initiative Index 
     </h1>
     <div class="row">
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>

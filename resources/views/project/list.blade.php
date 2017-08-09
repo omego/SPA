@@ -1,10 +1,10 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Index')
+@section('title','list')
 @section('content')
 
 <div class = 'container'>
     <h1>
-        project Index
+        project Index {!!$GoalTitle!!}
     </h1>
     <div class="row">
         <form class = 'col s3' method = 'get' action = '{!!url("project")!!}/create'>
