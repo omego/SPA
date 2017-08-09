@@ -38,13 +38,21 @@ Route::group(['middleware'=> 'web'],function(){
 Route::group(['middleware'=> 'web'],function(){
   Route::resource('goal','\App\Http\Controllers\GoalController');
   Route::post('goal/{id}/update','\App\Http\Controllers\GoalController@update');
+  // Route::post('goal/{id}','\App\Http\Controllers\GoalController@show');
+    // Route::resource('goal/list','\App\Http\Controllers\GoalController@list');
   Route::get('goal/{id}/delete','\App\Http\Controllers\GoalController@destroy');
   Route::get('goal/{id}/deleteMsg','\App\Http\Controllers\GoalController@DeleteMsg');
 });
 
 //project Routes
 Route::group(['middleware'=> 'web'],function(){
+  // Route::get('project','\App\Http\Controllers\ProjectController@index');
   Route::resource('project','\App\Http\Controllers\ProjectController');
+  Route::get('project/list/{id}', '\App\Http\Controllers\ProjectController@list');
+  // Route::get('project/create', '\App\Http\Controllers\ProjectController@create');
+  // Route::post('project', '\App\Http\Controllers\ProjectController@store');
+  Route::get('project/{id}', '\App\Http\Controllers\ProjectController@show');
+  Route::get('project/{id}/edit', '\App\Http\Controllers\ProjectController@edit');
   Route::post('project/{id}/update','\App\Http\Controllers\ProjectController@update');
   Route::get('project/{id}/delete','\App\Http\Controllers\ProjectController@destroy');
   Route::get('project/{id}/deleteMsg','\App\Http\Controllers\ProjectController@DeleteMsg');
@@ -55,6 +63,7 @@ Route::group(['middleware'=> 'web'],function(){
 //initiative Routes
 Route::group(['middleware'=> 'web'],function(){
   Route::resource('initiative','\App\Http\Controllers\InitiativeController');
+  Route::get('initiative/list/{id}', '\App\Http\Controllers\InitiativeController@list');
   Route::post('initiative/{id}/update','\App\Http\Controllers\InitiativeController@update');
   Route::get('initiative/{id}/delete','\App\Http\Controllers\InitiativeController@destroy');
   Route::get('initiative/{id}/deleteMsg','\App\Http\Controllers\InitiativeController@DeleteMsg');
@@ -74,4 +83,12 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('action_plan_attachment/{id}/update','\App\Http\Controllers\Action_plan_attachmentController@update');
   Route::get('action_plan_attachment/{id}/delete','\App\Http\Controllers\Action_plan_attachmentController@destroy');
   Route::get('action_plan_attachment/{id}/deleteMsg','\App\Http\Controllers\Action_plan_attachmentController@DeleteMsg');
+});
+
+//initiative_attachment Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('initiative_attachment','\App\Http\Controllers\Initiative_attachmentController');
+  Route::post('initiative_attachment/{id}/update','\App\Http\Controllers\Initiative_attachmentController@update');
+  Route::get('initiative_attachment/{id}/delete','\App\Http\Controllers\Initiative_attachmentController@destroy');
+  Route::get('initiative_attachment/{id}/deleteMsg','\App\Http\Controllers\Initiative_attachmentController@DeleteMsg');
 });

@@ -25,7 +25,13 @@ class Action_plan extends Model
 	public function initiative()
 	{
 		return $this->belongsTo('App\Initiative','initiative_id');
+
 	}
+
+	// public function action_plan_attachment()
+	// {
+	// 	return $this->HasOne('App\Action_plan_attachment');	
+	// }
 
 	
 }

@@ -15,7 +15,7 @@
        <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input <input id="file_name" name = "file_name" type="file" class="validate">
+        <input id="file_name" name = "file_name" type="file" class="validate">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">

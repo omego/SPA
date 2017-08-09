@@ -10,7 +10,7 @@
         <button class = 'btn blue'>action_plan Index</button>
     </form>
     <br>
-    <form method = 'POST' action = '{!! url("action_plan")!!}/{!!$action_plan->
+    <form enctype="multipart/form-data" method = 'POST' action = '{!! url("action_plan")!!}/{!!$action_plan->
         id!!}/update'> 
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
@@ -42,6 +42,15 @@
             <input id="action_plan_end" name = "action_plan_end" type="text" class="validate" value="{!!$action_plan->
             action_plan_end!!}"> 
             <label for="action_plan_end">action_plan_end</label>
+        </div>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                    <input id="file_name" name = "file_name" type="file" class="validate">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
         </div>
         <div class="input-field col s6">
             <input id="action_plan_approval" name = "action_plan_approval" type="text" class="validate" value="{!!$action_plan->

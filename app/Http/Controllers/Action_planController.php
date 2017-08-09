@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Action_plan;
+use App\Action_plan_attachment;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -60,13 +61,13 @@ class Action_planController extends Controller
         $action_plan->action_plan_title = $request->action_plan_title;
 
         
-        $action_plan->action_plan_updates = $request->action_plan_updates;
+        // $action_plan->action_plan_updates = $request->action_plan_updates;
 
         
-        $action_plan->action_plan_risks = $request->action_plan_risks;
+        // $action_plan->action_plan_risks = $request->action_plan_risks;
 
         
-        $action_plan->action_plan_resources = $request->action_plan_resources;
+        // $action_plan->action_plan_resources = $request->action_plan_resources;
 
         
         $action_plan->action_plan_start = $request->action_plan_start;
@@ -75,14 +76,28 @@ class Action_planController extends Controller
         $action_plan->action_plan_end = $request->action_plan_end;
 
         
-        $action_plan->action_plan_approval = $request->action_plan_approval;
-
+        // $action_plan->action_plan_approval = $request->action_plan_approval;
         
         
         $action_plan->initiative_id = $request->initiative_id;
 
+        // $file_upload = new Action_plan_attachmentController();
+
+        // $file_upload->file_name = $request->file('file_name');
+
+        // $action_plan->Action_plan_attachment()->save($file_upload);
+
         
-        $action_plan->save();
+
+        // $file_upload = new Action_plan_attachment();
+
+        // $file_upload->file_name = $request->file('file_name');
+
+        // $file_upload->action_plan_id = $request->action_plan_id;
+
+        // $file_upload->push();
+
+        $action_plan->push();
 
         $pusher = App::make('pusher');
 
@@ -167,6 +182,38 @@ class Action_planController extends Controller
         
         $action_plan->initiative_id = $request->initiative_id;
 
+        $action_plan_attachment = new Action_plan_attachment();
+        
+        
+        $action_plan_attachment->action_plan_id = $request->id;
+
+
+        $file = $request->file('file_name');
+
+        //File Name
+        $file->getClientOriginalName();
+
+        //Display File Extension
+        $file->getClientOriginalExtension();
+
+        //Display File Real Path
+        $file->getRealPath();
+
+        //Display File Size
+        $file->getSize();
+
+        //Display File Mime Type
+        $file->getMimeType();
+
+        //Move Uploaded File
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$file->getClientOriginalName());
+
+        $filename = $file->getClientOriginalName();
+        
+        $action_plan_attachment->file_name = 'uploads/' . $filename;
+
+        $action_plan_attachment->save();
         
         $action_plan->save();
 

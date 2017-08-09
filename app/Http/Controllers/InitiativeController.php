@@ -33,6 +33,12 @@ class InitiativeController extends Controller
         return view('initiative.index',compact('initiatives','title'));
     }
 
+    public function list($id,Request $request)
+    {
+        $title = 'list - initiative';
+        $initiatives = Initiative::where('project_id', $id)->paginate(6);
+        return view('initiative.list',compact('initiatives','title'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -72,7 +78,11 @@ class InitiativeController extends Controller
         
         $initiative->kpi_target = $request->kpi_target;
 
-        
+        $initiative->status = $request->status;
+
+        $initiative->why_if_not = $request->why_if_not;
+
+        $initiative->dod_note = $request->dod_note;
         
         $initiative->project_id = $request->project_id;
 
@@ -107,7 +117,7 @@ class InitiativeController extends Controller
         {
             return URL::to('initiative/'.$id);
         }
-        $action_plans = Action_plan::paginate(6);
+        $action_plans = Action_plan::where('initiative_id', $id)->paginate(6);
         //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
         return view('initiative.show',compact('title','initiative','action_plans','title'));
@@ -156,7 +166,12 @@ class InitiativeController extends Controller
         
         $initiative->kpi_target = $request->kpi_target;
         
-        
+        $initiative->status = $request->status;
+
+        $initiative->why_if_not = $request->why_if_not;
+
+        $initiative->dod_note = $request->dod_note;
+       
         $initiative->project_id = $request->project_id;
 
         

@@ -11,12 +11,12 @@
 	<body>
 		  <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">SPA</a>
+      <a href='{!!url("goal")!!}' class="brand-logo">SPA</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="goal">Goal</a></li>
-        <li><a href="project">Project</a></li>
-        <li><a href="initiative">initiative</a></li>
-        <li><a href="action_plan">Action Plans</a></li>
+        <li><a href='{!!url("goal")!!}'>Goal</a></li>
+        <li><a href='{!!url("project")!!}'>Project</a></li>
+        <li><a href='{!!url("initiative")!!}'>initiative</a></li>
+        <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
       </ul>
     </div>
   		</nav>

@@ -9,6 +9,9 @@ use App\Goal;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
+use App\Project;
+
+
 /**
  * Class GoalController.
  *
@@ -28,6 +31,8 @@ class GoalController extends Controller
         $goals = Goal::paginate(6);
         return view('goal.index',compact('goals','title'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -87,12 +92,13 @@ class GoalController extends Controller
 
         if($request->ajax())
         {
-            return URL::to('goal/'.$id);
+            return URL::to('project/list/'.$id);
         }
 
         $goal = Goal::findOrfail($id);
         return view('goal.show',compact('title','goal'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -123,7 +129,7 @@ class GoalController extends Controller
     public function update($id,Request $request)
     {
         $goal = Goal::findOrfail($id);
-    	
+        
         $goal->goal_title = $request->goal_title;
         
         $goal->goal_discerption = $request->goal_discerption;
@@ -159,8 +165,8 @@ class GoalController extends Controller
      */
     public function destroy($id)
     {
-     	$goal = Goal::findOrfail($id);
-     	$goal->delete();
+        $goal = Goal::findOrfail($id);
+        $goal->delete();
         return URL::to('goal');
     }
 }

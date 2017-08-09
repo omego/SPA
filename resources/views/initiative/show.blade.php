@@ -15,30 +15,21 @@
     </div>
       <div class="col s6">
           
-          <table class = 'highlight bordered'>
-           <thead>
-            <th>kpi_previous</th>
-            <th>kpi_current</th>
-            <th>kpi_target</th>
-        </thead>
-                      <tr>
-                <td>
-                    <b><i>kpi_previous : </i></b>
-                </td>
-                <td>{!!$initiative->kpi_previous!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>kpi_current : </i></b>
-                </td>
-                <td>{!!$initiative->kpi_current!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>kpi_target : </i></b>
-                </td>
-                <td>{!!$initiative->kpi_target!!}</td>
-            </tr>
+        <table class = 'highlight bordered'>
+            <thead>
+                <th>kpi_previous</th>
+                <th>kpi_current</th>
+                <th>kpi_target</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{!!$initiative->kpi_previous!!}</td>
+                    <td>{!!$initiative->kpi_current!!}</td>
+                    <td>{!!$initiative->kpi_target!!}</td>
+                </tr>
+            </tbody>
+        </table>
+            <table class = 'highlight bordered'>
         <thead>
             <th>Key</th>
             <th>Value</th>
@@ -56,7 +47,24 @@
                 </td>
                 <td>{!!$initiative->initiative_description!!}</td>
             </tr>
-
+            <tr>
+                <td>
+                    <b><i>status : </i></b>
+                </td>
+                <td>{!!$initiative->status!!}</td>
+            </tr>
+             <tr>
+                <td>
+                    <b><i>Why if not : </i></b>
+                </td>
+                <td>{!!$initiative->why_if_not!!}</td>
+            </tr>
+             <tr>
+                <td>
+                    <b><i>DOD Comment : </i></b>
+                </td>
+                <td>{!!$initiative->dod_note!!}</td>
+            </tr>
             <tr>
                 <td>
                     <b>
