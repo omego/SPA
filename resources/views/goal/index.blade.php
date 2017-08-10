@@ -21,7 +21,13 @@
             @foreach($goals as $goal) 
             <tr>
                 <td>{!!$goal->goal_title!!}</td>
-                <td>{!!$goal->goal_discerption!!}</td>
+                <td>
+                @PHP
+                echo str_limit($goal->goal_discerption, 75);
+                @endPHP
+
+                <!-- {!!$goal->goal_discerption!!} -->
+                </td>
                 <td>
                     <div class = 'row'>
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/goal/{!!$goal->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
