@@ -11,7 +11,7 @@
 	<body>
 	<div class="row">
 		  <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper grey darken-3">
       <div class="col s12"><a href='{!!url("goal")!!}' class="brand-logo">SPA</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href='{!!url("goal")!!}'>Goal</a></li>
@@ -25,7 +25,7 @@
   		<div class="row">
   		<div class="container">
   		  <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper grey">
       <div class="col s12">
         <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
         <a href="#!" class="breadcrumb">@isset($GoalTitle)
