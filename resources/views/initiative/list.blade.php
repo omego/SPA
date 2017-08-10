@@ -31,7 +31,12 @@
             @foreach($initiatives as $initiative) 
             <tr>
                 <td>{!!$initiative->initiative_title!!}</td>
-                <td>{!!$initiative->initiative_description!!}</td>
+                <td>
+                @PHP
+                echo str_limit($initiative->initiative_description, 25);
+                @endPHP
+<!--                 {!!$initiative->initiative_description!!} -->
+                </td>
                 <td>{!!$initiative->kpi_previous!!}</td>
                 <td>{!!$initiative->kpi_current!!}</td>
                 <td>{!!$initiative->kpi_target!!}</td>
