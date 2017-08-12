@@ -63,7 +63,11 @@
         <div class="input-field col s12">
             <select name = 'project_id'>
                 @foreach($projects as $key => $value) 
+                @if ($key == $initiative->project_id)
+                <option selected value="{{$key}}">{{$value}}</option>
+                @else
                 <option value="{{$key}}">{{$value}}</option>
+                @endif
                 @endforeach 
             </select>
             <label>projects Select</label>

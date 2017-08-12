@@ -23,15 +23,31 @@
             project_discerption!!}"> 
             <label for="project_discerption">project_discerption</label>
         </div>
-        <div class="input-field col s12">
+        <!-- <div class="input-field col s12">
             <select name = 'goal_id'>
                 @foreach($goals as $key => $value) 
                 <option value="{{$key}}">{{$value}}</option>
                 @endforeach 
             </select>
             <label>goals Select</label>
+        </div> -->
+        <div class="input-field col s12">
+            <select name = 'goal_id'>
+                @foreach($goals as $key => $value) 
+                @if ($key == $project->goal_id)
+                <option selected value="{{$key}}">{{$value}}</option>
+                @else
+                <option value="{{$key}}">{{$value}}</option>
+                @endif
+                @endforeach 
+            </select>
+            <label>goals Select</label>
         </div>
         <button class = 'btn red' type ='submit'>Update</button>
+
+
+</select>
+
     </form>
 </div>
 @endsection
