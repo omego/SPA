@@ -27,6 +27,18 @@
                 </td>
                 <td>{!!$goal->goal_discerption!!}</td>
             </tr>
+            <tr><td>P#</td>
+                <td>
+                     {!!$ProjectCount!!}
+                </td>
+            </tr>
+             <tr><td>I#</td>
+                <td>
+                @foreach($goal->initiatives as $initiative)
+                     {!!$initiative->id!!}
+                @endforeach
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -21,5 +21,9 @@ class Goal extends Model
 	
     protected $table = 'goals';
 
+    public function initiatives()
+    {
+    	return $this->hasManyThrough('App\Initiative','App\Project');
+    }
 	
 }

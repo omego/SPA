@@ -10,7 +10,7 @@ use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
 use App\Project;
-
+use App\Initiative;
 
 /**
  * Class GoalController.
@@ -96,7 +96,17 @@ class GoalController extends Controller
         }
 
         $goal = Goal::findOrfail($id);
-        return view('goal.show',compact('title','goal'));
+        
+
+        $ProjectCount = Project::where('goal_id', $id)->count();
+        // $InitiativeCount = Initiative::where('project_id', $id)
+        // ->where('status', 'Accomplished')->count();
+        // $InitiativeCount = Goal::findOrfail($id)->with('initiatives');
+        foreach ($goal->initiatives as $initiative) {
+           echo $initiative->id;
+        }
+
+        return view('goal.show',compact('title','goal','ProjectCount'));
     }
 
 
