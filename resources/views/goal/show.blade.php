@@ -38,8 +38,11 @@
                             @if ($initiative->status == 'Accomplished')
                                 {!!$initiative->status!!}
                             @endif
-                @endforeach -->
-                {!!$InitiativeCounted!!}
+                @endforeach
+                {!!$InitiativeCounted!!} -->
+                  <div class="progress">
+                      <div class="determinate" style="width: {!!$InitiativePercent!!}%"></div>
+                  </div>
                 </td>
             </tr>
         </tbody>

@@ -124,9 +124,13 @@ class GoalController extends Controller
         }
 
         $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
-        echo $InitiativeCounted;
+        $InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
+        $InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
+        $InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
+        echo $InitiativePercent;
+        // echo $InitiativeCounted, $InitiativeNotCounted;
 
-        return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted'));
+        return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
     }
 
 
