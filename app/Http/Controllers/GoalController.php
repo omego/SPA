@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Goal;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Illuminate\Support\Facades\DB;
 
 use App\Project;
 use App\Initiative;
@@ -101,12 +102,31 @@ class GoalController extends Controller
         $ProjectCount = Project::where('goal_id', $id)->count();
         // $InitiativeCount = Initiative::where('project_id', $id)
         // ->where('status', 'Accomplished')->count();
-        // $InitiativeCount = Goal::findOrfail($id)->with('initiatives');
-        foreach ($goal->initiatives as $initiative) {
-           echo $initiative->id;
+        // $InitiativeCount = Goal::where('id', $id)->with('initiatives')->get();
+        // echo $InitiativeCount;
+        // foreach ($goal->initiatives as $initiative) {
+        //     if ($initiative->status == 'Accomplished') {
+        //         echo $initiative->status;
+        //     }
+        // }
+        // $InitiativeCount = Goal::whereHas('initiatives', function($offerQuery){
+        // $offerQuery->where('status', '=', 'Accomplished');
+        // })->get();
+        $InitiativeCount = DB::table('goals')
+            ->join('projects', 'goals.id', '=', 'projects.goal_id')
+            ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
+            ->select('initiatives.*', 'initiatives.initiative_title')
+            ->where('goals.id', '=', $id)
+            ->get();    
+                
+        foreach ($InitiativeCount as $item) {
+            echo '<ul><li>' . $item->status . '</li></ul>';
         }
 
-        return view('goal.show',compact('title','goal','ProjectCount'));
+        $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
+        echo $InitiativeCounted;
+
+        return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted'));
     }
 
 

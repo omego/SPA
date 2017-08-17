@@ -34,9 +34,12 @@
             </tr>
              <tr><td>I#</td>
                 <td>
-                @foreach($goal->initiatives as $initiative)
-                     {!!$initiative->id!!}
-                @endforeach
+<!--                 @foreach($goal->initiatives as $initiative)
+                            @if ($initiative->status == 'Accomplished')
+                                {!!$initiative->status!!}
+                            @endif
+                @endforeach -->
+                {!!$InitiativeCounted!!}
                 </td>
             </tr>
         </tbody>
