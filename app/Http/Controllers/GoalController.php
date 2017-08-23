@@ -6,12 +6,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Goal;
+use App\User;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use Illuminate\Support\Facades\DB;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 use App\Project;
 use App\Initiative;
+use Auth;
+// use Session;
+
 
 /**
  * Class GoalController.
@@ -19,8 +26,19 @@ use App\Initiative;
  * @author  The scaffold-interface created at 2017-08-02 11:18:16am
  * @link  https://github.com/amranidev/scaffold-interface
  */
+
+  
+
 class GoalController extends Controller
-{
+    {
+    
+        public function __construct() {
+        $this->middleware(['auth', 'clearance'])->except('index', 'show');
+    }
+
+
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -30,6 +48,19 @@ class GoalController extends Controller
     {
         $GoalTitle = '> Index - goal';
         $goals = Goal::paginate(6);
+        // $user = User::all();
+        $user = Auth::user();
+        $permissions = $user->permissions;
+        $role = Role::where('name', 'Admin')->first();
+        
+        $roles = $role->givePermissionTo('Edit Goals');
+
+
+        echo $permissions, $roles;
+        // $permissions = Permission::all();
+        // $permissions = $user->permissions;
+
+
         return view('goal.index',compact('goals','GoalTitle'));
     }
 
@@ -40,6 +71,9 @@ class GoalController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
+
+     
+
     public function create()
     {
         $title = 'Create - goal';

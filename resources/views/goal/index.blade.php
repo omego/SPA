@@ -4,7 +4,12 @@
 
 <div class = 'container'>
     <h1>
-        goal Index
+        goal Index - 
+        @role('Admin')
+    I am a writer!
+@else
+    I am not a writer...
+@endrole
     </h1>
     <div class="row">
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>

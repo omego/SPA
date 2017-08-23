@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class Goal.
@@ -15,6 +16,8 @@ class Goal extends Model
 {
 	
 	use SoftDeletes;
+	use HasRoles;
+	protected $guard_name = 'web'; // or whatever guard you want to use
 
 	protected $dates = ['deleted_at'];
     
