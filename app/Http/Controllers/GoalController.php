@@ -53,15 +53,19 @@ class GoalController extends Controller
         $permissions = $user->permissions;
         $role = Role::where('name', 'Admin')->first();
         
-        $roles = $role->givePermissionTo('Edit Goals');
+        // $roles = $role->givePermissionTo('Edit Goals');
 
 
-        echo $permissions, $roles;
+        echo $role->name;
         // $permissions = Permission::all();
         // $permissions = $user->permissions;
+        if ($user->hasPermissionTo('View Goals')) {
+            return view('goal.index',compact('goals','GoalTitle'));
+        }else{
+            return view('errors.401');
+        }
 
-
-        return view('goal.index',compact('goals','GoalTitle'));
+        
     }
 
 
@@ -77,8 +81,14 @@ class GoalController extends Controller
     public function create()
     {
         $title = 'Create - goal';
+        $user = Auth::user();
         
-        return view('goal.create');
+        
+        if ($user->hasPermissionTo('Create Goals')) {
+            return view('goal.create');
+        }else{
+            return view('errors.401');
+        }
     }
 
     /**
@@ -182,9 +192,15 @@ class GoalController extends Controller
             return URL::to('goal/'. $id . '/edit');
         }
 
-        
+        $user = Auth::user();
         $goal = Goal::findOrfail($id);
-        return view('goal.edit',compact('title','goal'  ));
+        
+
+        if ($user->hasPermissionTo('Edit Goals')) {
+            return view('goal.edit',compact('title','goal'  ));
+        }else{
+            return view('errors.401');
+        }
     }
 
     /**
@@ -218,11 +234,18 @@ class GoalController extends Controller
     public function DeleteMsg($id,Request $request)
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
+        
 
-        if($request->ajax())
-        {
-            return $msg;
+        if ($user->hasPermissionTo('Delete Goals')) {
+                if($request->ajax())
+            {
+                return $msg;
+            }
+        }else{
+            return view('errors.401');
         }
+
+        
     }
 
     /**
