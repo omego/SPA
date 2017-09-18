@@ -32,7 +32,19 @@
                 @PHP
                 echo str_limit($goal->goal_discerption, 75);
                 @endPHP
+                        @php
+                $InitiativeCount = DB::table('goals')
+            ->join('projects', 'goals.id', '=', 'projects.goal_id')
+            ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
+            ->select('initiatives.*', 'initiatives.initiative_title')
+            ->where('goals.id', '=', $goal->id)
+            ->get();    
+                
 
+
+        $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
+        echo $InitiativeCounted;
+        @endphp
                 <!-- {!!$goal->goal_discerption!!} -->
                 </td>
                 <td>
