@@ -29,4 +29,36 @@ class Goal extends Model
     	return $this->hasManyThrough('App\Initiative','App\Project');
     }
 	
+
+	/**
+     * user.
+     *
+     * @return  \Illuminate\Support\Collection;
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+    /**
+     * Assign a user.
+     *
+     * @param  $user
+     * @return  mixed
+     */
+    public function assignUser($user)
+    {
+        return $this->users()->attach($user);
+    }
+    /**
+     * Remove a user.
+     *
+     * @param  $user
+     * @return  mixed
+     */
+    public function removeUser($user)
+    {
+        return $this->users()->detach($user);
+    }
+
 }
