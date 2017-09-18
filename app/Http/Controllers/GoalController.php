@@ -187,6 +187,8 @@ class GoalController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - goal';
+        $users = \App\User::all();
+
         if($request->ajax())
         {
             return URL::to('goal/'. $id . '/edit');
@@ -195,9 +197,9 @@ class GoalController extends Controller
         $user = Auth::user();
         $goal = Goal::findOrfail($id);
         
-
-        if ($user->hasPermissionTo('Edit Goals')) {
-            return view('goal.edit',compact('title','goal'  ));
+        $userGoals = $goal->users;
+        if ($user->hasPermissionTo('edit goals')) {
+            return view('goal.edit',compact('title','goal','users','userGoals'));
         }else{
             return view('errors.401');
         }
@@ -259,5 +261,35 @@ class GoalController extends Controller
         $goal = Goal::findOrfail($id);
         $goal->delete();
         return URL::to('goal');
+    }
+
+
+    /**
+     * Assign users to goals
+     *
+     */
+        public function addUserGoals(Request $request)
+    {
+        $goal = Goal::findorfail($request->goal_id);
+        // $user = User::findorfail($request->user_id);
+        $goal->users()->attach($request->user_id);
+
+        // $user = \App\User::findorfail($request->user_id);
+        // $user->givePermissionTo($request->permission_name);
+
+        return redirect('goal/'.$request->goal_id. '/edit');
+    }
+
+    /**
+     * Remove assigned users to goals
+     *
+     */
+        public function removeUserGoals($user_id, $goal_id)
+    {
+        $goal = Goal::findorfail($goal_id);
+
+        $goal->users()->detach($user_id);
+
+        return redirect('goal/'.$goal_id.'/edit');
     }
 }

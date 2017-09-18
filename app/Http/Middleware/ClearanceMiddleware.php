@@ -14,7 +14,7 @@ class ClearanceMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next) {        
-        if (Auth::user()->hasPermissionTo('View Goals')) //If user has this //permission
+        if (Auth::user()->hasPermissionTo('view goals')) //If user has this //permission
     {
             return $next($request);
         }

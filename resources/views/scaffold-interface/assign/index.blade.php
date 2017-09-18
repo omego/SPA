@@ -3,7 +3,7 @@
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header">
-			<h3>All Data</h3>
+			<h3>All Goals</h3>
 		</div>
 		<div class="box-body">
 			<table class="table table-striped">
