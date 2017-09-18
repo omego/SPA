@@ -59,7 +59,7 @@ class GoalController extends Controller
         echo $role->name;
         // $permissions = Permission::all();
         // $permissions = $user->permissions;
-        if ($user->hasPermissionTo('View Goals')) {
+        if ($user->hasPermissionTo('view goals')) {
             return view('goal.index',compact('goals','GoalTitle'));
         }else{
             return view('errors.401');

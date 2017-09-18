@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ScaffoldInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -54,8 +55,11 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
+        $permissions = Permission::all()->pluck('name');
+        // $userRoles = $user->roles;
+        $RolePermissions = $role->permissions;
 
-        return view('scaffold-interface.roles.edit', compact('role'));
+        return view('scaffold-interface.roles.edit', compact('role','permissions','RolePermissions'));
     }
 
     /**
@@ -91,4 +95,36 @@ class RoleController extends Controller
 
         return redirect('scaffold-roles');
     }
+
+    /**
+     * Assign Permission to a role.
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addPermission(Request $request)
+    {
+        $role = Role::findOrFail($request->role_id);
+        $role->givePermissionTo($request->permission_name);
+
+        return redirect('scaffold-roles/edit/'.$request->role_id);
+    }
+
+        /**
+     * revoke Permission to a user.
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function revokePermission($permission, $role_id)
+    {
+        $user = Role::findorfail($role_id);
+
+        $user->revokePermissionTo(str_slug($permission, ' '));
+
+        return redirect('scaffold-roles/edit/'.$role_id);
+    }
+
 }
