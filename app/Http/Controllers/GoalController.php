@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Pusher;
 use App\Project;
 use App\Initiative;
 use Auth;
@@ -111,15 +111,19 @@ class GoalController extends Controller
 
         $goal->save();
 
-        $pusher = App::make('pusher');
+        $options = array(
+          'cluster' => 'ap2',
+          'encrypted' => true
+        );
+        $pusher = new Pusher(
+          env("PUSHER_APP_KEY"),
+          env("PUSHER_APP_SECRET"),
+          env("PUSHER_APP_ID"),
+          $options
+        );
 
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new goal has been created !!']);
+        $data['message'] = $request->goal_title . ' created';
+        $pusher->trigger('my-channel', 'my-event', $data);
 
         return redirect('goal');
     }
@@ -173,6 +177,25 @@ class GoalController extends Controller
         $InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
         echo $InitiativePercent;
         // echo $InitiativeCounted, $InitiativeNotCounted;
+        $user = Auth::user();
+        $goal = Goal::findOrfail($id);
+
+        $userGoals = $goal->users;
+        foreach ($userGoals as $userGoal) {
+            echo '<br>' . $userGoal->id;
+            if ($user->id == $userGoal->id) {
+              return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
+            }else {
+              return view('errors.401');
+            }
+        }
+        // foreach ($userGoals as $userGoal) {
+        //   echo $userGoal->id, $userGoal->name, $goal->id;
+        //   // if ($userGoal->id == $goal->user_id) {
+        //   //   echo "owner";
+        //   // }
+        // }
+        // echo $userGoals;
 
         return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
     }

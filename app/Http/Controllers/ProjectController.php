@@ -48,9 +48,9 @@ class ProjectController extends Controller
     public function create()
     {
         $title = 'Create - project';
-        
+
         $goals = Goal::all()->pluck('goal_title','id');
-        
+
         return view('project.create',compact('title','goals'  ));
     }
 
@@ -64,17 +64,17 @@ class ProjectController extends Controller
     {
         $project = new Project();
 
-        
+
         $project->project_title = $request->project_title;
 
-        
+
         $project->project_discerption = $request->project_discerption;
 
-        
-        
+
+
         $project->goal_id = $request->goal_id;
 
-        
+
         $project->save();
 
         $pusher = App::make('pusher');
@@ -124,10 +124,10 @@ class ProjectController extends Controller
             return URL::to('project/'. $id . '/edit');
         }
 
-        
+
         $goals = Goal::all()->pluck('goal_title','id');
 
-        
+
         $project = Project::findOrfail($id);
         return view('project.edit',compact('title','project' ,'goals' ) );
     }
@@ -142,15 +142,15 @@ class ProjectController extends Controller
     public function update($id,Request $request)
     {
         $project = Project::findOrfail($id);
-    	
+
         $project->project_title = $request->project_title;
-        
+
         $project->project_discerption = $request->project_discerption;
-        
-        
+
+
         $project->goal_id = $request->goal_id;
 
-        
+
         $project->save();
 
         return redirect('project');

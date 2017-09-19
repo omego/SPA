@@ -42,6 +42,8 @@ Route::group(['middleware'=> 'web'],function(){
     // Route::resource('goal/list','\App\Http\Controllers\GoalController@list');
   Route::get('goal/{id}/delete','\App\Http\Controllers\GoalController@destroy');
   Route::get('goal/{id}/deleteMsg','\App\Http\Controllers\GoalController@DeleteMsg');
+  Route::post('goal/addUserGoals','\App\Http\Controllers\GoalController@addUserGoals');
+  Route::get('goal/removeUserGoals/{user_id}/{goal_id}','\App\Http\Controllers\GoalController@removeUserGoals');
 });
 
 //project Routes

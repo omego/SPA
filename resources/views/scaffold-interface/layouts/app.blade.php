@@ -143,24 +143,15 @@
 		Pusher.logToConsole = true;
 		// here is pusher client side code.
 		var pusher = new Pusher("{{env("PUSHER_APP_KEY")}}", {
+		cluster: 'ap2',
 		encrypted: true
 		});
-		var channel = pusher.subscribe('test-channel');
-		channel.bind('test-event', function(data) {
+		var channel = pusher.subscribe('my-channel');
+		channel.bind('my-event', function(data) {
 		// display message coming from server on dashboard Notification Navbar List.
 		$('.notification-label').addClass('label-warning');
 		$('.notification-menu').append(
-			'<li>\
-<<<<<<< HEAD
-							<a href="#">\
-											<i class="fa fa-users text-aqua"></i> '+data.message+'\
-							</a>\
-=======
-				<a href="#">\
-					<i class="fa fa-users text-aqua"></i> '+data.message+'\
-				</a>\
->>>>>>> 36e331d580b33e2ad155aae685046a239e096ca2
-			</li>'
+			'<li><a href="#"><i class="fa fa-users text-aqua"></i>'+data.message+'</a></li>'
 			);
 		});
 		</script>
