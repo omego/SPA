@@ -120,9 +120,9 @@ class RoleController extends Controller
      */
     public function revokePermission($permission, $role_id)
     {
-        $user = Role::findorfail($role_id);
+        $role = Role::findorfail($role_id);
 
-        $user->revokePermissionTo(str_slug($permission, ' '));
+        $role->revokePermissionTo(str_slug($permission, ' '));
 
         return redirect('scaffold-roles/edit/'.$role_id);
     }

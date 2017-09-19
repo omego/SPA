@@ -27,18 +27,18 @@ use Auth;
  * @link  https://github.com/amranidev/scaffold-interface
  */
 
-  
+
 
 class GoalController extends Controller
     {
-    
+
         public function __construct() {
         $this->middleware(['auth', 'clearance'])->except('index', 'show');
     }
 
 
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +52,7 @@ class GoalController extends Controller
         $user = Auth::user();
         $permissions = $user->permissions;
         $role = Role::where('name', 'Admin')->first();
-        
+
         // $roles = $role->givePermissionTo('Edit Goals');
 
 
@@ -65,7 +65,7 @@ class GoalController extends Controller
             return view('errors.401');
         }
 
-        
+
     }
 
 
@@ -76,15 +76,15 @@ class GoalController extends Controller
      * @return  \Illuminate\Http\Response
      */
 
-     
+
 
     public function create()
     {
         $title = 'Create - goal';
         $user = Auth::user();
-        
-        
-        if ($user->hasPermissionTo('Create Goals')) {
+
+
+        if ($user->hasPermissionTo('create goals')) {
             return view('goal.create');
         }else{
             return view('errors.401');
@@ -101,14 +101,14 @@ class GoalController extends Controller
     {
         $goal = new Goal();
 
-        
+
         $goal->goal_title = $request->goal_title;
 
-        
+
         $goal->goal_discerption = $request->goal_discerption;
 
-        
-        
+
+
         $goal->save();
 
         $pusher = App::make('pusher');
@@ -141,7 +141,7 @@ class GoalController extends Controller
         }
 
         $goal = Goal::findOrfail($id);
-        
+
 
         $ProjectCount = Project::where('goal_id', $id)->count();
         // $InitiativeCount = Initiative::where('project_id', $id)
@@ -161,8 +161,8 @@ class GoalController extends Controller
             ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
             ->select('initiatives.*', 'initiatives.initiative_title')
             ->where('goals.id', '=', $id)
-            ->get();    
-                
+            ->get();
+
         foreach ($InitiativeCount as $item) {
             echo '<ul><li>' . $item->status . '</li></ul>';
         }
@@ -196,7 +196,7 @@ class GoalController extends Controller
 
         $user = Auth::user();
         $goal = Goal::findOrfail($id);
-        
+
         $userGoals = $goal->users;
         if ($user->hasPermissionTo('edit goals')) {
             return view('goal.edit',compact('title','goal','users','userGoals'));
@@ -215,12 +215,12 @@ class GoalController extends Controller
     public function update($id,Request $request)
     {
         $goal = Goal::findOrfail($id);
-        
+
         $goal->goal_title = $request->goal_title;
-        
+
         $goal->goal_discerption = $request->goal_discerption;
-        
-        
+
+
         $goal->save();
 
         return redirect('goal');
@@ -236,7 +236,7 @@ class GoalController extends Controller
     public function DeleteMsg($id,Request $request)
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
-        
+
 
         if ($user->hasPermissionTo('Delete Goals')) {
                 if($request->ajax())
@@ -247,7 +247,7 @@ class GoalController extends Controller
             return view('errors.401');
         }
 
-        
+
     }
 
     /**
