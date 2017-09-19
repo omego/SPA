@@ -27,6 +27,24 @@
                 </td>
                 <td>{!!$goal->goal_discerption!!}</td>
             </tr>
+            <tr><td>P#</td>
+                <td>
+                     {!!$ProjectCount!!}
+                </td>
+            </tr>
+             <tr><td>I#</td>
+                <td>
+<!--                 @foreach($goal->initiatives as $initiative)
+                            @if ($initiative->status == 'Accomplished')
+                                {!!$initiative->status!!}
+                            @endif
+                @endforeach
+                {!!$InitiativeCounted!!} -->
+                  <div class="progress">
+                      <div class="determinate" style="width: {!!$InitiativePercent!!}%"></div>
+                  </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

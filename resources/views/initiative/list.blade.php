@@ -4,7 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        initiative Index
+        initiative Index 
     </h1>
     <div class="row">
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
@@ -25,29 +25,24 @@
             <th>status</th>
             <th>Why If Not</th>
             <th>DOD Comment</th>
-            <th>project_title</th>
-            <th>project_discerption</th>
-            <th>created_at</th>
-            <th>updated_at</th>
-            <th>deleted_at</th>
             <th>actions</th>
         </thead>
         <tbody>
             @foreach($initiatives as $initiative) 
             <tr>
                 <td>{!!$initiative->initiative_title!!}</td>
-                <td>{!!$initiative->initiative_description!!}</td>
+                <td>
+                @PHP
+                echo str_limit($initiative->initiative_description, 25);
+                @endPHP
+<!--                 {!!$initiative->initiative_description!!} -->
+                </td>
                 <td>{!!$initiative->kpi_previous!!}</td>
                 <td>{!!$initiative->kpi_current!!}</td>
                 <td>{!!$initiative->kpi_target!!}</td>
                 <td>{!!$initiative->status!!}</td>
                 <td>{!!$initiative->why_if_not!!}</td>
                 <td>{!!$initiative->dod_note!!}</td>
-                <td>{!!$initiative->project->project_title!!}</td>
-                <td>{!!$initiative->project->project_discerption!!}</td>
-                <td>{!!$initiative->project->created_at!!}</td>
-                <td>{!!$initiative->project->updated_at!!}</td>
-                <td>{!!$initiative->project->deleted_at!!}</td>
                 <td>
                     <div class = 'row'>
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>

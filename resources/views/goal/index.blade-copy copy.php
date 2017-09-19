@@ -6,17 +6,15 @@
     <h1>
         goal Index - 
         @role('Admin')
-    I am admin!
+    I am a writer!
 @else
-    I am not an admin...
+    I am not a writer...
 @endrole
     </h1>
     <div class="row">
-        @role('Admin')
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New goal</button>
         </form>
-        @endrole
     </div>
     <table>
         <thead>

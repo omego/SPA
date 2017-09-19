@@ -12,3 +12,5 @@ yarn-error.log
 .env
 composer.lock
 composer.lock
+public/uploads/awosome-friday-ad.png
+public/uploads/cat-ad-photo.png
