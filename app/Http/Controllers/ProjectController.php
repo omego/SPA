@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Auth;
 
 use App\Goal;
 
@@ -119,6 +120,8 @@ class ProjectController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - project';
+        $users = \App\User::all();
+
         if($request->ajax())
         {
             return URL::to('project/'. $id . '/edit');
@@ -127,9 +130,18 @@ class ProjectController extends Controller
 
         $goals = Goal::all()->pluck('goal_title','id');
 
-
+        $user = Auth::user();
         $project = Project::findOrfail($id);
-        return view('project.edit',compact('title','project' ,'goals' ) );
+
+        $userProjects = $project->users;
+        if ($user->hasPermissionTo('edit projects')) {
+            return view('project.edit',compact('title','project' ,'goals' ,'users','userProjects'));
+        }else{
+            return view('errors.401');
+        }
+
+        // $project = Project::findOrfail($id);
+        // return view('project.edit',compact('title','project' ,'goals' ,'users','userProject' ) );
     }
 
     /**
@@ -184,5 +196,34 @@ class ProjectController extends Controller
      	$project = Project::findOrfail($id);
      	$project->delete();
         return URL::to('project');
+    }
+
+    /**
+     * Assign users to projects
+     *
+     */
+        public function addUserProjects(Request $request)
+    {
+        $project = Project::findorfail($request->project_id);
+        // $user = User::findorfail($request->user_id);
+        $project->users()->syncWithoutDetaching($request->user_id);
+
+        // $user = \App\User::findorfail($request->user_id);
+        // $user->givePermissionTo($request->permission_name);
+
+        return redirect('project/'.$request->project_id. '/edit');
+    }
+
+    /**
+     * Remove assigned users to projects
+     *
+     */
+        public function removeUserProjects($user_id, $project_id)
+    {
+        $project = Project::findorfail($project_id);
+
+        $project->users()->detach($user_id);
+
+        return redirect('project/'.$project_id.'/edit');
     }
 }

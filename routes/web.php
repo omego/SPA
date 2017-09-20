@@ -58,6 +58,8 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('project/{id}/update','\App\Http\Controllers\ProjectController@update');
   Route::get('project/{id}/delete','\App\Http\Controllers\ProjectController@destroy');
   Route::get('project/{id}/deleteMsg','\App\Http\Controllers\ProjectController@DeleteMsg');
+  Route::post('project/addUserProjects','\App\Http\Controllers\ProjectController@addUserProjects');
+  Route::get('project/removeUserProjects/{user_id}/{project_id}','\App\Http\Controllers\ProjectController@removeUserProjects');
 });
 
 Route::group(['middleware'=> 'web'],function(){
@@ -77,6 +79,7 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('action_plan/{id}/update','\App\Http\Controllers\Action_planController@update');
   Route::get('action_plan/{id}/delete','\App\Http\Controllers\Action_planController@destroy');
   Route::get('action_plan/{id}/deleteMsg','\App\Http\Controllers\Action_planController@DeleteMsg');
+  Route::post('action_plan/addActionplanFile','\App\Http\Controllers\action_planController@addActionplanFile');
 });
 
 //action_plan_attachment Routes

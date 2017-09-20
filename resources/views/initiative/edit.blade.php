@@ -11,35 +11,35 @@
     </form>
     <br>
     <form method = 'POST' action = '{!! url("initiative")!!}/{!!$initiative->
-        id!!}/update'> 
+        id!!}/update'>
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
             <input id="initiative_title" name = "initiative_title" type="text" class="validate" value="{!!$initiative->
-            initiative_title!!}"> 
+            initiative_title!!}">
             <label for="initiative_title">initiative_title</label>
         </div>
         <div class="input-field col s6">
             <input id="initiative_description" name = "initiative_description" type="text" class="validate" value="{!!$initiative->
-            initiative_description!!}"> 
+            initiative_description!!}">
             <label for="initiative_description">initiative_description</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_previous" name = "kpi_previous" type="text" class="validate" value="{!!$initiative->
-            kpi_previous!!}"> 
+            kpi_previous!!}">
             <label for="kpi_previous">kpi_previous</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_current" name = "kpi_current" type="text" class="validate" value="{!!$initiative->
-            kpi_current!!}"> 
+            kpi_current!!}">
             <label for="kpi_current">kpi_current</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_target" name = "kpi_target" type="text" class="validate" value="{!!$initiative->
-            kpi_target!!}"> 
+            kpi_target!!}">
             <label for="kpi_target">kpi_target</label>
         </div>
 <!--         <div class="input-field col s6">
-            <input id="status" name = "status" type="checkbox" value="Complete" class="checkbox" {{ $initiative->status == 'Complete' ? 'checked' : '' }}> 
+            <input id="status" name = "status" type="checkbox" value="Complete" class="checkbox" {{ $initiative->status == 'Complete' ? 'checked' : '' }}>
             <label for="status">Complete</label>
         </div> -->
 
@@ -52,25 +52,37 @@
   </div>
           <div class="input-field col s6">
             <input id="why_if_not" name = "why_if_not" type="text" class="validate" value="{!!$initiative->
-            why_if_not!!}"> 
+            why_if_not!!}">
             <label for="why_if_not">Why if not</label>
             </div>
             <div class="input-field col s6">
             <input id="dod_note" name = "dod_note" type="text" class="validate" value="{!!$initiative->
-            dod_note!!}"> 
+            dod_note!!}">
             <label for="dod_note">DOD Note</label>
         </div>
         <div class="input-field col s12">
             <select name = 'project_id'>
-                @foreach($projects as $key => $value) 
+                @foreach($projects as $key => $value)
                 @if ($key == $initiative->project_id)
                 <option selected value="{{$key}}">{{$value}}</option>
                 @else
                 <option value="{{$key}}">{{$value}}</option>
                 @endif
-                @endforeach 
+                @endforeach
             </select>
             <label>projects Select</label>
+        </div>
+        <div class="input-field col s12">
+            <select name = 'user_id'>
+                @foreach($users as $key => $value)
+                @if ($key == $initiative->user_id)
+                <option selected value="{{$key}}">{{$value}}</option>
+                @else
+                <option value="{{$key}}">{{$value}}</option>
+                @endif
+                @endforeach
+            </select>
+            <label>Assigned user</label>
         </div>
         <button class = 'btn red' type ='submit'>Update</button>
     </form>

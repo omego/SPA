@@ -41,9 +41,9 @@ class Action_planController extends Controller
     public function create()
     {
         $title = 'Create - action_plan';
-        
+
         $initiatives = Initiative::all()->pluck('initiative_title','id');
-        
+
         return view('action_plan.create',compact('title','initiatives'  ));
     }
 
@@ -57,28 +57,28 @@ class Action_planController extends Controller
     {
         $action_plan = new Action_plan();
 
-        
+
         $action_plan->action_plan_title = $request->action_plan_title;
 
-        
+
         // $action_plan->action_plan_updates = $request->action_plan_updates;
 
-        
+
         // $action_plan->action_plan_risks = $request->action_plan_risks;
 
-        
+
         // $action_plan->action_plan_resources = $request->action_plan_resources;
 
-        
+
         $action_plan->action_plan_start = $request->action_plan_start;
 
-        
+
         $action_plan->action_plan_end = $request->action_plan_end;
 
-        
+
         // $action_plan->action_plan_approval = $request->action_plan_approval;
-        
-        
+
+
         $action_plan->initiative_id = $request->initiative_id;
 
         // $file_upload = new Action_plan_attachmentController();
@@ -87,7 +87,7 @@ class Action_planController extends Controller
 
         // $action_plan->Action_plan_attachment()->save($file_upload);
 
-        
+
 
         // $file_upload = new Action_plan_attachment();
 
@@ -141,17 +141,22 @@ class Action_planController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - action_plan';
+
+        $action_plan = Action_plan::findOrfail($id);
+        $users = \App\User::all()->pluck('name','id');
+
         if($request->ajax())
         {
             return URL::to('action_plan/'. $id . '/edit');
         }
 
-        
+        $action_plan_files = Action_plan_attachment::where('action_plan_id', $id)->get();
+
         $initiatives = Initiative::all()->pluck('initiative_title','id');
 
-        
-        $action_plan = Action_plan::findOrfail($id);
-        return view('action_plan.edit',compact('title','action_plan' ,'initiatives' ) );
+
+
+        return view('action_plan.edit',compact('title','action_plan' ,'initiatives' ,'users','action_plan_files') );
     }
 
     /**
@@ -164,27 +169,28 @@ class Action_planController extends Controller
     public function update($id,Request $request)
     {
         $action_plan = Action_plan::findOrfail($id);
-    	
+
         $action_plan->action_plan_title = $request->action_plan_title;
-        
+
         $action_plan->action_plan_updates = $request->action_plan_updates;
-        
+
         $action_plan->action_plan_risks = $request->action_plan_risks;
-        
+
         $action_plan->action_plan_resources = $request->action_plan_resources;
-        
+
         $action_plan->action_plan_start = $request->action_plan_start;
-        
+
         $action_plan->action_plan_end = $request->action_plan_end;
-        
+
         $action_plan->action_plan_approval = $request->action_plan_approval;
-        
-        
+
+        $action_plan->user_id = $request->user_id;
+
         $action_plan->initiative_id = $request->initiative_id;
 
         $action_plan_attachment = new Action_plan_attachment();
-        
-        
+
+
         $action_plan_attachment->action_plan_id = $request->id;
 
 
@@ -210,11 +216,11 @@ class Action_planController extends Controller
         $file->move($destinationPath,$file->getClientOriginalName());
 
         $filename = $file->getClientOriginalName();
-        
+
         $action_plan_attachment->file_name = 'uploads/' . $filename;
 
         $action_plan_attachment->save();
-        
+
         $action_plan->save();
 
         return redirect('action_plan');
@@ -248,5 +254,42 @@ class Action_planController extends Controller
      	$action_plan = Action_plan::findOrfail($id);
      	$action_plan->delete();
         return URL::to('action_plan');
+    }
+    /**
+     * Assign users to goals
+     *
+     */
+        public function addActionplanFile(Request $request)
+    {
+        $action_plan = Action_plan::findOrfail($request->action_plan_id);
+        $action_plan_attachment = new Action_plan_attachment();
+        $action_plan_attachment->action_plan_id = $request->action_plan_id;
+        $file = $request->file('file_name');
+        //File Name
+        $filename = str_replace(' ', '_', $file->getClientOriginalName());
+
+        //Display File Extension
+        $file->getClientOriginalExtension();
+
+        //Display File Real Path
+        $file->getRealPath();
+
+        //Display File Size
+        $file->getSize();
+
+        //Display File Mime Type
+        $file->getMimeType();
+        //Move Uploaded File
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$filename);
+
+        // $filename = $file->getClientOriginalName();
+
+        $action_plan_attachment->file_name = str_replace(' ', '_', $filename);
+
+        $action_plan_attachment->save();
+        // $action_plan->users()->syncWithoutDetaching($request->user_id);
+
+        return redirect('action_plan/'.$request->action_plan_id. '/edit');
     }
 }

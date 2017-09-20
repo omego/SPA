@@ -221,6 +221,10 @@ class GoalController extends Controller
         $goal = Goal::findOrfail($id);
 
         $userGoals = $goal->users;
+
+        // $test = Goal::with('users')->where('id', $id)->get();
+        // echo $test;
+
         if ($user->hasPermissionTo('edit goals')) {
             return view('goal.edit',compact('title','goal','users','userGoals'));
         }else{
@@ -295,7 +299,11 @@ class GoalController extends Controller
     {
         $goal = Goal::findorfail($request->goal_id);
         // $user = User::findorfail($request->user_id);
-        $goal->users()->attach($request->user_id);
+        // if (! $goal->users->contains($request->user_id)) {
+        //     // $cart->items()->save($newItem);
+        //     echo "already assigned";
+        // }
+        $goal->users()->syncWithoutDetaching($request->user_id);
 
         // $user = \App\User::findorfail($request->user_id);
         // $user->givePermissionTo($request->permission_name);

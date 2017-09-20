@@ -58,9 +58,9 @@ class InitiativeController extends Controller
     public function create()
     {
         $title = 'Create - initiative';
-        
+
         $projects = Project::all()->pluck('project_title','id');
-        
+
         return view('initiative.create',compact('title','projects'  ));
     }
 
@@ -74,19 +74,19 @@ class InitiativeController extends Controller
     {
         $initiative = new Initiative();
 
-        
+
         $initiative->initiative_title = $request->initiative_title;
 
-        
+
         $initiative->initiative_description = $request->initiative_description;
 
-        
+
         $initiative->kpi_previous = $request->kpi_previous;
 
-        
+
         $initiative->kpi_current = $request->kpi_current;
 
-        
+
         $initiative->kpi_target = $request->kpi_target;
 
         $initiative->status = $request->status;
@@ -94,10 +94,10 @@ class InitiativeController extends Controller
         $initiative->why_if_not = $request->why_if_not;
 
         $initiative->dod_note = $request->dod_note;
-        
+
         $initiative->project_id = $request->project_id;
 
-        
+
         $initiative->save();
 
         $pusher = App::make('pusher');
@@ -152,17 +152,20 @@ class InitiativeController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - initiative';
+        $initiative = Initiative::findOrfail($id);
+        $users = \App\User::all()->pluck('name','id');
+
         if($request->ajax())
         {
             return URL::to('initiative/'. $id . '/edit');
         }
 
-        
+
         $projects = Project::all()->pluck('project_title','id');
 
-        
-        $initiative = Initiative::findOrfail($id);
-        return view('initiative.edit',compact('title','initiative' ,'projects' ) );
+
+
+        return view('initiative.edit',compact('title','initiative' ,'projects','users' ) );
     }
 
     /**
@@ -175,26 +178,28 @@ class InitiativeController extends Controller
     public function update($id,Request $request)
     {
         $initiative = Initiative::findOrfail($id);
-    	
+
         $initiative->initiative_title = $request->initiative_title;
-        
+
         $initiative->initiative_description = $request->initiative_description;
-        
+
         $initiative->kpi_previous = $request->kpi_previous;
-        
+
         $initiative->kpi_current = $request->kpi_current;
-        
+
         $initiative->kpi_target = $request->kpi_target;
-        
+
         $initiative->status = $request->status;
 
         $initiative->why_if_not = $request->why_if_not;
 
         $initiative->dod_note = $request->dod_note;
-       
+
         $initiative->project_id = $request->project_id;
 
-        
+        $initiative->user_id = $request->user_id;
+
+
         $initiative->save();
 
         return redirect('initiative');
