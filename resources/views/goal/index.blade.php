@@ -1,10 +1,10 @@
-@extends('scaffold-interface.layouts.defaultMaterialize')
+@extends('layouts.bootstrap')
 @section('title','Index')
 @section('content')
 
 <div class = 'container'>
     <h1>
-        goal Index - 
+        goal Index -
         @role('Admin')
     I am admin!
 @else
@@ -25,7 +25,7 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($goals as $goal) 
+            @foreach($goals as $goal)
             <tr>
                 <td>{!!$goal->goal_title!!}</td>
                 <td>
@@ -38,8 +38,8 @@
             ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
             ->select('initiatives.*', 'initiatives.initiative_title')
             ->where('goals.id', '=', $goal->id)
-            ->get();    
-                
+            ->get();
+
 
 
         $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
@@ -55,7 +55,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $goals->render() !!}
