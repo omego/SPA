@@ -11,16 +11,16 @@
     </form>
     <br>
     <form method = 'POST' action = '{!! url("goal")!!}/{!!$goal->
-        id!!}/update'> 
+        id!!}/update'>
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
             <input id="goal_title" name = "goal_title" type="text" class="validate" value="{!!$goal->
-            goal_title!!}"> 
+            goal_title!!}">
             <label for="goal_title">goal_title</label>
         </div>
         <div class="input-field col s6">
             <input id="goal_discerption" name = "goal_discerption" type="text" class="validate" value="{!!$goal->
-            goal_discerption!!}"> 
+            goal_discerption!!}">
             <label for="goal_discerption">goal_discerption</label>
         </div>
         <button class = 'btn red' type ='submit'>Update</button>
@@ -57,7 +57,7 @@
                             @foreach($userGoals as $userGoal)
                             <tr>
                                 <td>{{$userGoal->name}}</td>
-                                <td><a href="{{url('goal/removeUserGoals')}}/{{$userGoal->id}}/{{$goal->id}}" class = "btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                <td><a href="{{url('goal/removeUserGoals')}}/{{$userGoal->id}}/{{$goal->id}}" class = "delete btn-floating modal-trigger red"><i class = 'material-icons'>delete</i></a></td>
                             </tr>
                             @endforeach
                         </tbody>

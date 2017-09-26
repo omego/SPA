@@ -4,12 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        goal Index - 
-        @role('Admin')
-    I am admin!
-@else
-    I am not an admin...
-@endrole
+        goal Index
     </h1>
     <div class="row">
         @role('Admin')
@@ -25,7 +20,7 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($goals as $goal) 
+            @foreach($goals as $goal)
             <tr>
                 <td>{!!$goal->goal_title!!}</td>
                 <td>
@@ -38,8 +33,8 @@
             ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
             ->select('initiatives.*', 'initiatives.initiative_title')
             ->where('goals.id', '=', $goal->id)
-            ->get();    
-                
+            ->get();
+
 
 
         $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
@@ -55,7 +50,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $goals->render() !!}

@@ -56,7 +56,7 @@ class GoalController extends Controller
         // $roles = $role->givePermissionTo('Edit Goals');
 
 
-        echo $role->name;
+        // echo $role->name;
         // $permissions = Permission::all();
         // $permissions = $user->permissions;
         if ($user->hasPermissionTo('view goals')) {

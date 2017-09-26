@@ -12,12 +12,27 @@
 	<div class="row">
 		  <nav>
     <div class="nav-wrapper grey darken-3">
-      <div class="col s12"><a href='{!!url("goal")!!}' class="brand-logo">SPA</a>
+      <div class="col s12">
+				<a href='{!!url("goal")!!}' class="left brand-logo">SPA</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href='{!!url("goal")!!}'>Goal</a></li>
         <li><a href='{!!url("project")!!}'>Project</a></li>
         <li><a href='{!!url("initiative")!!}'>initiative</a></li>
         <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
+				<li><a class="waves-effect waves-light btn">
+						{{Auth::user()->name}}
+						@role('Admin')
+								(admin)
+						@endrole
+						</a>
+				</li>
+				<li>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Notifications
+					<span class="label notification-label new badge"></span>
+				</a>
+				</li>
+
       </ul>
     </div></div>
   		</nav>
@@ -49,6 +64,23 @@
 		<script src = "{{URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
 		<script>
 		$('select').material_select();
+		</script>
+		<script>
+		// pusher log to console.
+		Pusher.logToConsole = true;
+		// here is pusher client side code.
+		var pusher = new Pusher("{{env("PUSHER_APP_KEY")}}", {
+		cluster: 'ap2',
+		encrypted: true
+		});
+		var channel = pusher.subscribe('my-channel');
+		channel.bind('my-event', function(data) {
+		// display message coming from server on dashboard Notification Navbar List.
+		$('.notification-label').addClass('label-warning');
+		$('.notification-menu').append(
+			'<li><a href="#"><i class="fa fa-users text-aqua"></i>'+data.message+'</a></li>'
+			);
+		});
 		</script>
 	</body>
 </html>
