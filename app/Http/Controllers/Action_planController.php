@@ -188,38 +188,38 @@ class Action_planController extends Controller
 
         $action_plan->initiative_id = $request->initiative_id;
 
-        // $action_plan_attachment = new Action_plan_attachment();
-        //
-        //
-        // $action_plan_attachment->action_plan_id = $request->id;
-        //
-        //
-        // $file = $request->file('file_name');
-        //
-        // //File Name
-        // $file->getClientOriginalName();
-        //
-        // //Display File Extension
-        // $file->getClientOriginalExtension();
-        //
-        // //Display File Real Path
-        // $file->getRealPath();
-        //
-        // //Display File Size
-        // $file->getSize();
-        //
-        // //Display File Mime Type
-        // $file->getMimeType();
-        //
-        // //Move Uploaded File
-        // $destinationPath = 'uploads';
-        // $file->move($destinationPath,$file->getClientOriginalName());
-        //
-        // $filename = $file->getClientOriginalName();
-        //
-        // $action_plan_attachment->file_name = 'uploads/' . $filename;
-        //
-        // $action_plan_attachment->save();
+        $action_plan_attachment = new Action_plan_attachment();
+
+
+        $action_plan_attachment->action_plan_id = $request->id;
+
+
+        $file = $request->file('file_name');
+
+        //File Name
+        $file->getClientOriginalName();
+
+        //Display File Extension
+        $file->getClientOriginalExtension();
+
+        //Display File Real Path
+        $file->getRealPath();
+
+        //Display File Size
+        $file->getSize();
+
+        //Display File Mime Type
+        $file->getMimeType();
+
+        //Move Uploaded File
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$file->getClientOriginalName());
+
+        $filename = $file->getClientOriginalName();
+
+        $action_plan_attachment->file_name = 'uploads/' . $filename;
+
+        $action_plan_attachment->save();
 
         $action_plan->save();
 
@@ -256,7 +256,7 @@ class Action_planController extends Controller
         return URL::to('action_plan');
     }
     /**
-     * upload a file to action plan
+     * Assign users to goals
      *
      */
         public function addActionplanFile(Request $request)

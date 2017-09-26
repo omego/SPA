@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Initiative;
-use App\Initiative_attachment;
 use App\Action_plan;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
@@ -164,9 +163,9 @@ class InitiativeController extends Controller
 
         $projects = Project::all()->pluck('project_title','id');
 
-        $initiative_files = Initiative_attachment::where('initiative_id', $id)->get();
 
-        return view('initiative.edit',compact('title','initiative' ,'projects','users','initiative_files') );
+
+        return view('initiative.edit',compact('title','initiative' ,'projects','users' ) );
     }
 
     /**
@@ -235,37 +234,4 @@ class InitiativeController extends Controller
      	$initiative->delete();
         return URL::to('initiative');
     }
-    public function addInitiativeFile(Request $request)
-{
-    $initiative = Initiative::findOrfail($request->initiative_id);
-    $initiative_attachment = new Initiative_attachment();
-    $initiative_attachment->initiative_id = $request->initiative_id;
-    $file = $request->file('file_name');
-    //File Name
-    $filename = str_replace(' ', '_', $file->getClientOriginalName());
-
-    //Display File Extension
-    $file->getClientOriginalExtension();
-
-    //Display File Real Path
-    $file->getRealPath();
-
-    //Display File Size
-    $file->getSize();
-
-    //Display File Mime Type
-    $file->getMimeType();
-    //Move Uploaded File
-    $destinationPath = 'uploads';
-    $file->move($destinationPath,$filename);
-
-    // $filename = $file->getClientOriginalName();
-
-    $initiative_attachment->file_name = str_replace(' ', '_', $filename);
-
-    $initiative_attachment->save();
-    // $action_plan->users()->syncWithoutDetaching($request->user_id);
-
-    return redirect('initiative/'.$request->initiative_id. '/edit');
-}
 }

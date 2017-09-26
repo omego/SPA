@@ -71,7 +71,6 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('initiative/{id}/update','\App\Http\Controllers\InitiativeController@update');
   Route::get('initiative/{id}/delete','\App\Http\Controllers\InitiativeController@destroy');
   Route::get('initiative/{id}/deleteMsg','\App\Http\Controllers\InitiativeController@DeleteMsg');
-  Route::post('initiative/addInitiativeFile','\App\Http\Controllers\InitiativeController@addInitiativeFile');
 });
 
 //action_plan Routes
