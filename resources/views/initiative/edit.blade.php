@@ -10,7 +10,7 @@
         <button class = 'btn blue'>initiative Index</button>
     </form>
     <br>
-    <form method = 'POST' action = '{!! url("initiative")!!}/{!!$initiative->
+    <form enctype="multipart/form-data" method = 'POST' action = '{!! url("initiative")!!}/{!!$initiative->
         id!!}/update'>
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
@@ -86,5 +86,38 @@
         </div>
         <button class = 'btn red' type ='submit'>Update</button>
     </form>
+
+    <div class="box-body">
+        <form enctype="multipart/form-data" action="{{url('initiative/addInitiativeFile')}}" method = "post">
+            {!! csrf_field() !!}
+            <input type="hidden" name = "initiative_id" value = "{{$initiative->id}}">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                        <input id="file_name" name = "file_name" type="file" class="validate">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class = 'btn btn-primary'>Add file</button>
+            </div>
+        </form>
+        <table class = 'table'>
+            <thead>
+                <th>Name</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                @foreach($initiative_files as $initiative_file)
+                <tr>
+                  <td><a href="{{url('uploads/' .$initiative_file->file_name)}}">{{$initiative_file->file_name}}</a></td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        </div>
 </div>
 @endsection
