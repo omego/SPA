@@ -6,6 +6,7 @@
     <h1>
         Show goal
     </h1>
+    {!!$goal->created_at->diffForHumans()!!}
     <form method = 'get' action = '{!!url("goal")!!}'>
         <button class = 'btn blue'>goal Index</button>
     </form>

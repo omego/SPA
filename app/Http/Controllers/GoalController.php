@@ -6,19 +6,13 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Goal;
-use App\User;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Pusher;
 use App\Project;
 use App\Initiative;
-use Auth;
-// use Session;
-
 
 /**
  * Class GoalController.
@@ -26,19 +20,8 @@ use Auth;
  * @author  The scaffold-interface created at 2017-08-02 11:18:16am
  * @link  https://github.com/amranidev/scaffold-interface
  */
-
-
-
 class GoalController extends Controller
-    {
-
-        public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index', 'show');
-    }
-
-
-
-
+{
     /**
      * Display a listing of the resource.
      *
@@ -48,24 +31,7 @@ class GoalController extends Controller
     {
         $GoalTitle = '> Index - goal';
         $goals = Goal::paginate(6);
-        // $user = User::all();
-        $user = Auth::user();
-        $permissions = $user->permissions;
-        $role = Role::where('name', 'Admin')->first();
-
-        // $roles = $role->givePermissionTo('Edit Goals');
-
-
-        // echo $role->name;
-        // $permissions = Permission::all();
-        // $permissions = $user->permissions;
-        if ($user->hasPermissionTo('view goals')) {
-            return view('goal.index',compact('goals','GoalTitle'));
-        }else{
-            return view('errors.401');
-        }
-
-
+        return view('goal.index',compact('goals','GoalTitle'));
     }
 
 
@@ -75,20 +41,11 @@ class GoalController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-
-
-
     public function create()
     {
         $title = 'Create - goal';
-        $user = Auth::user();
 
-
-        if ($user->hasPermissionTo('create goals')) {
-            return view('goal.create');
-        }else{
-            return view('errors.401');
-        }
+        return view('goal.create');
     }
 
     /**
@@ -111,19 +68,15 @@ class GoalController extends Controller
 
         $goal->save();
 
-        $options = array(
-          'cluster' => 'ap2',
-          'encrypted' => true
-        );
-        $pusher = new Pusher(
-          env("PUSHER_APP_KEY"),
-          env("PUSHER_APP_SECRET"),
-          env("PUSHER_APP_ID"),
-          $options
-        );
+        $pusher = App::make('pusher');
 
-        $data['message'] = $request->goal_title . ' created';
-        $pusher->trigger('my-channel', 'my-event', $data);
+        //default pusher notification.
+        //by default channel=test-channel,event=test-event
+        //Here is a pusher notification example when you create a new resource in storage.
+        //you can modify anything you want or use it wherever.
+        $pusher->trigger('test-channel',
+                         'test-event',
+                        ['message' => 'A new goal has been created !!']);
 
         return redirect('goal');
     }
@@ -177,25 +130,6 @@ class GoalController extends Controller
         $InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
         echo $InitiativePercent;
         // echo $InitiativeCounted, $InitiativeNotCounted;
-        $user = Auth::user();
-        $goal = Goal::findOrfail($id);
-
-        $userGoals = $goal->users;
-        foreach ($userGoals as $userGoal) {
-            echo '<br>' . $userGoal->id;
-            if ($user->id == $userGoal->id) {
-              return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
-            }else {
-              return view('errors.401');
-            }
-        }
-        // foreach ($userGoals as $userGoal) {
-        //   echo $userGoal->id, $userGoal->name, $goal->id;
-        //   // if ($userGoal->id == $goal->user_id) {
-        //   //   echo "owner";
-        //   // }
-        // }
-        // echo $userGoals;
 
         return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
     }
@@ -210,26 +144,14 @@ class GoalController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - goal';
-        $users = \App\User::all();
-
         if($request->ajax())
         {
             return URL::to('goal/'. $id . '/edit');
         }
 
-        $user = Auth::user();
+
         $goal = Goal::findOrfail($id);
-
-        $userGoals = $goal->users;
-
-        // $test = Goal::with('users')->where('id', $id)->get();
-        // echo $test;
-
-        if ($user->hasPermissionTo('edit goals')) {
-            return view('goal.edit',compact('title','goal','users','userGoals'));
-        }else{
-            return view('errors.401');
-        }
+        return view('goal.edit',compact('title','goal'  ));
     }
 
     /**
@@ -264,17 +186,10 @@ class GoalController extends Controller
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
 
-
-        if ($user->hasPermissionTo('Delete Goals')) {
-                if($request->ajax())
-            {
-                return $msg;
-            }
-        }else{
-            return view('errors.401');
+        if($request->ajax())
+        {
+            return $msg;
         }
-
-
     }
 
     /**
@@ -288,39 +203,5 @@ class GoalController extends Controller
         $goal = Goal::findOrfail($id);
         $goal->delete();
         return URL::to('goal');
-    }
-
-
-    /**
-     * Assign users to goals
-     *
-     */
-        public function addUserGoals(Request $request)
-    {
-        $goal = Goal::findorfail($request->goal_id);
-        // $user = User::findorfail($request->user_id);
-        // if (! $goal->users->contains($request->user_id)) {
-        //     // $cart->items()->save($newItem);
-        //     echo "already assigned";
-        // }
-        $goal->users()->syncWithoutDetaching($request->user_id);
-
-        // $user = \App\User::findorfail($request->user_id);
-        // $user->givePermissionTo($request->permission_name);
-
-        return redirect('goal/'.$request->goal_id. '/edit');
-    }
-
-    /**
-     * Remove assigned users to goals
-     *
-     */
-        public function removeUserGoals($user_id, $goal_id)
-    {
-        $goal = Goal::findorfail($goal_id);
-
-        $goal->users()->detach($user_id);
-
-        return redirect('goal/'.$goal_id.'/edit');
     }
 }
