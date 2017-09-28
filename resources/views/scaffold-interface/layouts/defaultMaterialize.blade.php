@@ -19,19 +19,19 @@
         <li><a href='{!!url("project")!!}'>Project</a></li>
         <li><a href='{!!url("initiative")!!}'>initiative</a></li>
         <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
-				<li><a class="waves-effect waves-light btn">
+				{{-- <li><a class="waves-effect waves-light btn">
 						{{Auth::user()->name}}
 						@role('Admin')
 								(admin)
 						@endrole
 						</a>
-				</li>
-				<li>
+				</li> --}}
+				{{-- <li>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					Notifications
 					<span class="label notification-label new badge"></span>
 				</a>
-				</li>
+				</li> --}}
 
       </ul>
     </div></div>
