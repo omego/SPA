@@ -4,7 +4,18 @@
 
 <div class = 'container'>
     <h1>
-        Edit action_plan
+        Edit action_plan -
+        @if ($action_plan->updated_at == $action_plan->created_at)
+          Status: Draft
+        @elseif ($action_plan->updated_at != $action_plan->created_at)
+            @isset($action_plan->action_plan_approval)
+                Status: Approved
+            @endisset
+          @empty($action_plan->action_plan_approval)
+            Status: pending
+          @endempty
+
+        @endif
     </h1>
     <form method = 'get' action = '{!!url("action_plan")!!}'>
         <button class = 'btn blue'>action_plan Index</button>
