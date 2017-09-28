@@ -44,6 +44,24 @@ class RelationsTableSeeder extends Seeder
                 'created_at' => '2017-08-02 12:38:08',
                 'updated_at' => '2017-08-02 12:38:08',
             ),
+            3 => 
+            array (
+                'id' => 6,
+                'scaffoldinterface_id' => 12,
+                'to' => '11',
+                'having' => 'OneToMany',
+                'created_at' => '2017-08-06 12:08:35',
+                'updated_at' => '2017-08-06 12:08:35',
+            ),
+            4 => 
+            array (
+                'id' => 7,
+                'scaffoldinterface_id' => 13,
+                'to' => '10',
+                'having' => 'OneToMany',
+                'created_at' => '2017-08-08 07:48:12',
+                'updated_at' => '2017-08-08 07:48:12',
+            ),
         ));
         
         

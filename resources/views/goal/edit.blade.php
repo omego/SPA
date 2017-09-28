@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button class = 'btn btn-primary'>Add permission</button>
+                            <button class = 'btn btn-primary'>Assign</button>
                         </div>
                     </form>
                     <table class = 'table'>

@@ -22,7 +22,7 @@
         <tbody>
             @foreach($goals as $goal)
             <tr>
-                <td>{!!$goal->goal_title!!}</td>
+                <td>{!!$goal->goal_title!!} <small class="grey">{!!$goal->created_at->diffForHumans()!!}</small></td>
                 <td>
                 @PHP
                 echo str_limit($goal->goal_discerption, 75);

@@ -47,7 +47,7 @@
 
 
             </form>
-            
+
         <!-- assign projects to users -->
 
             <div class="col-md-6">
@@ -79,7 +79,7 @@
                         @foreach($userProjects as $userProject)
                         <tr>
                             <td>{{$userProject->name}}</td>
-                            <td><a href="{{url('project/removeUserProjects')}}/{{$userProject->id}}/{{$project->id}}" class = "btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            <td><a href="{{url('project/removeUserProjects')}}/{{$userProject->id}}/{{$project->id}}" class = "delete btn-floating modal-trigger red"><i class="material-icons" aria-hidden="true">delete</i></a></td>
                         </tr>
                         @endforeach
                     </tbody>

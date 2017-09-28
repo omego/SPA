@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserHasRolesTableSeeder extends Seeder
+class ProjectUserTableSeeder extends Seeder
 {
 
     /**
@@ -14,22 +14,19 @@ class UserHasRolesTableSeeder extends Seeder
     {
         
 
-        \DB::table('user_has_roles')->delete();
+        \DB::table('project_user')->delete();
         
-        \DB::table('user_has_roles')->insert(array (
+        \DB::table('project_user')->insert(array (
             0 => 
             array (
-                'role_id' => 2,
+                'id' => 3,
+                'project_id' => 1,
                 'user_id' => 1,
             ),
             1 => 
             array (
-                'role_id' => 2,
-                'user_id' => 2,
-            ),
-            2 => 
-            array (
-                'role_id' => 3,
+                'id' => 4,
+                'project_id' => 1,
                 'user_id' => 3,
             ),
         ));

@@ -65,6 +65,30 @@ class ScaffoldinterfacesTableSeeder extends Seeder
                 'created_at' => '2017-08-02 12:38:08',
                 'updated_at' => '2017-08-02 12:38:08',
             ),
+            4 => 
+            array (
+                'id' => 12,
+                'package' => 'Laravel',
+                'migration' => '/Applications/MAMP/htdocs/spa/database/migrations/2017_08_06_120835_action_plan_attachments.php',
+                'model' => '/Applications/MAMP/htdocs/spa/app/Action_plan_attachment.php',
+                'controller' => '/Applications/MAMP/htdocs/spa/app/Http/Controllers/Action_plan_attachmentController.php',
+                'views' => '/Applications/MAMP/htdocs/spa/resources/views/action_plan_attachment',
+                'tablename' => 'action_plan_attachments',
+                'created_at' => '2017-08-06 12:08:35',
+                'updated_at' => '2017-08-06 12:08:35',
+            ),
+            5 => 
+            array (
+                'id' => 13,
+                'package' => 'Laravel',
+                'migration' => '/Applications/MAMP/htdocs/spa/database/migrations/2017_08_08_074812_initiative_attachments.php',
+                'model' => '/Applications/MAMP/htdocs/spa/app/Initiative_attachment.php',
+                'controller' => '/Applications/MAMP/htdocs/spa/app/Http/Controllers/Initiative_attachmentController.php',
+                'views' => '/Applications/MAMP/htdocs/spa/resources/views/initiative_attachment',
+                'tablename' => 'initiative_attachments',
+                'created_at' => '2017-08-08 07:48:12',
+                'updated_at' => '2017-08-08 07:48:12',
+            ),
         ));
         
         

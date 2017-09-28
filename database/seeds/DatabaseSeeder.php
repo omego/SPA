@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserHasRolesTableSeeder::class);
         $this->call(ActionPlanAttachmentsTableSeeder::class);
         $this->call(GoalUserTableSeeder::class);
+        $this->call(InitiativeAttachmentsTableSeeder::class);
+        $this->call(ProjectUserTableSeeder::class);
     }
 }

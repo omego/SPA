@@ -9,7 +9,8 @@ use App\Action_plan;
 use App\Action_plan_attachment;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
-
+use App\Mail\ActionPlanCreated;
+use App\Mail;
 use App\Initiative;
 
 
@@ -96,6 +97,8 @@ class Action_planController extends Controller
         // $file_upload->action_plan_id = $request->action_plan_id;
 
         // $file_upload->push();
+
+        \Mail::to('test@test.com')->send(new ActionPlanCreated);
 
         $action_plan->push();
 

@@ -1,0 +1,1 @@
+action_plans,action_plan_attachments,goals,goal_user,initiatives,initiative_attachments,migrations,password_resets,permissions,projects,project_user,relations,roles,role_has_permissions,scaffoldinterfaces,users,user_has_permissions,user_has_roles
