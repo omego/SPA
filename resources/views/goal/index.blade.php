@@ -15,9 +15,9 @@
     </div>
     <table>
         <thead>
-            <th>goal_title</th>
-            <th>goal_discerption</th>
-            <th>actions</th>
+            <th>Goal Title</th>
+            <th>Goal Description</th>
+            <th>Actions</th>
         </thead>
         <tbody>
             @foreach($goals as $goal)

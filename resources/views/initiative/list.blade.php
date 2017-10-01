@@ -4,7 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        initiative Index 
+        initiative Index
     </h1>
     <div class="row">
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
@@ -17,18 +17,18 @@
     </div>
     <table>
         <thead>
-            <th>initiative_title</th>
-            <th>initiative_description</th>
-            <th>kpi_previous</th>
-            <th>kpi_current</th>
-            <th>kpi_target</th>
-            <th>status</th>
+            <th>Initiative Title</th>
+            <th>Initiative Description</th>
+            <th>KPI Previous</th>
+            <th>KPI Current</th>
+            <th>KPI Target</th>
+            <th>Status</th>
             <th>Why If Not</th>
             <th>DOD Comment</th>
-            <th>actions</th>
+            <th>Actions</th>
         </thead>
         <tbody>
-            @foreach($initiatives as $initiative) 
+            @foreach($initiatives as $initiative)
             <tr>
                 <td>{!!$initiative->initiative_title!!}</td>
                 <td>
@@ -51,7 +51,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $initiatives->render() !!}

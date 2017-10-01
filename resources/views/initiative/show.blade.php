@@ -2,7 +2,7 @@
 @section('title','Show')
 @section('content')
 
- 
+
 
 <div class = 'container'>
 <div class="row">
@@ -14,12 +14,12 @@
     </form>
     </div>
       <div class="col s6">
-          
+
         <table class = 'highlight bordered'>
             <thead>
-                <th>kpi_previous</th>
-                <th>kpi_current</th>
-                <th>kpi_target</th>
+                <th>KPI Previous</th>
+                <th>KPI Current</th>
+                <th>KPI Target</th>
             </thead>
             <tbody>
                 <tr>
@@ -37,38 +37,38 @@
         <tbody>
             <tr>
                 <td>
-                    <b><i>initiative_title : </i></b>
+                    <b><i>Initiative Title: </i></b>
                 </td>
                 <td>{!!$initiative->initiative_title!!}</td>
             </tr>
             <tr>
                 <td>
-                    <b><i>initiative_description : </i></b>
+                    <b><i>Initiative Description: </i></b>
                 </td>
                 <td>{!!$initiative->initiative_description!!}</td>
             </tr>
             <tr>
                 <td>
-                    <b><i>status : </i></b>
+                    <b><i>Status: </i></b>
                 </td>
                 <td>{!!$initiative->status!!}</td>
             </tr>
              <tr>
                 <td>
-                    <b><i>Why if not : </i></b>
+                    <b><i>Why If Not: </i></b>
                 </td>
                 <td>{!!$initiative->why_if_not!!}</td>
             </tr>
              <tr>
                 <td>
-                    <b><i>DOD Comment : </i></b>
+                    <b><i>DOD Comment: </i></b>
                 </td>
                 <td>{!!$initiative->dod_note!!}</td>
             </tr>
             <tr>
                 <td>
                     <b>
-                        <i>project_title : </i>
+                        <i>Project Title : </i>
                         <b>
                         </td>
                         <td>{!!$initiative->project->project_title!!}</td>
@@ -76,7 +76,7 @@
                     <tr>
                         <td>
                             <b>
-                                <i>project_discerption : </i>
+                                <i>Project Discerption : </i>
                                 <b>
                                 </td>
                                 <td>{!!$initiative->project->project_discerption!!}</td>
@@ -111,11 +111,11 @@
       <div class="col s6">
 <table>
         <thead>
-            <th>action_plan_title</th>
-            <th>actions</th>
+            <th>Action Plan Title</th>
+            <th>Actions</th>
         </thead>
         <tbody>
-            @foreach($action_plans as $action_plan) 
+            @foreach($action_plans as $action_plan)
             <tr>
                 <td>{!!$action_plan->action_plan_title!!}</td>
                 <td>
@@ -126,7 +126,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $action_plans->render() !!}
