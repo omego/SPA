@@ -17,15 +17,15 @@
     </div>
     <table>
         <thead>
-            <th>project_title</th>
-            <th>project_discerption</th>
-            <th>goal_title</th>
-            <th>goal_id</th>
+            <th>Project Title</th>
+            <th>Project Description</th>
+            <th>Goal Title</th>
+            <th>Goal ID</th>
 
-            <th>actions</th>
+            <th>Actions</th>
         </thead>
         <tbody>
-            @foreach($projects as $project) 
+            @foreach($projects as $project)
             <tr>
                 <td>{!!$project->project_title!!}</td>
                 <td>{!!$project->project_discerption!!}</td>
@@ -39,7 +39,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $projects->render() !!}

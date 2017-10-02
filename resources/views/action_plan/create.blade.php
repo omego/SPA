@@ -18,19 +18,19 @@
         </div>
 
         <div class="input-field col s6">
-            <input id="action_plan_start" name = "action_plan_start" type="text" class="validate">
+            <input id="action_plan_start" name = "action_plan_start" type="text" class="datepicker">
             <label for="action_plan_start">action_plan_start</label>
         </div>
         <div class="input-field col s6">
-            <input id="action_plan_end" name = "action_plan_end" type="text" class="validate">
+            <input id="action_plan_end" name = "action_plan_end" type="text" class="datepicker">
             <label for="action_plan_end">action_plan_end</label>
         </div>
 
         <div class="input-field col s12">
             <select name = 'initiative_id'>
-                @foreach($initiatives as $key => $value) 
+                @foreach($initiatives as $key => $value)
                 <option value="{{$key}}">{{$value}}</option>
-                @endforeach 
+                @endforeach
             </select>
             <label>initiatives Select</label>
         </div>

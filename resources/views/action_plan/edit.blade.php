@@ -45,21 +45,22 @@
             <label for="action_plan_resources">action_plan_resources</label>
         </div>
         <div class="input-field col s6">
-            <input id="action_plan_start" name = "action_plan_start" type="text" class="validate" value="{!!$action_plan->
+            <input id="action_plan_start" name = "action_plan_start" type="text" class="datepicker" value="{!!$action_plan->
             action_plan_start!!}">
             <label for="action_plan_start">action_plan_start</label>
         </div>
         <div class="input-field col s6">
-            <input id="action_plan_end" name = "action_plan_end" type="text" class="validate" value="{!!$action_plan->
+            <input id="action_plan_end" name = "action_plan_end" type="text" class="datepicker" value="{!!$action_plan->
             action_plan_end!!}">
             <label for="action_plan_end">action_plan_end</label>
         </div>
 
         <div class="input-field col s6">
-            <input id="action_plan_approval" name = "action_plan_approval" type="text" class="validate" value="{!!$action_plan->
-            action_plan_approval!!}">
-            <label for="action_plan_approval">action_plan_approval</label>
+            <input id="action_plan_approval" name = "action_plan_approval" type="checkbox" value="Yes" {{ $action_plan->
+            action_plan_approval == 'Yes' ? 'checked' : '' }}>
+            <label for="action_plan_approval">Approved</label>
         </div>
+        <br>
         <div class="input-field col s12">
             <select name = 'initiative_id'>
                 @foreach($initiatives as $key => $value)
