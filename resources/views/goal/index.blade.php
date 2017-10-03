@@ -16,35 +16,27 @@
     <div class="collection">
             @foreach($goals as $goal)
 
-            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "badge">{!!$goal->created_at->diffForHumans()!!}</span>{!!$goal->goal_title!!}</a>
+            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge" data-badge-caption="">{!!$goal->created_at->diffForHumans()!!}</span>
+ <span class="new badge blue" data-badge-caption="Accomplished">
+              @php
+      $InitiativeCount = DB::table('goals')
+  ->join('projects', 'goals.id', '=', 'projects.goal_id')
+  ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
+  ->select('initiatives.*', 'initiatives.initiative_title')
+  ->where('goals.id', '=', $goal->id)
+  ->get();
 
 
-                        @php
-                $InitiativeCount = DB::table('goals')
-            ->join('projects', 'goals.id', '=', 'projects.goal_id')
-            ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
-            ->select('initiatives.*', 'initiatives.initiative_title')
-            ->where('goals.id', '=', $goal->id)
-            ->get();
+
+$InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
+echo $InitiativeCounted;
+@endphp
+</span>
+            {!!$goal->goal_title!!}</a>
 
 
 
-        $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
-        echo $InitiativeCounted;
-        @endphp
                 <!-- {!!$goal->goal_discerption!!} -->
-
-                    <div class = 'row'>
-                      @can('delete goals')
-                        <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/goal/{!!$goal->id!!}/deleteMsg" >delete</a>
-                      @endcan
-                      @can('edit goals')
-                        <a href = '#' class = 'viewEdit' data-link = '/goal/{!!$goal->id!!}/edit'>edit</a>
-                      @endcan
-                      @can('view goals')
-                        <a href = '#' class = 'viewShow' data-link = '/goal/{!!$goal->id!!}'>info</a>
-                      @endcan
-                    </div>
 
             @endforeach
     </div>

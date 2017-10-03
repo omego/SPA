@@ -55,7 +55,7 @@ class ProjectController extends Controller
         $user = Auth::user();
         $projects = Project::where('goal_id', $id)->paginate(6);
         $GoalName = Goal::findOrfail($id);
-        $GoalTitle = '> ' . $GoalName->goal_title;
+        $GoalTitle = $GoalName->goal_title;
           if ($user->hasPermissionTo('view projects')) {
         return view('project.list',compact('projects','GoalTitle'));
       }else{
