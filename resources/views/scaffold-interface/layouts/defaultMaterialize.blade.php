@@ -12,13 +12,16 @@
 	<div class="row">
 		  <nav>
     <div class="nav-wrapper grey darken-3">
-      <div class="col s12">
-				<a href='{!!url("goal")!!}' class="left brand-logo">SPA</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href='{!!url("goal")!!}'>Goal</a></li>
-        <li><a href='{!!url("project")!!}'>Project</a></li>
-        <li><a href='{!!url("initiative")!!}'>initiative</a></li>
+      <div class="col s12"><ul>
+				<div class="col s2">
+				<li><span href='{!!url("goal")!!}'><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a></span>
+			</div>
+
+        <li><a href='{!!url("goal")!!}'>Goals</a></li>
+        <li><a href='{!!url("project")!!}'>Projects</a></li>
+        <li><a href='{!!url("initiative")!!}'>Initiatives</a></li>
         <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
+
 				{{-- <li><a class="waves-effect waves-light btn">
 						{{Auth::user()->name}}
 						@role('Admin')

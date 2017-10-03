@@ -7,134 +7,53 @@
 <div class = 'container'>
 <div class="row">
       <div class="col s12"><h1>
-        Show initiative
+        {!!$initiative->initiative_title!!}
     </h1>
     <form method = 'get' action = '{!!url("initiative")!!}'>
         <button class = 'btn blue'>initiative Index</button>
     </form>
     </div>
+    <div class="col s12">
+      <div class="collection">
+        <ul><div class="col s4">
+            <li class="collection-item active center">KPI Previous</li>
+            <li class="collection-item center">{!!$initiative->kpi_previous!!}</li>
+          </div>
+          <div class="col s4">
+            <li class="collection-item active center">KPI Current</li>
+            <li class="collection-item center">{!!$initiative->kpi_current!!}</li>
+          </div>
+          <div class="col s4">
+            <li class="collection-item active center">KPI Target</li>
+            <li class="collection-item center">{!!$initiative->kpi_target!!}</li>
+          </div>
+          </ul>
+          </div>
+    </div>
       <div class="col s6">
 
-        <table class = 'highlight bordered'>
-            <thead>
-                <th>KPI Previous</th>
-                <th>KPI Current</th>
-                <th>KPI Target</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{!!$initiative->kpi_previous!!}</td>
-                    <td>{!!$initiative->kpi_current!!}</td>
-                    <td>{!!$initiative->kpi_target!!}</td>
-                </tr>
-            </tbody>
-        </table>
-            <table class = 'highlight bordered'>
-        <thead>
-            <th>Key</th>
-            <th>Value</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <b><i>Initiative Title: </i></b>
-                </td>
-                <td>{!!$initiative->initiative_title!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>Initiative Description: </i></b>
-                </td>
-                <td>{!!$initiative->initiative_description!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>Status: </i></b>
-                </td>
-                <td>{!!$initiative->status!!}</td>
-            </tr>
-             <tr>
-                <td>
-                    <b><i>Why If Not: </i></b>
-                </td>
-                <td>{!!$initiative->why_if_not!!}</td>
-            </tr>
-             <tr>
-                <td>
-                    <b><i>DOD Comment: </i></b>
-                </td>
-                <td>{!!$initiative->dod_note!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b>
-                        <i>Project Title : </i>
-                        <b>
-                        </td>
-                        <td>{!!$initiative->project->project_title!!}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>
-                                <i>Project Discerption : </i>
-                                <b>
-                                </td>
-                                <td>{!!$initiative->project->project_discerption!!}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>
-                                        <i>created_at : </i>
-                                        <b>
-                                        </td>
-                                        <td>{!!$initiative->project->created_at!!}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>
-                                                <i>updated_at : </i>
-                                                <b>
-                                                </td>
-                                                <td>{!!$initiative->project->updated_at!!}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <b>
-                                                        <i>deleted_at : </i>
-                                                        <b>
-                                                        </td>
-                                                        <td>{!!$initiative->project->deleted_at!!}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+
+            <ul class="collection with-header">
+              <li class="collection-header"><h5>Initiative Description</h5></li>
+                  <li class="collection-item">{!!$initiative->initiative_description!!}</li>
+              <li class="collection-header"><h5>Status</h5></li>
+                  <li class="collection-item">{!!$initiative->status!!}</li>
+              <li class="collection-header"><h5>Why If Not</h5></li>
+                      <li class="collection-item">{!!$initiative->why_if_not!!}</li>
+              <li class="collection-header"><h5>DOD Comment</h5></li>
+                      <li class="collection-item">{!!$initiative->dod_note!!}</li>
+
       </div>
       <div class="col s6">
-<table>
-        <thead>
-            <th>Action Plan Title</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+        <h4> Action Plans under {!!$initiative->initiative_title!!} </h4>
+        <div class="collection">
             @foreach($action_plans as $action_plan)
-            <tr>
-                <td>{!!$action_plan->action_plan_title!!}</td>
-                <td>
-                    <div class = 'row'>
-                      @can('delete action plans')
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/action_plan/{!!$action_plan->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                      @endcan
-                      @can('edit action plans')
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/action_plan/{!!$action_plan->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                      @endcan
-                      @can('view action plans')
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/action_plan/{!!$action_plan->id!!}'><i class = 'material-icons'>info</i></a>
-                      @endcan
-                    </div>
-                </td>
-            </tr>
+            <a href="#" class="viewShow collection-item" data-link = '/action_plan/{!!$action_plan->id!!}'><span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span>
+                {!!$action_plan->action_plan_title!!}
+              </a>
+
             @endforeach
-        </tbody>
-    </table>
+      </div>
     {!! $action_plans->render() !!}
       </div>
     </div>
