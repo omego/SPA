@@ -7,26 +7,18 @@
         goal Index
     </h1>
     <div class="row">
-        @role('Admin')
+        @can('create goals')
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New goal</button>
         </form>
-        @endrole
+      @endcan
     </div>
-    <table>
-        <thead>
-            <th>Goal Title</th>
-            <th>Goal Description</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+    <div class="collection">
             @foreach($goals as $goal)
-            <tr>
-                <td>{!!$goal->goal_title!!} <small class="grey">{!!$goal->created_at->diffForHumans()!!}</small></td>
-                <td>
-                @PHP
-                echo str_limit($goal->goal_discerption, 75);
-                @endPHP
+
+            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "badge">{!!$goal->created_at->diffForHumans()!!}</span>{!!$goal->goal_title!!}</a>
+
+
                         @php
                 $InitiativeCount = DB::table('goals')
             ->join('projects', 'goals.id', '=', 'projects.goal_id')
@@ -41,18 +33,21 @@
         echo $InitiativeCounted;
         @endphp
                 <!-- {!!$goal->goal_discerption!!} -->
-                </td>
-                <td>
+
                     <div class = 'row'>
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/goal/{!!$goal->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/goal/{!!$goal->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/goal/{!!$goal->id!!}'><i class = 'material-icons'>info</i></a>
+                      @can('delete goals')
+                        <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/goal/{!!$goal->id!!}/deleteMsg" >delete</a>
+                      @endcan
+                      @can('edit goals')
+                        <a href = '#' class = 'viewEdit' data-link = '/goal/{!!$goal->id!!}/edit'>edit</a>
+                      @endcan
+                      @can('view goals')
+                        <a href = '#' class = 'viewShow' data-link = '/goal/{!!$goal->id!!}'>info</a>
+                      @endcan
                     </div>
-                </td>
-            </tr>
+
             @endforeach
-        </tbody>
-    </table>
+    </div>
     {!! $goals->render() !!}
 
 </div>

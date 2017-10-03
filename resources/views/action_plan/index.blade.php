@@ -7,9 +7,11 @@
         action_plan Index
     </h1>
     <div class="row">
+      @can('create action plans')
         <form class = 'col s3' method = 'get' action = '{!!url("action_plan")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New action_plan</button>
         </form>
+      @endcan
         <ul id="dropdown" class="dropdown-content">
             <li><a href="http://localhost:8888/spa/public/initiative">Initiative</a></li>
         </ul>
@@ -35,7 +37,7 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($action_plans as $action_plan) 
+            @foreach($action_plans as $action_plan)
             <tr>
                 <td>{!!$action_plan->action_plan_title!!}</td>
                 <td>{!!$action_plan->action_plan_updates!!}</td>
@@ -54,13 +56,19 @@
                 <td>{!!$action_plan->initiative->deleted_at!!}</td>
                 <td>
                     <div class = 'row'>
+                      @can('delete action plans')
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/action_plan/{!!$action_plan->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
+                      @endcan
+                      @can('edit action plans')
                         <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/action_plan/{!!$action_plan->id!!}/edit'><i class = 'material-icons'>edit</i></a>
+                      @endcan
+                      @can('view action plans')
                         <a href = '#' class = 'viewShow btn-floating orange' data-link = '/action_plan/{!!$action_plan->id!!}'><i class = 'material-icons'>info</i></a>
+                      @endcan
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $action_plans->render() !!}

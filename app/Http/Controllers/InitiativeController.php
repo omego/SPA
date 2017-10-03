@@ -10,7 +10,12 @@ use App\Initiative_attachment;
 use App\Action_plan;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Auth;
 
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Pusher;
 use App\Project;
 use App\Goal;
 
@@ -23,6 +28,9 @@ use App\Goal;
  */
 class InitiativeController extends Controller
 {
+  public function __construct() {
+  $this->middleware(['auth', 'clearance']);
+}
     /**
      * Display a listing of the resource.
      *
@@ -32,11 +40,21 @@ class InitiativeController extends Controller
     {
         $title = 'Index - initiative';
         $initiatives = Initiative::paginate(6);
+        if (Auth::check()) {
+          $user = Auth::user();
+          $permissions = $user->permissions;
+          $role = Role::where('name', 'Admin')->first();
+          if ($user->hasPermissionTo('view initiatives')) {
         return view('initiative.index',compact('initiatives','title'));
+      }else{
+        return view('errors.401');
+      }
     }
+  }
 
     public function list($id,Request $request)
     {
+        $user = Auth::user();
         // $title = 'list - initiative';
         $initiatives = Initiative::where('project_id', $id)->paginate(6);
 
@@ -48,8 +66,11 @@ class InitiativeController extends Controller
         $GoalTitle = '> ' . $GoalName->goal_title;
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
-
+        if ($user->hasPermissionTo('view initiatives')) {
         return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle'));
+      }else{
+        return view('errors.401');
+      }
     }
     /**
      * Show the form for creating a new resource.
@@ -58,11 +79,15 @@ class InitiativeController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
         $title = 'Create - initiative';
 
         $projects = Project::all()->pluck('project_title','id');
-
+        if ($user->hasPermissionTo('create initiatives')) {
         return view('initiative.create',compact('title','projects'  ));
+      }else{
+        return view('errors.401');
+      }
     }
 
     /**
@@ -140,8 +165,12 @@ class InitiativeController extends Controller
 
         $GoalName = Goal::findOrfail($GoalId);
         $GoalTitle = '> ' . $GoalName->goal_title;
-
+        $user = Auth::user();
+        if ($user->hasPermissionTo('view initiatives')) {
         return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle'));
+      }else{
+        return view('errors.401');
+      }
     }
 
     /**
@@ -152,14 +181,20 @@ class InitiativeController extends Controller
      */
     public function edit($id,Request $request)
     {
+        $user = Auth::user();
         $title = 'Edit - initiative';
         $initiative = Initiative::findOrfail($id);
         $users = \App\User::all()->pluck('name','id');
 
         if($request->ajax())
         {
+            if ($user->hasPermissionTo('edit initiatives')) {
             return URL::to('initiative/'. $id . '/edit');
+          }else{
+            return view('errors.401');
+          }
         }
+
 
 
         $projects = Project::all()->pluck('project_title','id');
@@ -215,13 +250,19 @@ class InitiativeController extends Controller
      */
     public function DeleteMsg($id,Request $request)
     {
+        $user = Auth::user();
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/initiative/'. $id . '/delete');
 
         if($request->ajax())
         {
+            if ($user->hasPermissionTo('delete initiatives')) {
             return $msg;
+          }else{
+                  return('Access Denied');
+          }
         }
-    }
+      }
+
 
     /**
      * Remove the specified resource from storage.

@@ -33,7 +33,7 @@ class GoalController extends Controller
     {
 
         public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index', 'show');
+        $this->middleware(['auth', 'clearance']);
     }
 
 
@@ -46,12 +46,22 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $GoalTitle = '> Index - goal';
+        $GoalTitle = 'Index - goal';
         $goals = Goal::paginate(6);
         // $user = User::all();
-        $user = Auth::user();
-        $permissions = $user->permissions;
-        $role = Role::where('name', 'Admin')->first();
+        if (Auth::check()) {
+          $user = Auth::user();
+          $permissions = $user->permissions;
+          $role = Role::where('name', 'Admin')->first();
+          if ($user->hasPermissionTo('view goals')) {
+              return view('goal.index',compact('goals','GoalTitle'));
+          }else{
+              return view('errors.401');
+          }
+        }else {
+          return view('auth.login');
+        }
+
 
         // $roles = $role->givePermissionTo('Edit Goals');
 
@@ -59,11 +69,7 @@ class GoalController extends Controller
         // echo $role->name;
         // $permissions = Permission::all();
         // $permissions = $user->permissions;
-        if ($user->hasPermissionTo('view goals')) {
-            return view('goal.index',compact('goals','GoalTitle'));
-        }else{
-            return view('errors.401');
-        }
+
 
 
     }
@@ -83,12 +89,8 @@ class GoalController extends Controller
         $title = 'Create - goal';
         $user = Auth::user();
 
-
-        if ($user->hasPermissionTo('create goals')) {
             return view('goal.create');
-        }else{
-            return view('errors.401');
-        }
+
     }
 
     /**
@@ -262,17 +264,20 @@ class GoalController extends Controller
      */
     public function DeleteMsg($id,Request $request)
     {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
+      $user = Auth::user();
+      $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
+
+        if ($user->hasPermissionTo('delete goals')) {
+                $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/goal/'. $id . '/delete');
+        }else{
+                return('Access Denied');
+        }
 
 
-        if ($user->hasPermissionTo('Delete Goals')) {
                 if($request->ajax())
             {
                 return $msg;
             }
-        }else{
-            return view('errors.401');
-        }
 
 
     }

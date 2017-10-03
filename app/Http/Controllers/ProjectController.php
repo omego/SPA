@@ -10,6 +10,10 @@ use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use Auth;
 
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Pusher;
 use App\Goal;
 
 
@@ -21,6 +25,10 @@ use App\Goal;
  */
 class ProjectController extends Controller
 {
+
+      public function __construct() {
+      $this->middleware(['auth', 'clearance']);
+  }
     /**
      * Display a listing of the resource.
      *
@@ -28,17 +36,32 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $title = '> Index - project';
+        $title = 'Index - project';
         $projects = Project::paginate(6);
+        if (Auth::check()) {
+          $user = Auth::user();
+          $permissions = $user->permissions;
+          $role = Role::where('name', 'Admin')->first();
+          if ($user->hasPermissionTo('view projects')) {
         return view('project.index',compact('projects','title'));
+    }else{
+      return view('errors.401');
     }
+  }
+}
     public function list($id,Request $request)
     {
         // $title = 'list - project';
+        $user = Auth::user();
         $projects = Project::where('goal_id', $id)->paginate(6);
         $GoalName = Goal::findOrfail($id);
         $GoalTitle = '> ' . $GoalName->goal_title;
+          if ($user->hasPermissionTo('view projects')) {
         return view('project.list',compact('projects','GoalTitle'));
+      }else{
+        return view('errors.401');
+      }
+
         //return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','title'));
     }
     /**
@@ -48,12 +71,17 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
         $title = 'Create - project';
 
         $goals = Goal::all()->pluck('goal_title','id');
-
+        if ($user->hasPermissionTo('create projects')) {
         return view('project.create',compact('title','goals'  ));
+      }else{
+        return view('errors.401');
+      }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -108,8 +136,14 @@ class ProjectController extends Controller
         }
 
         $project = Project::findOrfail($id);
+        $user = Auth::user();
+        if ($user->hasPermissionTo('view projects')) {
         return view('project.show',compact('title','project'));
+      }else{
+        return view('errors.401');
+      }
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -119,13 +153,19 @@ class ProjectController extends Controller
      */
     public function edit($id,Request $request)
     {
+        $user = Auth::user();
         $title = 'Edit - project';
         $users = \App\User::all();
 
         if($request->ajax())
         {
+          if ($user->hasPermissionTo('edit projects')) {
             return URL::to('project/'. $id . '/edit');
+          }else{
+            return view('errors.401');
+          }
         }
+
 
 
         $goals = Goal::all()->pluck('goal_title','id');
@@ -177,13 +217,19 @@ class ProjectController extends Controller
      */
     public function DeleteMsg($id,Request $request)
     {
+        $user = Auth::user();
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/project/'. $id . '/delete');
 
         if($request->ajax())
         {
+            if ($user->hasPermissionTo('delete projects')) {
             return $msg;
+          }else{
+                  return('Access Denied');
+          }
         }
-    }
+      }
+
 
     /**
      * Remove the specified resource from storage.

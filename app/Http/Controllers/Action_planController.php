@@ -13,6 +13,13 @@ use App\Mail\ActionPlanCreated;
 use App\Mail;
 use App\Initiative;
 
+use Auth;
+
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Pusher;
+
 
 /**
  * Class Action_planController.
@@ -22,6 +29,9 @@ use App\Initiative;
  */
 class Action_planController extends Controller
 {
+  public function __construct() {
+  $this->middleware(['auth', 'clearance']);
+}
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +41,17 @@ class Action_planController extends Controller
     {
         $title = 'Index - action_plan';
         $action_plans = Action_plan::paginate(6);
+        if (Auth::check()) {
+          $user = Auth::user();
+          $permissions = $user->permissions;
+          $role = Role::where('name', 'Admin')->first();
+          if ($user->hasPermissionTo('view action plans')) {
         return view('action_plan.index',compact('action_plans','title'));
+      }else{
+        return view('errors.401');
+      }
     }
+  }
 
     /**
      * Show the form for creating a new resource.
@@ -41,11 +60,15 @@ class Action_planController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
         $title = 'Create - action_plan';
 
         $initiatives = Initiative::all()->pluck('initiative_title','id');
-
+        if ($user->hasPermissionTo('create action plans')) {
         return view('action_plan.create',compact('title','initiatives'  ));
+      }else{
+        return view('errors.401');
+      }
     }
 
     /**
@@ -125,14 +148,22 @@ class Action_planController extends Controller
     public function show($id,Request $request)
     {
         $title = 'Show - action_plan';
+        $user = Auth::user();
 
         if($request->ajax())
         {
             return URL::to('action_plan/'.$id);
+
         }
 
+
+
         $action_plan = Action_plan::findOrfail($id);
+        if ($user->hasPermissionTo('view action plans')) {
         return view('action_plan.show',compact('title','action_plan'));
+      }else{
+        return view('errors.401');
+      }
     }
 
     /**
@@ -144,14 +175,19 @@ class Action_planController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - action_plan';
-
+        $user = Auth::user();
         $action_plan = Action_plan::findOrfail($id);
         $users = \App\User::all()->pluck('name','id');
 
         if($request->ajax())
         {
+            if ($user->hasPermissionTo('edit action plans')) {
             return URL::to('action_plan/'. $id . '/edit');
+          }else{
+            return view('errors.401');
+          }
         }
+
 
         $action_plan_files = Action_plan_attachment::where('action_plan_id', $id)->get();
 
@@ -238,13 +274,18 @@ class Action_planController extends Controller
      */
     public function DeleteMsg($id,Request $request)
     {
+        $user = Auth::user();
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/action_plan/'. $id . '/delete');
 
         if($request->ajax())
         {
+            if ($user->hasPermissionTo('delete action plans')) {
             return $msg;
+          }else{
+                  return('Access Denied');
+          }
         }
-    }
+      }
 
     /**
      * Remove the specified resource from storage.

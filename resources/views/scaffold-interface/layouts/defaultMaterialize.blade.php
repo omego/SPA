@@ -57,8 +57,8 @@
 			<div class = "row AjaxisModal">
 			</div>
 		</div>
-		<script src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+		<script src = "{{URL::asset('js/jquery-2.1.1.min.js')}}"></script>
+		<script src = "{{URL::asset('js/materialize.min.js')}}"></script>
 		<script>  var baseURL = "{{ URL::to('/') }}"</script>
 		<script src = "{{URL::asset('js/AjaxisMaterialize.js')}}"></script>
 		<script src = "{{URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
