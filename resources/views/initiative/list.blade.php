@@ -4,7 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        initiative Index
+        Initiatives under {!!$ProjectTitle!!}
     </h1>
     <div class="row">
       @can('create initiatives')
@@ -17,51 +17,13 @@
         </ul>
         <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a>
     </div>
-    <table>
-        <thead>
-            <th>Initiative Title</th>
-            <th>Initiative Description</th>
-            <th>KPI Previous</th>
-            <th>KPI Current</th>
-            <th>KPI Target</th>
-            <th>Status</th>
-            <th>Why If Not</th>
-            <th>DOD Comment</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+        <div class="collection">
             @foreach($initiatives as $initiative)
-            <tr>
-                <td>{!!$initiative->initiative_title!!}</td>
-                <td>
-                @PHP
-                echo str_limit($initiative->initiative_description, 25);
-                @endPHP
-<!--                 {!!$initiative->initiative_description!!} -->
-                </td>
-                <td>{!!$initiative->kpi_previous!!}</td>
-                <td>{!!$initiative->kpi_current!!}</td>
-                <td>{!!$initiative->kpi_target!!}</td>
-                <td>{!!$initiative->status!!}</td>
-                <td>{!!$initiative->why_if_not!!}</td>
-                <td>{!!$initiative->dod_note!!}</td>
-                <td>
-                    <div class = 'row'>
-                      @can('delete initiatives')
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                      @endcan
-                      @can('edit initiatives')
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/initiative/{!!$initiative->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                      @endcan
-                      @can('view initiatives')
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/initiative/{!!$initiative->id!!}'><i class = 'material-icons'>info</i></a>
-                      @endcan
-                    </div>
-                </td>
-            </tr>
+              <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'><span class= "new badge" data-badge-caption="">{!!$initiative->created_at->diffForHumans()!!}</span>
+                {!!$initiative->initiative_title!!}
+              </a>
             @endforeach
-        </tbody>
-    </table>
+      </div>
     {!! $initiatives->render() !!}
 
 </div>

@@ -43,10 +43,10 @@
     <div class="nav-wrapper grey">
       <div class="col s12">
         <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
-        <a href="#!" class="breadcrumb">@isset($GoalTitle)
+        <a href="{!!url("goal")!!}" class="breadcrumb">@isset($GoalTitle)
     {!!$GoalTitle!!}
 @endisset</a>
-        <a href="#!" class="breadcrumb">@isset($ProjectTitle)
+        <a href="#" class="breadcrumb">@isset($ProjectTitle)
     {!!$ProjectTitle!!}
 @endisset</a>
       </div>

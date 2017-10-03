@@ -36,7 +36,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $title = 'Index - project';
+        $title = 'Projects';
         $projects = Project::paginate(6);
         if (Auth::check()) {
           $user = Auth::user();
@@ -55,9 +55,13 @@ class ProjectController extends Controller
         $user = Auth::user();
         $projects = Project::where('goal_id', $id)->paginate(6);
         $GoalName = Goal::findOrfail($id);
+        $GoalID =  $GoalName->id;
         $GoalTitle = $GoalName->goal_title;
+        $Goal_Discerption = $GoalName->goal_discerption;
+        $Goal_created_at = $GoalName->created_at->diffForHumans();
+
           if ($user->hasPermissionTo('view projects')) {
-        return view('project.list',compact('projects','GoalTitle'));
+        return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at'));
       }else{
         return view('errors.401');
       }

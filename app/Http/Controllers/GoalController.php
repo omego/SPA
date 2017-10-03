@@ -46,7 +46,7 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $GoalTitle = 'Index - goal';
+        $GoalTitle = 'Goals';
         $goals = Goal::paginate(6);
         // $user = User::all();
         if (Auth::check()) {

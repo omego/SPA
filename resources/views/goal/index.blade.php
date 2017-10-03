@@ -4,7 +4,7 @@
 
 <div class = 'container'>
     <h1>
-        goal Index
+        Goals
     </h1>
     <div class="row">
         @can('create goals')
