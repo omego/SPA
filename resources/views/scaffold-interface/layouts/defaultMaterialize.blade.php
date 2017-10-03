@@ -12,11 +12,11 @@
 	<div class="row">
 		  <nav>
     <div class="nav-wrapper grey darken-3">
-      <div class="col s12"><ul>
+      <div class="col s12">
 				<div class="col s2">
-				<li><span href='{!!url("goal")!!}'><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a></span>
+				<a href='{!!url("goal")!!}'><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
 			</div>
-
+			<ul>
         <li><a href='{!!url("goal")!!}'>Goals</a></li>
         <li><a href='{!!url("project")!!}'>Projects</a></li>
         <li><a href='{!!url("initiative")!!}'>Initiatives</a></li>
