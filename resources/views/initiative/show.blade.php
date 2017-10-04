@@ -14,31 +14,34 @@
     </form>
     </div>
     <div class="col s12">
-      
-        <ul class="collection"><div class="col s4">
+          <div class="col s4">
+            <ul class="collection">
             <li class="collection-item active center">KPI Previous</li>
             <li class="collection-item center">{!!$initiative->kpi_previous!!}</li>
-          </div>
-          <div class="col s4">
+        </ul>
+        </div>
+        <div class="col s4">
+        <ul class="collection">
             <li class="collection-item active center">KPI Current</li>
             <li class="collection-item center">{!!$initiative->kpi_current!!}</li>
-          </div>
-          <div class="col s4">
+        </ul>
+        </div>
+        <div class="col s4">
+        <ul class="collection">
             <li class="collection-item active center">KPI Target</li>
             <li class="collection-item center">{!!$initiative->kpi_target!!}</li>
-          </div>
           </ul>
-
+          </div>
     </div>
       <div class="col s6">
       <ul class="collection">
-              <li class="collection-item active">Initiative Description</li>
+              <li class="collection-item grey-text text-darken-3 active grey lighten-2">Initiative Description</li>
                   <li class="collection-item">{!!$initiative->initiative_description!!}</li>
-              <li class="collection-item active">Status</li>
+              <li class="collection-item grey-text text-darken-3 active grey lighten-2">Status</li>
                   <li class="collection-item">{!!$initiative->status!!}</li>
-              <li class="collection-item active">Why If Not</li>
+              <li class="collection-item grey-text text-darken-3 active grey lighten-2">Why If Not</li>
                       <li class="collection-item">{!!$initiative->why_if_not!!}</li>
-              <li class="collection-item active">DOD Comment</li>
+              <li class="collection-item grey-text text-darken-3 active grey lighten-1">DOD Comment</li>
                       <li class="collection-item">{!!$initiative->dod_note!!}</li>
 
       </div>

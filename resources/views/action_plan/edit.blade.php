@@ -20,6 +20,8 @@
     <form method = 'get' action = '{!!url("action_plan")!!}'>
         <button class = 'btn blue'>action_plan Index</button>
     </form>
+    <div class="input-field col s6">
+    </div>
     <br>
     <form enctype="multipart/form-data" method = 'POST' action = '{!! url("action_plan")!!}/{!!$action_plan->
         id!!}/update'>
@@ -55,11 +57,11 @@
             <label for="action_plan_end">action_plan_end</label>
         </div>
 
-        <div class="input-field col s6">
-            <input id="action_plan_approval" name = "action_plan_approval" type="checkbox" value="Yes" {{ $action_plan->
-            action_plan_approval == 'Yes' ? 'checked' : '' }}>
+          <p>
+            <input type="checkbox" id="action_plan_approval" name="action_plan_approval" value="Yes" {{ $action_plan-> action_plan_approval == 'Yes' ? 'checked' : '' }}>
             <label for="action_plan_approval">Approved</label>
-        </div>
+          </p>
+
         <br>
         <div class="input-field col s12">
             <select name = 'initiative_id'>
