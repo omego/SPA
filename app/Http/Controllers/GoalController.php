@@ -47,31 +47,28 @@ class GoalController extends Controller
     public function index()
     {
         $GoalTitle = 'Goals';
-        $goals = Goal::paginate(6);
+        // $goals = Goal::paginate(6);
         // $user = User::all();
-        if (Auth::check()) {
+
           $user = Auth::user();
-          $permissions = $user->permissions;
-          $role = Role::where('name', 'Admin')->first();
+          // $permissions = $user->permissions;
+          // $role = Role::where('name', 'Admin')->first();
+          if ($user->hasRole('Admin')) {
+            $goals = Goal::paginate(6);
+          }elseif ($user->hasRole('Owner')) {
+            $user = Auth::user();
+            $userId = $user->id;
+            $goals = Goal::whereHas('users', function ($q) use ($userId) {
+                $q->where('user_id', $userId);
+            })->paginate(6);
+          }else{
+              return view('errors.401');
+          }
           if ($user->hasPermissionTo('view goals')) {
               return view('goal.index',compact('goals','GoalTitle'));
           }else{
               return view('errors.401');
           }
-        }else {
-          return view('auth.login');
-        }
-
-
-        // $roles = $role->givePermissionTo('Edit Goals');
-
-
-        // echo $role->name;
-        // $permissions = Permission::all();
-        // $permissions = $user->permissions;
-
-
-
     }
 
 
@@ -148,20 +145,7 @@ class GoalController extends Controller
 
         $goal = Goal::findOrfail($id);
 
-
         $ProjectCount = Project::where('goal_id', $id)->count();
-        // $InitiativeCount = Initiative::where('project_id', $id)
-        // ->where('status', 'Accomplished')->count();
-        // $InitiativeCount = Goal::where('id', $id)->with('initiatives')->get();
-        // echo $InitiativeCount;
-        // foreach ($goal->initiatives as $initiative) {
-        //     if ($initiative->status == 'Accomplished') {
-        //         echo $initiative->status;
-        //     }
-        // }
-        // $InitiativeCount = Goal::whereHas('initiatives', function($offerQuery){
-        // $offerQuery->where('status', '=', 'Accomplished');
-        // })->get();
         $InitiativeCount = DB::table('goals')
             ->join('projects', 'goals.id', '=', 'projects.goal_id')
             ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')

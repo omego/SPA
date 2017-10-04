@@ -16,7 +16,7 @@
     <div class="collection">
             @foreach($goals as $goal)
 
-            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge" data-badge-caption="">{!!$goal->created_at->diffForHumans()!!}</span>
+            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge" data-badge-caption="">{!!$goal->updated_at->diffForHumans()!!}</span>
  <span class="new badge blue" data-badge-caption="Accomplished">
               @php
       $InitiativeCount = DB::table('goals')
