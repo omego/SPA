@@ -14,8 +14,8 @@
     </form>
     </div>
     <div class="col s12">
-      <div class="collection">
-        <ul><div class="col s4">
+      
+        <ul class="collection"><div class="col s4">
             <li class="collection-item active center">KPI Previous</li>
             <li class="collection-item center">{!!$initiative->kpi_previous!!}</li>
           </div>
@@ -28,19 +28,17 @@
             <li class="collection-item center">{!!$initiative->kpi_target!!}</li>
           </div>
           </ul>
-          </div>
+
     </div>
       <div class="col s6">
-
-
-            <ul class="collection with-header">
-              <li class="collection-header"><h5>Initiative Description</h5></li>
+      <ul class="collection">
+              <li class="collection-item active">Initiative Description</li>
                   <li class="collection-item">{!!$initiative->initiative_description!!}</li>
-              <li class="collection-header"><h5>Status</h5></li>
+              <li class="collection-item active">Status</li>
                   <li class="collection-item">{!!$initiative->status!!}</li>
-              <li class="collection-header"><h5>Why If Not</h5></li>
+              <li class="collection-item active">Why If Not</li>
                       <li class="collection-item">{!!$initiative->why_if_not!!}</li>
-              <li class="collection-header"><h5>DOD Comment</h5></li>
+              <li class="collection-item active">DOD Comment</li>
                       <li class="collection-item">{!!$initiative->dod_note!!}</li>
 
       </div>
