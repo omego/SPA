@@ -67,7 +67,7 @@ class InitiativeController extends Controller
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle'));
+        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName'));
       }else{
         return view('errors.401');
       }

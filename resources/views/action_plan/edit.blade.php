@@ -57,12 +57,19 @@
             <label for="action_plan_end">action_plan_end</label>
         </div>
 
-          <p>
-            <input type="checkbox" id="action_plan_approval" name="action_plan_approval" value="Yes" {{ $action_plan-> action_plan_approval == 'Yes' ? 'checked' : '' }}>
-            <label for="action_plan_approval">Approved</label>
-          </p>
-
-        <br>
+        <p>
+    <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval3" checked="checked" value="Draft" {{ $action_plan->action_plan_approval == 'Draft' ? 'checked' : '' }} />
+     <label for="action_plan_approval3">Draft</label>
+   </p>
+   <p>
+     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval2" value="Pending" {{ $action_plan->action_plan_approval == 'Pending' ? 'checked' : '' }} />
+     <label for="action_plan_approval2">Pending</label>
+   </p>
+   <p>
+     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval1" value="Approved" {{ $action_plan->action_plan_approval == 'Approved' ? 'checked' : '' }} />
+     <label for="action_plan_approval1">Approved</label>
+ </p>
+ <br>
         <div class="input-field col s12">
             <select name = 'initiative_id'>
                 @foreach($initiatives as $key => $value)

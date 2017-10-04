@@ -4,10 +4,17 @@
 
 <div class = 'container'>
   <div class="row">
-    <div class="col s12">
+    <div class="col s8">
     <h1>
         {!!$action_plan->action_plan_title!!}
     </h1>
+  </div>
+  <div class="col s4">
+    @can('create initiatives')
+      <form class = 'col s3' method = 'get' action = '{!!$action_plan->id!!}/edit'>
+          <button class = 'btn red' type = 'submit'>Update</button>
+      </form>
+    @endcan
   </div>
   <div class="col s6">
   </div>

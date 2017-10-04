@@ -54,6 +54,18 @@
             @endforeach
       </div>
     {!! $projects->render() !!}
-
+{{-- Fixed Add + Button Start --}}
+    {{-- <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+           <a class="btn-floating btn-large red">
+               <i class="large input material-icons">add</i>
+           </a>
+           <ul>
+               <li><a href = "http://localhost:8888/spa/public/scaffold-dashboard" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Dashboard"><i class="material-icons">view_list</i></a></li>
+               <li><a href = "http://localhost:8888/spa/public/scaffold/rollback" class="btn-floating pink tooltipped" data-position="left" data-delay="50" data-tooltip="RollBack the Schema"><i class="material-icons">repeat</i></a></li>
+               <li><a href = "http://localhost:8888/spa/public/scaffold/migrate" class="btn-floating orange tooltipped" data-position="left" data-delay="50" data-tooltip="Migrate the Schema"><i class="material-icons">input</i></a></li>
+               <li><a href = "http://localhost:8888/spa/public/scaffold/migrate" class="btn-floating orange tooltipped" data-position="left" data-delay="50" data-tooltip="Migrate the Schema"><i class="material-icons">input</i></a></li>
+           </ul>
+       </div> --}}
+       {{-- Fixed Add + Button End --}}
 </div>
 @endsection

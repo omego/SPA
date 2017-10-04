@@ -6,7 +6,7 @@
     <h1>
         Initiatives under {!!$ProjectTitle!!}
     </h1>
-    <div class="row">
+    <div class="row">{!!$ProjectName->project_discerption!!}{!!$ProjectName->created_at->diffForHumans()!!}{!!$ProjectName->updated_at->diffForHumans()!!}
       @can('create initiatives')
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New initiative</button>
