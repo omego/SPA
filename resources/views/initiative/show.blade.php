@@ -9,9 +9,9 @@
       <div class="col s12"><h1>
         {!!$initiative->initiative_title!!}
     </h1>
-    <form method = 'get' action = '{!!url("initiative")!!}'>
+    {{-- <form method = 'get' action = '{!!url("initiative")!!}'>
         <button class = 'btn blue'>initiative Index</button>
-    </form>
+    </form> --}}
     </div>
     <div class="col s12">
           <div class="col s4">

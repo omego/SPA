@@ -43,13 +43,14 @@
             <label for="status">Complete</label>
         </div> -->
 
-         <div class="input-field col s6">
+         <p>
      <input name="status" type="radio" class="with-gap" id="status2" checked="checked" value="Not Accomplished" {{ $initiative->status == 'Not Accomplished' ? 'checked' : '' }} />
       <label for="status2">Not Accomplished</label>
 
       <input name="status" type="radio" class="with-gap" id="status1" value="Accomplished" {{ $initiative->status == 'Accomplished' ? 'checked' : '' }} />
       <label for="status1">Accomplished</label>
-  </div>
+  </p>
+  <br>
           <div class="input-field col s6">
             <input id="why_if_not" name = "why_if_not" type="text" class="validate" value="{!!$initiative->
             why_if_not!!}">
