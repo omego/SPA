@@ -115,7 +115,7 @@ class InitiativeController extends Controller
 
         $initiative->kpi_target = $request->kpi_target;
 
-        $initiative->status = $request->status;
+        $initiative->status = "Not Accomplished";
 
         $initiative->why_if_not = $request->why_if_not;
 
