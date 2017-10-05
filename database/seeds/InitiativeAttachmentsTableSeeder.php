@@ -71,6 +71,33 @@ class InitiativeAttachmentsTableSeeder extends Seeder
                 'updated_at' => '2017-09-26 06:47:59',
                 'deleted_at' => NULL,
             ),
+            6 => 
+            array (
+                'id' => 7,
+                'file_name' => 'Screenshot_2017-09-21_12.22.32.jpg',
+                'initiative_id' => 4,
+                'created_at' => '2017-09-26 12:11:04',
+                'updated_at' => '2017-09-26 12:11:04',
+                'deleted_at' => NULL,
+            ),
+            7 => 
+            array (
+                'id' => 8,
+                'file_name' => 'Screenshot_2017-09-21_12.22.32.jpg',
+                'initiative_id' => 4,
+                'created_at' => '2017-09-26 12:20:44',
+                'updated_at' => '2017-09-26 12:20:44',
+                'deleted_at' => NULL,
+            ),
+            8 => 
+            array (
+                'id' => 9,
+                'file_name' => '10312352_10152061207360588_5928058365697809706_n.jpg',
+                'initiative_id' => 3,
+                'created_at' => '2017-10-02 16:55:22',
+                'updated_at' => '2017-10-02 16:55:22',
+                'deleted_at' => NULL,
+            ),
         ));
         
         
