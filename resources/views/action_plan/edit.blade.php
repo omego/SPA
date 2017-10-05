@@ -20,6 +20,8 @@
     <form method = 'get' action = '{!!url("action_plan")!!}'>
         <button class = 'btn blue'>action_plan Index</button>
     </form>
+    <div class="input-field col s6">
+    </div>
     <br>
     <form enctype="multipart/form-data" method = 'POST' action = '{!! url("action_plan")!!}/{!!$action_plan->
         id!!}/update'>
@@ -55,12 +57,19 @@
             <label for="action_plan_end">action_plan_end</label>
         </div>
 
-        <div class="input-field col s6">
-            <input id="action_plan_approval" name = "action_plan_approval" type="checkbox" value="Yes" {{ $action_plan->
-            action_plan_approval == 'Yes' ? 'checked' : '' }}>
-            <label for="action_plan_approval">Approved</label>
-        </div>
-        <br>
+        <p>
+    <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval3" checked="checked" value="Draft" {{ $action_plan->action_plan_approval == 'Draft' ? 'checked' : '' }} />
+     <label for="action_plan_approval3">Draft</label>
+   </p>
+   <p>
+     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval2" value="Pending" {{ $action_plan->action_plan_approval == 'Pending' ? 'checked' : '' }} />
+     <label for="action_plan_approval2">Pending</label>
+   </p>
+   <p>
+     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval1" value="Approved" {{ $action_plan->action_plan_approval == 'Approved' ? 'checked' : '' }} />
+     <label for="action_plan_approval1">Approved</label>
+ </p>
+ <br>
         <div class="input-field col s12">
             <select name = 'initiative_id'>
                 @foreach($initiatives as $key => $value)

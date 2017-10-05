@@ -13,12 +13,15 @@
 		  <nav>
     <div class="nav-wrapper grey darken-3">
       <div class="col s12">
-				<a href='{!!url("goal")!!}' class="left brand-logo">SPA</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href='{!!url("goal")!!}'>Goal</a></li>
-        <li><a href='{!!url("project")!!}'>Project</a></li>
-        <li><a href='{!!url("initiative")!!}'>initiative</a></li>
+				<div class="col s2">
+				<a href='{!!url("goal")!!}'><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
+			</div>
+			<ul>
+        <li><a href='{!!url("goal")!!}'>Goals</a></li>
+        <li><a href='{!!url("project")!!}'>Projects</a></li>
+        <li><a href='{!!url("initiative")!!}'>Initiatives</a></li>
         <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
+
 				{{-- <li><a class="waves-effect waves-light btn">
 						{{Auth::user()->name}}
 						@role('Admin')
@@ -43,10 +46,10 @@
     <div class="nav-wrapper grey">
       <div class="col s12">
         <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
-        <a href="#!" class="breadcrumb">@isset($GoalTitle)
+        <a href="{!!url("goal")!!}" class="breadcrumb">@isset($GoalTitle)
     {!!$GoalTitle!!}
 @endisset</a>
-        <a href="#!" class="breadcrumb">@isset($ProjectTitle)
+        <a href="#" class="breadcrumb">@isset($ProjectTitle)
     {!!$ProjectTitle!!}
 @endisset</a>
       </div>
@@ -57,8 +60,8 @@
 			<div class = "row AjaxisModal">
 			</div>
 		</div>
-		<script src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+		<script src = "{{URL::asset('js/jquery-2.1.1.min.js')}}"></script>
+		<script src = "{{URL::asset('js/materialize.min.js')}}"></script>
 		<script>  var baseURL = "{{ URL::to('/') }}"</script>
 		<script src = "{{URL::asset('js/AjaxisMaterialize.js')}}"></script>
 		<script src = "{{URL::asset('js/scaffold-interface-js/customA.js')}}"></script>

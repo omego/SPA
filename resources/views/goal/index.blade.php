@@ -4,55 +4,42 @@
 
 <div class = 'container'>
     <h1>
-        goal Index
+        Goals
     </h1>
     <div class="row">
-        @role('Admin')
+        @can('create goals')
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New goal</button>
         </form>
-        @endrole
+      @endcan
     </div>
-    <table>
-        <thead>
-            <th>Goal Title</th>
-            <th>Goal Description</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+    <div class="collection">
             @foreach($goals as $goal)
-            <tr>
-                <td>{!!$goal->goal_title!!} <small class="grey">{!!$goal->created_at->diffForHumans()!!}</small></td>
-                <td>
-                @PHP
-                echo str_limit($goal->goal_discerption, 75);
-                @endPHP
-                        @php
-                $InitiativeCount = DB::table('goals')
-            ->join('projects', 'goals.id', '=', 'projects.goal_id')
-            ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
-            ->select('initiatives.*', 'initiatives.initiative_title')
-            ->where('goals.id', '=', $goal->id)
-            ->get();
+
+            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge" data-badge-caption="">{!!$goal->updated_at->diffForHumans()!!}</span>
+ <span class="new badge blue" data-badge-caption="Accomplished">
+              @php
+      $InitiativeCount = DB::table('goals')
+  ->join('projects', 'goals.id', '=', 'projects.goal_id')
+  ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
+  ->select('initiatives.*', 'initiatives.initiative_title')
+  ->where('goals.id', '=', $goal->id)
+  ->get();
 
 
 
-        $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
-        echo $InitiativeCounted;
-        @endphp
+$InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
+echo $InitiativeCounted;
+@endphp
+</span>
+            {!!$goal->goal_title!!}</a>
+
+
+
                 <!-- {!!$goal->goal_discerption!!} -->
-                </td>
-                <td>
-                    <div class = 'row'>
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/goal/{!!$goal->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/goal/{!!$goal->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/goal/{!!$goal->id!!}'><i class = 'material-icons'>info</i></a>
-                    </div>
-                </td>
-            </tr>
+
             @endforeach
-        </tbody>
-    </table>
+    </div>
     {!! $goals->render() !!}
 
 </div>

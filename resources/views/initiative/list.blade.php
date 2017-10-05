@@ -3,57 +3,49 @@
 @section('content')
 
 <div class = 'container'>
-    <h1>
-        initiative Index
-    </h1>
+  <div class="row">
+     <div class="col s12">
+       <div class="card">
+         <div class="card-content">
+           <span class= "new badge grey" data-badge-caption="">Created: {!!$ProjectName->created_at->diffForHumans()!!}</span>
+           <span class="card-title"><h2>{!!$ProjectTitle!!}</h2></span>
+           <p>{!!$ProjectName->project_discerption!!}</p>
+         </div>
+         <div class="card-action">
+           @can('delete projects')
+             <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/project/{!!$ProjectName->id!!}/deleteMsg">delete</a>
+           @endcan
+           @can('edit projects')
+             <a href = '#' class = 'viewEdit' data-link = '/project/{!!$ProjectName->id!!}/edit'>edit</a>
+           @endcan
+          <span class= "new badge" data-badge-caption="">Updated: {!!$ProjectName->updated_at->diffForHumans()!!}</span>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+    <h4 class="center">
+        Initiatives under {!!$ProjectTitle!!}
+    </h4>
     <div class="row">
+      @can('create initiatives')
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New initiative</button>
         </form>
-        <ul id="dropdown" class="dropdown-content">
+      @endcan
+        {{-- <ul id="dropdown" class="dropdown-content">
             <li><a href="http://localhost:8888/spa/public/project">Project</a></li>
         </ul>
-        <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a>
+        <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a> --}}
     </div>
-    <table>
-        <thead>
-            <th>Initiative Title</th>
-            <th>Initiative Description</th>
-            <th>KPI Previous</th>
-            <th>KPI Current</th>
-            <th>KPI Target</th>
-            <th>Status</th>
-            <th>Why If Not</th>
-            <th>DOD Comment</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+        <div class="collection">
             @foreach($initiatives as $initiative)
-            <tr>
-                <td>{!!$initiative->initiative_title!!}</td>
-                <td>
-                @PHP
-                echo str_limit($initiative->initiative_description, 25);
-                @endPHP
-<!--                 {!!$initiative->initiative_description!!} -->
-                </td>
-                <td>{!!$initiative->kpi_previous!!}</td>
-                <td>{!!$initiative->kpi_current!!}</td>
-                <td>{!!$initiative->kpi_target!!}</td>
-                <td>{!!$initiative->status!!}</td>
-                <td>{!!$initiative->why_if_not!!}</td>
-                <td>{!!$initiative->dod_note!!}</td>
-                <td>
-                    <div class = 'row'>
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/initiative/{!!$initiative->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/initiative/{!!$initiative->id!!}'><i class = 'material-icons'>info</i></a>
-                    </div>
-                </td>
-            </tr>
+              <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'><span class= "new badge" data-badge-caption="">{!!$initiative->updated_at->diffForHumans()!!}</span>
+                {!!$initiative->initiative_title!!}
+              </a>
             @endforeach
-        </tbody>
-    </table>
+      </div>
     {!! $initiatives->render() !!}
 
 </div>

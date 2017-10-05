@@ -19,43 +19,58 @@ class UserHasPermissionsTableSeeder extends Seeder
         \DB::table('user_has_permissions')->insert(array (
             0 => 
             array (
-                'user_id' => 1,
+                'user_id' => 5,
                 'permission_id' => 12,
             ),
             1 => 
             array (
-                'user_id' => 2,
-                'permission_id' => 12,
+                'user_id' => 5,
+                'permission_id' => 13,
             ),
             2 => 
             array (
-                'user_id' => 1,
-                'permission_id' => 13,
+                'user_id' => 5,
+                'permission_id' => 14,
             ),
             3 => 
             array (
-                'user_id' => 3,
-                'permission_id' => 13,
+                'user_id' => 5,
+                'permission_id' => 18,
             ),
             4 => 
             array (
-                'user_id' => 1,
-                'permission_id' => 14,
+                'user_id' => 5,
+                'permission_id' => 19,
             ),
             5 => 
             array (
-                'user_id' => 2,
-                'permission_id' => 14,
+                'user_id' => 5,
+                'permission_id' => 20,
             ),
             6 => 
             array (
-                'user_id' => 3,
-                'permission_id' => 14,
+                'user_id' => 5,
+                'permission_id' => 21,
             ),
             7 => 
             array (
-                'user_id' => 1,
-                'permission_id' => 15,
+                'user_id' => 5,
+                'permission_id' => 22,
+            ),
+            8 => 
+            array (
+                'user_id' => 5,
+                'permission_id' => 23,
+            ),
+            9 => 
+            array (
+                'user_id' => 5,
+                'permission_id' => 25,
+            ),
+            10 => 
+            array (
+                'user_id' => 5,
+                'permission_id' => 27,
             ),
         ));
         

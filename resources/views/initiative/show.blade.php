@@ -5,133 +5,78 @@
 
 
 <div class = 'container'>
-<div class="row">
-      <div class="col s12"><h1>
-        Show initiative
+  <div class="row">
+     <div class="col s12">
+       <div class="card">
+         <div class="card-content">
+           <span class= "new badge grey" data-badge-caption="">Created: {!!$initiative->created_at->diffForHumans()!!}</span>
+           <span class= "new badge orange accent-2 left" data-badge-caption="">{!!$initiative->status!!}</span>
+           <span class="card-title"><h2>{!!$initiative->initiative_title!!}</h2></span>
+           <p>{!!$initiative->initiative_description!!}</p>
+         </div>
+         <div class="card-action">
+           @can('delete initiatives')
+             <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg">delete</a>
+           @endcan
+           @can('edit initiatives')
+             <a href = '#' class = 'viewEdit' data-link = '/initiative/{!!$initiative->id!!}/edit'>edit</a>
+           @endcan
+          <span class= "new badge" data-badge-caption="">Updated: {!!$initiative->updated_at->diffForHumans()!!}</span>
+         </div>
+       </div>
+     </div>
+
+      {{-- <div class="col s12"><h1>
+
     </h1>
     <form method = 'get' action = '{!!url("initiative")!!}'>
         <button class = 'btn blue'>initiative Index</button>
     </form>
-    </div>
-      <div class="col s6">
+    </div> --}}
 
-        <table class = 'highlight bordered'>
-            <thead>
-                <th>KPI Previous</th>
-                <th>KPI Current</th>
-                <th>KPI Target</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{!!$initiative->kpi_previous!!}</td>
-                    <td>{!!$initiative->kpi_current!!}</td>
-                    <td>{!!$initiative->kpi_target!!}</td>
-                </tr>
-            </tbody>
-        </table>
-            <table class = 'highlight bordered'>
-        <thead>
-            <th>Key</th>
-            <th>Value</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <b><i>Initiative Title: </i></b>
-                </td>
-                <td>{!!$initiative->initiative_title!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>Initiative Description: </i></b>
-                </td>
-                <td>{!!$initiative->initiative_description!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b><i>Status: </i></b>
-                </td>
-                <td>{!!$initiative->status!!}</td>
-            </tr>
-             <tr>
-                <td>
-                    <b><i>Why If Not: </i></b>
-                </td>
-                <td>{!!$initiative->why_if_not!!}</td>
-            </tr>
-             <tr>
-                <td>
-                    <b><i>DOD Comment: </i></b>
-                </td>
-                <td>{!!$initiative->dod_note!!}</td>
-            </tr>
-            <tr>
-                <td>
-                    <b>
-                        <i>Project Title : </i>
-                        <b>
-                        </td>
-                        <td>{!!$initiative->project->project_title!!}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>
-                                <i>Project Discerption : </i>
-                                <b>
-                                </td>
-                                <td>{!!$initiative->project->project_discerption!!}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>
-                                        <i>created_at : </i>
-                                        <b>
-                                        </td>
-                                        <td>{!!$initiative->project->created_at!!}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>
-                                                <i>updated_at : </i>
-                                                <b>
-                                                </td>
-                                                <td>{!!$initiative->project->updated_at!!}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <b>
-                                                        <i>deleted_at : </i>
-                                                        <b>
-                                                        </td>
-                                                        <td>{!!$initiative->project->deleted_at!!}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+          <div class="col s4">
+            <ul class="collection">
+            <li class="collection-item active center">KPI Previous</li>
+            <li class="collection-item center">{!!$initiative->kpi_previous!!}</li>
+        </ul>
+        </div>
+        <div class="col s4">
+        <ul class="collection">
+            <li class="collection-item active center">KPI Current</li>
+            <li class="collection-item center">{!!$initiative->kpi_current!!}</li>
+        </ul>
+        </div>
+        <div class="col s4">
+        <ul class="collection">
+            <li class="collection-item active center">KPI Target</li>
+            <li class="collection-item center">{!!$initiative->kpi_target!!}</li>
+          </ul>
+          </div>
+
+      <div class="col s6">
+          <ul class="collection">
+        <li class="collection-item grey-text text-darken-3 active grey lighten-2">Why? (If Not Accomplished)</li>
+                <li class="collection-item">{!!$initiative->why_if_not!!}</li>
+              </ul>
       </div>
       <div class="col s6">
-<table>
-        <thead>
-            <th>Action Plan Title</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
+          <ul class="collection">
+            <li class="collection-item grey-text text-darken-3 active grey lighten-1">DOD Comment</li>
+                    <li class="collection-item">{!!$initiative->dod_note!!}</li>
+          </ul>
+      </div>
+      <div class="col s12">
+        <h4 class="center"> Action Plans under {!!$initiative->initiative_title!!} </h4>
+        <div class="collection">
             @foreach($action_plans as $action_plan)
-            <tr>
-                <td>{!!$action_plan->action_plan_title!!}</td>
-                <td>
-                    <div class = 'row'>
-                        <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/action_plan/{!!$action_plan->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                        <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/action_plan/{!!$action_plan->id!!}/edit'><i class = 'material-icons'>edit</i></a>
-                        <a href = '#' class = 'viewShow btn-floating orange' data-link = '/action_plan/{!!$action_plan->id!!}'><i class = 'material-icons'>info</i></a>
-                    </div>
-                </td>
-            </tr>
+            <a href="#" class="viewShow collection-item" data-link = '/action_plan/{!!$action_plan->id!!}'><span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span>
+                {!!$action_plan->action_plan_title!!}
+              </a>
             @endforeach
-        </tbody>
-    </table>
+      </div>
+
+      </div>
     {!! $action_plans->render() !!}
       </div>
     </div>
-
-                                        </div>
-                                        @endsection
+            @endsection

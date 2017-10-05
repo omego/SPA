@@ -7,9 +7,11 @@
         initiative Index
     </h1>
     <div class="row">
+      @can('create initiatives')
         <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
             <button class = 'btn red' type = 'submit'>Create New initiative</button>
         </form>
+      @endcan
         <ul id="dropdown" class="dropdown-content">
             <li><a href="http://localhost:8888/spa/public/project">Project</a></li>
         </ul>
@@ -28,7 +30,7 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($initiatives as $initiative) 
+            @foreach($initiatives as $initiative)
             <tr>
                 <td>{!!$initiative->initiative_title!!}</td>
                 <td>{!!$initiative->initiative_description!!}</td>
@@ -40,13 +42,19 @@
                 <td>{!!$initiative->dod_note!!}</td>
                 <td>
                     <div class = 'row'>
+                      @can('delete initiatives')
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
+                      @endcan
+                      @can('edit initiatives')
                         <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/initiative/{!!$initiative->id!!}/edit'><i class = 'material-icons'>edit</i></a>
+                      @endcan
+                      @can('view initiatives')
                         <a href = '#' class = 'viewShow btn-floating orange' data-link = '/initiative/{!!$initiative->id!!}'><i class = 'material-icons'>info</i></a>
+                      @endcan
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $initiatives->render() !!}
