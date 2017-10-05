@@ -11,7 +11,7 @@
          <div class="card-content">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$initiative->created_at->diffForHumans()!!}</span>
            <span class= "new badge orange accent-2 left" data-badge-caption="">{!!$initiative->status!!}</span>
-           <span class="card-title"><h2>{!!$initiative->initiative_title!!}</h2></span>
+           <span class="card-title"><h1>{!!$initiative->initiative_title!!}</h1></span>
            <p>{!!$initiative->initiative_description!!}</p>
          </div>
          <div class="card-action">
@@ -67,16 +67,28 @@
       </div>
       <div class="col s12">
         <h4 class="center"> Action Plans under {!!$initiative->initiative_title!!} </h4>
+      </div>
+      <div class="col s12">
+        @can('create action plans')
+          <form class = 'col s4' method = 'get' action = '{!!url("action_plan")!!}/create'>
+              <button class = 'btn red' type = 'submit'>Create New Action Plan</button>
+          </form>
+        @endcan
+      </div>
+      <div class="row">
+      <div class="col s12">
         <div class="collection">
             @foreach($action_plans as $action_plan)
-            <a href="#" class="viewShow collection-item" data-link = '/action_plan/{!!$action_plan->id!!}'><span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span>
+            <a href="#" class="viewShow collection-item" data-link = '/action_plan/{!!$action_plan->id!!}'><span class="new badge @if ($action_plan->action_plan_approval == 'Approved') green accent-4 @elseif ($action_plan->action_plan_approval == 'Pending') yellow darken-1 @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">{!!$action_plan->action_plan_approval!!}</span><span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span>
                 {!!$action_plan->action_plan_title!!}
               </a>
             @endforeach
       </div>
-
-      </div>
-    {!! $action_plans->render() !!}
+    </div>
       </div>
     </div>
+    </div>
+    {!! $action_plans->render() !!}
+      </div>
+
             @endsection

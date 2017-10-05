@@ -8,7 +8,7 @@
        <div class="card">
          <div class="card-content">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$ProjectName->created_at->diffForHumans()!!}</span>
-           <span class="card-title"><h2>{!!$ProjectTitle!!}</h2></span>
+           <span class="card-title"><h1>{!!$ProjectTitle!!}</h1></span>
            <p>{!!$ProjectName->project_discerption!!}</p>
          </div>
          <div class="card-action">
@@ -30,8 +30,8 @@
     </h4>
     <div class="row">
       @can('create initiatives')
-        <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New initiative</button>
+        <form class = 'col s4' method = 'get' action = '{!!url("initiative")!!}/create'>
+            <button class = 'btn red' type = 'submit'>Create New Initiative</button>
         </form>
       @endcan
         {{-- <ul id="dropdown" class="dropdown-content">

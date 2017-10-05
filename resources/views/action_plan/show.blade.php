@@ -10,8 +10,7 @@
         <div class="card-content">
           <span class= "new badge grey" data-badge-caption="">Created: {!!$action_plan->created_at->diffForHumans()!!}</span>
           <span class= "new badge orange accent-2 left" data-badge-caption="">{!!$action_plan->action_plan_approval!!}</span>
-          <span class="card-title"><h2>{!!$action_plan->action_plan_title!!}</h2></span>
-          <p>{!!$action_plan->action_plan_updates!!}</p>
+          <span class="card-title"><h1>{!!$action_plan->action_plan_title!!}</h1></span>
           </div>
         <div class="card-action">
           @can('delete action plans')
@@ -52,6 +51,12 @@
           <ul class="collection">
           <li class="collection-item grey-text text-darken-3 active grey lighten-3">Resources</li>
           <li class="collection-item">{!!$action_plan->action_plan_resources!!}</li>
+        </ul>
+        </div>
+        <div class="col s12">
+          <ul class="collection">
+          <li class="collection-item grey-text text-darken-3 active grey lighten-3">Updates</li>
+          <li class="collection-item">{!!$action_plan->action_plan_updates!!}</li>
         </ul>
         </div>
         </div>

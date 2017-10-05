@@ -89,10 +89,12 @@
 		channel.bind('my-event', function(data) {
 		// display message coming from server on dashboard Notification Navbar List.
 		$('.notification-label').addClass('label-warning');
-		$('.notification-menu').append(
+		$('.dropdown-content').append(
 			'<li><a href="#"><i class="fa fa-users text-aqua"></i>'+data.message+'</a></li>'
+
 			);
 		});
+
 		</script>
 	</body>
 </html>

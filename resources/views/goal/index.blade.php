@@ -9,7 +9,7 @@
     <div class="row">
         @can('create goals')
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New goal</button>
+            <button class = 'btn red' type = 'submit'>Create New Goal</button>
         </form>
       @endcan
     </div>

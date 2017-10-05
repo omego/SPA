@@ -99,6 +99,8 @@ class Action_planController extends Controller
 
         $action_plan->action_plan_end = $request->action_plan_end;
 
+        $action_plan->action_plan_approval = "Draft";
+
 
         // $action_plan->action_plan_approval = $request->action_plan_approval;
 
@@ -261,6 +263,20 @@ class Action_planController extends Controller
         // $action_plan_attachment->save();
 
         $action_plan->save();
+
+        $options = array(
+          'cluster' => 'ap2',
+          'encrypted' => true
+        );
+        $pusher = new Pusher(
+          env("PUSHER_APP_KEY"),
+          env("PUSHER_APP_SECRET"),
+          env("PUSHER_APP_ID"),
+          $options
+        );
+
+        $data['message'] = $action_plan->action_plan_title . ' needs your approval';
+        $pusher->trigger('my-channel', 'my-event', $data);
 
         return redirect('initiative/'. $action_plan->initiative_id);
     }
