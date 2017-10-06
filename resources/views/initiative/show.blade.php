@@ -9,11 +9,13 @@
      <div class="col s12">
        <div class="card">
          <div class="card-content">
+           <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$initiative->created_at->diffForHumans()!!}</span>
            <span class="left new badge @if ($initiative->status == 'Accomplished') green
-           @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
+                                   @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
              {!!$initiative->status!!}</span>
-           <span class="card-title"><h1>{!!$initiative->initiative_title!!}</h1></span>
+           </div>
+           <span class="card-title"><h4>{!!$initiative->initiative_title!!}</h4></span>
            <p>{!!$initiative->initiative_description!!}</p>
          </div>
          <div class="card-action">

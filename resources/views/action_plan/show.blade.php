@@ -8,12 +8,14 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
+          <div class="row">
           <span class= "new badge grey" data-badge-caption="">Created: {!!$action_plan->created_at->diffForHumans()!!}</span>
           <span class="left new badge @if ($action_plan->action_plan_approval == 'Approved') green
           @elseif ($action_plan->action_plan_approval == 'Pending') orange
           @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
             {!!$action_plan->action_plan_approval!!}</span>
-          <span class="card-title"><h1>{!!$action_plan->action_plan_title!!}</h1></span>
+          </div>
+          <span class="card-title"><h4>{!!$action_plan->action_plan_title!!}</h4></span>
           </div>
         <div class="card-action">
           @can('delete action plans')

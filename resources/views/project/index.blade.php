@@ -3,9 +3,9 @@
 @section('content')
 
 <div class = 'container'>
-    <h1>
-        All Projects
-    </h1>
+    <h4>
+        Projects
+    </h4>
     <div class="row">
       @can('create projects')
         <form class = 'col s3' method = 'get' action = '{!!url("project")!!}/create'>
