@@ -9,7 +9,7 @@
     <div class="row">
       @can('create action plans')
         <form class = 'col s3' method = 'get' action = '{!!url("action_plan")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New action_plan</button>
+            <button class = 'btn red' type = 'submit'>Create New Action Plan</button>
         </form>
       @endcan
         {{-- <ul id="dropdown" class="dropdown-content">
