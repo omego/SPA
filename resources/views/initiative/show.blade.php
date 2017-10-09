@@ -20,7 +20,7 @@
          </div>
          <div class="card-action">
            @can('delete initiatives')
-             <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg">delete</a>
+               <a href = '#modal1' class = 'delete modal-trigger ' data-link = "/initiative/{!!$initiative->id!!}/deleteMsg">delete</a>
            @endcan
            @can('edit initiatives')
              <a href = '#' class = 'viewEdit' data-link = '/initiative/{!!$initiative->id!!}/edit'>edit</a>

@@ -55,6 +55,19 @@ class InitiativeController extends Controller
     public function list($id,Request $request)
     {
         $user = Auth::user();
+        // $permissions = $user->permissions;
+        // $role = Role::where('name', 'Admin')->first();
+        if ($user->hasRole('Admin')) {
+        $initiatives = Initiative::where('project_id', $id)->paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $user = Auth::user();
+          $userId = $user->id;
+        $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+        }else{
+            return view('errors.401');
+        }
+
+
         // $title = 'list - initiative';
         $initiatives = Initiative::where('project_id', $id)->paginate(6);
 
@@ -258,7 +271,7 @@ class InitiativeController extends Controller
             if ($user->hasPermissionTo('delete initiatives')) {
             return $msg;
           }else{
-                  return('Access Denied');
+                  return view('errors.401');
           }
         }
       }

@@ -9,7 +9,7 @@ use App\Action_plan;
 use App\Action_plan_attachment;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
-use App\Mail\ActionPlanCreated;
+use App\Mail\ActionPlanApproved;
 use App\Mail;
 use App\Initiative;
 
@@ -123,7 +123,6 @@ class Action_planController extends Controller
 
         // $file_upload->push();
 
-        \Mail::to('test@test.com')->send(new ActionPlanCreated);
 
         $action_plan->push();
 
@@ -264,6 +263,8 @@ class Action_planController extends Controller
 
         $action_plan->save();
 
+        // \Mail::to('test@test.com')->send(new ActionPlanApproved);
+
         $options = array(
           'cluster' => 'ap2',
           'encrypted' => true
@@ -278,7 +279,7 @@ class Action_planController extends Controller
         $data['message'] = $action_plan->action_plan_title . ' needs your approval';
         $pusher->trigger('my-channel', 'my-event', $data);
 
-        return redirect('initiative/'. $action_plan->initiative_id);
+        return redirect('action_plan/'. $action_plan->id);
     }
 
     /**
@@ -351,5 +352,22 @@ class Action_planController extends Controller
         // $action_plan->users()->syncWithoutDetaching($request->user_id);
 
         return redirect('action_plan/'.$request->action_plan_id. '/edit');
+    }
+
+    /**
+     * upload a file to action plan
+     *
+     */
+        public function ApproveActionplan(Request $request)
+    {
+        $action_plan = Action_plan::findOrfail($request->action_plan_id);
+        if ($action_plan->action_plan_approval != 'Approved') {
+          $action_plan->action_plan_approval = 'Approved';
+          $action_plan->save();
+          \Mail::to('test@test.com')->send(new ActionPlanApproved);
+        }
+
+
+        return redirect('action_plan/'.$action_plan->id);
     }
 }

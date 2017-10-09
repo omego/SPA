@@ -81,6 +81,7 @@ Route::group(['middleware'=> 'web'],function(){
   Route::get('action_plan/{id}/delete','\App\Http\Controllers\Action_planController@destroy');
   Route::get('action_plan/{id}/deleteMsg','\App\Http\Controllers\Action_planController@DeleteMsg');
   Route::post('action_plan/addActionplanFile','\App\Http\Controllers\action_planController@addActionplanFile');
+  Route::post('action_plan/ApproveActionplan','\App\Http\Controllers\action_planController@ApproveActionplan');
 });
 
 //action_plan_attachment Routes

@@ -52,20 +52,32 @@ class ProjectController extends Controller
     public function list($id,Request $request)
     {
         // $title = 'list - project';
+
         $user = Auth::user();
-        $projects = Project::where('goal_id', $id)->paginate(6);
+        // $permissions = $user->permissions;
+        // $role = Role::where('name', 'Admin')->first();
+        if ($user->hasRole('Admin')) {
+          $projects = Project::where('goal_id', $id)->paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $user = Auth::user();
+          $userId = $user->id;
+          $projects = Project::whereHas('users', function ($q) use ($userId) {
+              $q->where('user_id', $userId);
+          })->paginate(6);
+        }else{
+            return view('errors.401');
+        }
         $GoalName = Goal::findOrfail($id);
         $GoalID =  $GoalName->id;
         $GoalTitle = $GoalName->goal_title;
         $Goal_Discerption = $GoalName->goal_discerption;
         $Goal_created_at = $GoalName->created_at->diffForHumans();
         $Goal_updated_at = $GoalName->updated_at->diffForHumans();
-
-          if ($user->hasPermissionTo('view projects')) {
-        return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at'));
-      }else{
-        return view('errors.401');
-      }
+        if ($user->hasPermissionTo('view projects')) {
+            return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at'));
+        }else{
+            return view('errors.401');
+        }
 
         //return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','title'));
     }

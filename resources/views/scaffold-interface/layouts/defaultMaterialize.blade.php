@@ -62,6 +62,10 @@
 		<script src = "{{URL::asset('js/AjaxisMaterialize.js')}}"></script>
 		<script src = "{{URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
 		<script>
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
 		$('select').material_select();
 		$('.datepicker').pickadate({
 			format: 'yyyy-mm-dd',

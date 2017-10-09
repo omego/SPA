@@ -24,6 +24,17 @@
           @can('edit action plans')
             <a href = '#' class = 'viewEdit' data-link = '/action_plan/{!!$action_plan->id!!}/edit'>edit</a>
           @endcan
+          @can('approve action plans')
+            @if($action_plan->action_plan_approval == 'Pending')
+            <form enctype="multipart/form-data" action="{{url('action_plan/ApproveActionplan')}}" method = "post">
+                {!! csrf_field() !!}
+                <input type="hidden" name = "action_plan_id" value = "{{$action_plan->id}}">
+                <div class="form-group">
+                    <button class = 'btn btn-primary'>Approve</button>
+                </div>
+            </form>
+            @endif
+          @endcan
          <span class= "new badge" data-badge-caption="">Updated: {!!$action_plan->updated_at->diffForHumans()!!}</span>
          </div>
       </div>
