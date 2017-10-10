@@ -44,6 +44,15 @@ class GoalsTableSeeder extends Seeder
                 'updated_at' => '2017-08-09 19:30:29',
                 'deleted_at' => NULL,
             ),
+            3 => 
+            array (
+                'id' => 4,
+                'goal_title' => 'asd',
+                'goal_discerption' => 'asd',
+                'created_at' => '2017-10-09 12:23:19',
+                'updated_at' => '2017-10-09 12:23:26',
+                'deleted_at' => '2017-10-09 12:23:26',
+            ),
         ));
         
         
