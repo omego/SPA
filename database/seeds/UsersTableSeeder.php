@@ -51,11 +51,11 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 4,
                 'name' => 'Salman Yamani',
-                'email' => 'dsadsadas@dsdsa.com',
-                'password' => '$2y$10$vFbOD97hlfUG41tsyPBdEeakhzeIldvCVEiuuEanXr6WLw/DW8pQW',
-                'remember_token' => NULL,
+                'email' => 'Responsible@Responsible.com',
+                'password' => '$2y$10$4vUL7iR62kxsyX/ZOrMJa.peaxPfj5edHB2A9H19fcJvbnfDfHy1O',
+                'remember_token' => 'ngoYBvjNs1ybxHAo8lSp4fFVCLdluiyd8YIHVlGmVgpNWh1tn4kpAfWVaJuE',
                 'created_at' => '2017-09-27 11:27:31',
-                'updated_at' => '2017-09-27 11:27:31',
+                'updated_at' => '2017-10-05 07:35:15',
             ),
             4 => 
             array (

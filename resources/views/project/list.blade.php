@@ -7,8 +7,10 @@
      <div class="col s12">
        <div class="card">
          <div class="card-content">
+           <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$Goal_created_at!!}</span>
-           <span class="card-title"><h2>{!!$GoalTitle!!}</h2></span>
+         </div>
+           <span class="card-title"><h4>{!!$GoalTitle!!}</h4></span>
            <p>{!!$Goal_Discerption!!}</p>
          </div>
          <div class="card-action">
@@ -29,8 +31,8 @@
     </h4>
     <div class="row">
       @can('create projects')
-        <form class = 'col s3' method = 'get' action = '{!!url("project")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New project</button>
+        <form class = 'col s4' method = 'get' action = '{!!url("project")!!}/create'>
+            <button class = 'btn red' type = 'submit'>Create New Project</button>
         </form>
 
       @endcan

@@ -383,6 +383,138 @@ class MigrationsTableSeeder extends Seeder
                 'migration' => '2017_09_20_053130_ProjectsUsers',
                 'batch' => 10,
             ),
+            61 => 
+            array (
+                'id' => 70,
+                'migration' => '2017_10_10_055644_create_users_table',
+                'batch' => 0,
+            ),
+            62 => 
+            array (
+                'id' => 71,
+                'migration' => '2017_10_10_055806_create_action_plans_table',
+                'batch' => 0,
+            ),
+            63 => 
+            array (
+                'id' => 72,
+                'migration' => '2017_10_10_055806_create_action_plan_attachments_table',
+                'batch' => 0,
+            ),
+            64 => 
+            array (
+                'id' => 73,
+                'migration' => '2017_10_10_055806_create_goals_table',
+                'batch' => 0,
+            ),
+            65 => 
+            array (
+                'id' => 74,
+                'migration' => '2017_10_10_055806_create_goal_user_table',
+                'batch' => 0,
+            ),
+            66 => 
+            array (
+                'id' => 75,
+                'migration' => '2017_10_10_055806_create_initiatives_table',
+                'batch' => 0,
+            ),
+            67 => 
+            array (
+                'id' => 76,
+                'migration' => '2017_10_10_055806_create_initiative_attachments_table',
+                'batch' => 0,
+            ),
+            68 => 
+            array (
+                'id' => 77,
+                'migration' => '2017_10_10_055806_create_password_resets_table',
+                'batch' => 0,
+            ),
+            69 => 
+            array (
+                'id' => 78,
+                'migration' => '2017_10_10_055806_create_permissions_table',
+                'batch' => 0,
+            ),
+            70 => 
+            array (
+                'id' => 79,
+                'migration' => '2017_10_10_055806_create_projects_table',
+                'batch' => 0,
+            ),
+            71 => 
+            array (
+                'id' => 80,
+                'migration' => '2017_10_10_055806_create_project_user_table',
+                'batch' => 0,
+            ),
+            72 => 
+            array (
+                'id' => 81,
+                'migration' => '2017_10_10_055806_create_relations_table',
+                'batch' => 0,
+            ),
+            73 => 
+            array (
+                'id' => 82,
+                'migration' => '2017_10_10_055806_create_roles_table',
+                'batch' => 0,
+            ),
+            74 => 
+            array (
+                'id' => 83,
+                'migration' => '2017_10_10_055806_create_role_has_permissions_table',
+                'batch' => 0,
+            ),
+            75 => 
+            array (
+                'id' => 84,
+                'migration' => '2017_10_10_055806_create_scaffoldinterfaces_table',
+                'batch' => 0,
+            ),
+            76 => 
+            array (
+                'id' => 85,
+                'migration' => '2017_10_10_055806_create_users_table',
+                'batch' => 0,
+            ),
+            77 => 
+            array (
+                'id' => 86,
+                'migration' => '2017_10_10_055806_create_user_has_permissions_table',
+                'batch' => 0,
+            ),
+            78 => 
+            array (
+                'id' => 87,
+                'migration' => '2017_10_10_055806_create_user_has_roles_table',
+                'batch' => 0,
+            ),
+            79 => 
+            array (
+                'id' => 88,
+                'migration' => '2017_10_10_055807_add_foreign_keys_to_action_plans_table',
+                'batch' => 0,
+            ),
+            80 => 
+            array (
+                'id' => 89,
+                'migration' => '2017_10_10_055807_add_foreign_keys_to_goal_user_table',
+                'batch' => 0,
+            ),
+            81 => 
+            array (
+                'id' => 90,
+                'migration' => '2017_10_10_055807_add_foreign_keys_to_initiatives_table',
+                'batch' => 0,
+            ),
+            82 => 
+            array (
+                'id' => 91,
+                'migration' => '2017_10_10_055807_add_foreign_keys_to_project_user_table',
+                'batch' => 0,
+            ),
         ));
         
         

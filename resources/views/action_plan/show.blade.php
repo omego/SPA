@@ -8,10 +8,27 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
+          <div class="row">
           <span class= "new badge grey" data-badge-caption="">Created: {!!$action_plan->created_at->diffForHumans()!!}</span>
-          <span class= "new badge orange accent-2 left" data-badge-caption="">{!!$action_plan->action_plan_approval!!}</span>
-          <span class="card-title"><h2>{!!$action_plan->action_plan_title!!}</h2></span>
-          <p>{!!$action_plan->action_plan_updates!!}</p>
+          <span class="left new badge @if ($action_plan->action_plan_approval == 'Approved') green
+          @elseif ($action_plan->action_plan_approval == 'Pending') orange
+          @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
+            {!!$action_plan->action_plan_approval!!}</span>
+            <div class="col s6">
+              @can('approve action plans')
+                @if($action_plan->action_plan_approval == 'Pending')
+                <form enctype="multipart/form-data" action="{{url('action_plan/ApproveActionplan')}}" method = "post">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name = "action_plan_id" value = "{{$action_plan->id}}">
+                    <div class="form-group">
+                        <button class = 'waves-effect waves-light btn pulse'>Approve</button>
+                    </div>
+                </form>
+                @endif
+              @endcan
+          </div>
+          </div>
+          <span class="card-title"><h4>{!!$action_plan->action_plan_title!!}</h4></span>
           </div>
         <div class="card-action">
           @can('delete action plans')
@@ -20,7 +37,7 @@
           @can('edit action plans')
             <a href = '#' class = 'viewEdit' data-link = '/action_plan/{!!$action_plan->id!!}/edit'>edit</a>
           @endcan
-         <span class= "new badge" data-badge-caption="">Updated: {!!$action_plan->updated_at->diffForHumans()!!}</span>
+          <span class= "new badge" data-badge-caption="">Updated: {!!$action_plan->updated_at->diffForHumans()!!}</span>
          </div>
       </div>
     </div>
@@ -52,6 +69,12 @@
           <ul class="collection">
           <li class="collection-item grey-text text-darken-3 active grey lighten-3">Resources</li>
           <li class="collection-item">{!!$action_plan->action_plan_resources!!}</li>
+        </ul>
+        </div>
+        <div class="col s12">
+          <ul class="collection">
+          <li class="collection-item grey-text text-darken-3 active grey lighten-3">Updates</li>
+          <li class="collection-item">{!!$action_plan->action_plan_updates!!}</li>
         </ul>
         </div>
         </div>

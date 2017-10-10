@@ -129,6 +129,13 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2017-10-02 12:54:28',
                 'updated_at' => '2017-10-02 12:54:28',
             ),
+            16 => 
+            array (
+                'id' => 29,
+                'name' => 'approve action plans',
+                'created_at' => '2017-10-09 09:54:26',
+                'updated_at' => '2017-10-09 09:54:26',
+            ),
         ));
         
         

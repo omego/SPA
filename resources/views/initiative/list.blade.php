@@ -7,8 +7,10 @@
      <div class="col s12">
        <div class="card">
          <div class="card-content">
+           <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$ProjectName->created_at->diffForHumans()!!}</span>
-           <span class="card-title"><h2>{!!$ProjectTitle!!}</h2></span>
+         </div>
+           <span class="card-title"><h4>{!!$ProjectTitle!!}</h4></span>
            <p>{!!$ProjectName->project_discerption!!}</p>
          </div>
          <div class="card-action">
@@ -30,8 +32,8 @@
     </h4>
     <div class="row">
       @can('create initiatives')
-        <form class = 'col s3' method = 'get' action = '{!!url("initiative")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New initiative</button>
+        <form class = 'col s4' method = 'get' action = '{!!url("initiative")!!}/create'>
+            <button class = 'btn red' type = 'submit'>Create New Initiative</button>
         </form>
       @endcan
         {{-- <ul id="dropdown" class="dropdown-content">
@@ -41,7 +43,11 @@
     </div>
         <div class="collection">
             @foreach($initiatives as $initiative)
-              <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'><span class= "new badge" data-badge-caption="">{!!$initiative->updated_at->diffForHumans()!!}</span>
+              <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'>
+                {{-- <span class= "new badge" data-badge-caption="">{!!$initiative->updated_at->diffForHumans()!!}</span> --}}
+                <span class="new badge @if ($initiative->status == 'Accomplished') green
+                @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
+                  {!!$initiative->status!!}</span>
                 {!!$initiative->initiative_title!!}
               </a>
             @endforeach

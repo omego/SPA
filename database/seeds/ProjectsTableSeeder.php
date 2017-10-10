@@ -77,6 +77,16 @@ class ProjectsTableSeeder extends Seeder
                 'updated_at' => '2017-10-02 11:35:56',
                 'deleted_at' => NULL,
             ),
+            6 => 
+            array (
+                'id' => 8,
+                'project_title' => 'Project 13333',
+                'project_discerption' => 'gfhgfhsgf',
+                'goal_id' => 1,
+                'created_at' => '2017-10-09 11:05:18',
+                'updated_at' => '2017-10-09 12:23:59',
+                'deleted_at' => '2017-10-09 12:23:59',
+            ),
         ));
         
         

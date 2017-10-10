@@ -9,37 +9,33 @@
 		<title>@yield('title')</title>
 	</head>
 	<body>
-	<div class="row">
-		  <nav>
-    <div class="nav-wrapper grey darken-3">
-      <div class="col s12">
-				<div class="col s2">
-				<a href='{!!url("goal")!!}'><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
-			</div>
-			<ul>
-        <li><a href='{!!url("goal")!!}'>Goals</a></li>
-        <li><a href='{!!url("project")!!}'>Projects</a></li>
-        <li><a href='{!!url("initiative")!!}'>Initiatives</a></li>
-        <li><a href='{!!url("action_plan")!!}'>Action Plans</a></li>
 
-				{{-- <li><a class="waves-effect waves-light btn">
-						{{Auth::user()->name}}
-						@role('Admin')
-								(admin)
-						@endrole
-						</a>
-				</li> --}}
-				{{-- <li>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					Notifications
-					<span class="label notification-label new badge"></span>
-				</a>
-				</li> --}}
+{{-- Collapse Nav Start --}}
+<div class="row">
+<nav>
+	<div class="nav-wrapper grey darken-3">
+		<div class="col s12">
+		<a href='{!!url("goal")!!}' class="brand-logo"><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
+	</div>
+		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="{!!url("goal")!!}">Goals</a></li>
+			<li><a href="{!!url("project")!!}">Projects</a></li>
+			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
+			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+		</ul>
+		<ul class="side-nav" id="mobile-demo">
+			<li><a href="{!!url("goal")!!}">Goals</a></li>
+			<li><a href="{!!url("project")!!}">Projects</a></li>
+			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
+			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+		</ul>
+	</div>
+</nav>
+</div>
 
-      </ul>
-    </div></div>
-  		</nav>
-  		</div>
+{{-- Collapse Nav End --}}
+
   		<div class="row">
   		<div class="container">
   		  <nav>
@@ -66,6 +62,10 @@
 		<script src = "{{URL::asset('js/AjaxisMaterialize.js')}}"></script>
 		<script src = "{{URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
 		<script>
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
 		$('select').material_select();
 		$('.datepicker').pickadate({
 			format: 'yyyy-mm-dd',
@@ -76,6 +76,7 @@
 			close: 'Ok',
 			closeOnSelect: false // Close upon selecting a date,
 		});
+		$(".button-collapse").sideNav();
 		</script>
 		<script>
 		// pusher log to console.
@@ -89,10 +90,12 @@
 		channel.bind('my-event', function(data) {
 		// display message coming from server on dashboard Notification Navbar List.
 		$('.notification-label').addClass('label-warning');
-		$('.notification-menu').append(
+		$('.dropdown-content').append(
 			'<li><a href="#"><i class="fa fa-users text-aqua"></i>'+data.message+'</a></li>'
+
 			);
 		});
+
 		</script>
 	</body>
 </html>

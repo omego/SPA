@@ -3,13 +3,13 @@
 @section('content')
 
 <div class = 'container'>
-    <h1>
+    <h4>
         Goals
-    </h1>
+    </h4>
     <div class="row">
         @can('create goals')
         <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New goal</button>
+            <button class = 'btn red' type = 'submit'>Create New Goal</button>
         </form>
       @endcan
     </div>

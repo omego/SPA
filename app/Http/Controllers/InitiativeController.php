@@ -55,6 +55,19 @@ class InitiativeController extends Controller
     public function list($id,Request $request)
     {
         $user = Auth::user();
+        // $permissions = $user->permissions;
+        // $role = Role::where('name', 'Admin')->first();
+        if ($user->hasRole('Admin')) {
+        $initiatives = Initiative::where('project_id', $id)->paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $user = Auth::user();
+          $userId = $user->id;
+        $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+        }else{
+            return view('errors.401');
+        }
+
+
         // $title = 'list - initiative';
         $initiatives = Initiative::where('project_id', $id)->paginate(6);
 
@@ -115,7 +128,7 @@ class InitiativeController extends Controller
 
         $initiative->kpi_target = $request->kpi_target;
 
-        $initiative->status = $request->status;
+        $initiative->status = "Not Accomplished";
 
         $initiative->why_if_not = $request->why_if_not;
 
@@ -167,7 +180,7 @@ class InitiativeController extends Controller
         $GoalTitle = $GoalName->goal_title;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle'));
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor'));
       }else{
         return view('errors.401');
       }
@@ -258,7 +271,7 @@ class InitiativeController extends Controller
             if ($user->hasPermissionTo('delete initiatives')) {
             return $msg;
           }else{
-                  return('Access Denied');
+                  return view('errors.401');
           }
         }
       }
