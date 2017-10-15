@@ -26,11 +26,11 @@ class ActionPlansTableSeeder extends Seeder
                 'action_plan_resources' => 'resource 11',
                 'action_plan_start' => '2017-08-10',
                 'action_plan_end' => '2017-08-12',
-                'action_plan_approval' => 'Approved',
+                'action_plan_approval' => 'Pending',
                 'initiative_id' => 3,
                 'user_id' => 1,
                 'created_at' => '2017-08-02 12:40:54',
-                'updated_at' => '2017-10-05 17:20:39',
+                'updated_at' => '2017-10-10 07:05:56',
                 'deleted_at' => NULL,
             ),
             1 => 
