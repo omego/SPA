@@ -15,7 +15,7 @@
 <nav>
 	<div class="nav-wrapper grey darken-3">
 		<div class="col s12">
-		<a href='{!!url("goal")!!}' class="brand-logo"><img src="/spa/public/uploads/logo-color.png" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
+		<a href='{!!url("goal")!!}' class="brand-logo"><img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
 	</div>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="right hide-on-med-and-down">

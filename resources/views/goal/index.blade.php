@@ -16,8 +16,6 @@
     <div class="collection">
             @foreach($goals as $goal)
 
-            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge" data-badge-caption="">{!!$goal->updated_at->diffForHumans()!!}</span>
- <span class="new badge blue" data-badge-caption="Accomplished">
               @php
       $InitiativeCount = DB::table('goals')
   ->join('projects', 'goals.id', '=', 'projects.goal_id')
@@ -29,14 +27,29 @@
 
 
 $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
-echo $InitiativeCounted;
+$InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
+$InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
+$InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
 @endphp
-</span>
-            {!!$goal->goal_title!!}</a>
+
+            <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge
+              @if ($InitiativePercent <= 20) red darken-2
+              @elseif ($InitiativePercent <= 50) yellow darken-2
+              @elseif ($InitiativePercent <= 80) orange
+              @elseif ($InitiativePercent <= 100) green
+                @endif" data-badge-caption="">{!!round($InitiativePercent)!!}%</span>
 
 
-
-                <!-- {!!$goal->goal_discerption!!} -->
+            {!!$goal->goal_title!!}
+            <div class="progress grey">
+                <div class="determinate
+                @if ($InitiativePercent <= 20) red darken-2
+                @elseif ($InitiativePercent <= 50) yellow darken-2
+                @elseif ($InitiativePercent <= 80) orange
+                @elseif ($InitiativePercent <= 100) green
+                  @endif" style="width: {!!$InitiativePercent!!}%"></div>
+            </div>
+          </a>
 
             @endforeach
     </div>

@@ -56,11 +56,13 @@
             why_if_not!!}">
             <label for="why_if_not">Why if not</label>
             </div>
+            @can('dod comment')
             <div class="input-field col s6">
             <input id="dod_note" name = "dod_note" type="text" class="validate" value="{!!$initiative->
             dod_note!!}">
-            <label for="dod_note">DOD Note</label>
+            <label for="dod_note">DOD Comment</label>
         </div>
+            @endcan
         <div class="input-field col s12">
             <select name = 'project_id'>
                 @foreach($projects as $key => $value)
