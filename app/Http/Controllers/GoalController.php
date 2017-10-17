@@ -46,12 +46,10 @@ class GoalController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $GoalTitle = 'Goals';
+
         $user = Auth::user();
-=======
+
         $title = 'Goals';
->>>>>>> 2f4b4a9f9b9716b0f736a671f04a14a0c86e2a05
         // $goals = Goal::paginate(6);
         // $user = User::all();
         if($user->hasRole('Responsible'))

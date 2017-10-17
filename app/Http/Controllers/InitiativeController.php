@@ -186,11 +186,7 @@ class InitiativeController extends Controller
         $GoalID =  $GoalName->id;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
-<<<<<<< HEAD
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','AssignedUser'));
-=======
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId'));
->>>>>>> 2f4b4a9f9b9716b0f736a671f04a14a0c86e2a05
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser'));
       }else{
         return view('errors.401');
       }
