@@ -46,7 +46,7 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $GoalTitle = 'Goals';
+        $title = 'Goals';
         // $goals = Goal::paginate(6);
         // $user = User::all();
 
@@ -65,7 +65,7 @@ class GoalController extends Controller
               return view('errors.401');
           }
           if ($user->hasPermissionTo('view goals')) {
-              return view('goal.index',compact('goals','GoalTitle'));
+              return view('goal.index',compact('goals','GoalTitle','GoalID'));
           }else{
               return view('errors.401');
           }

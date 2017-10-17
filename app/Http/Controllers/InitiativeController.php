@@ -74,13 +74,15 @@ class InitiativeController extends Controller
         $ProjectName = Project::findOrfail($id);
         $ProjectTitle = $ProjectName->project_title;
         $GoalId = $ProjectName->goal_id;
+        $ProjectId = $ProjectName->id;
 
         $GoalName = Goal::findOrfail($GoalId);
         $GoalTitle = $GoalName->goal_title;
+        $GoalID =  $GoalName->id;
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName'));
+        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId'));
       }else{
         return view('errors.401');
       }
@@ -174,13 +176,15 @@ class InitiativeController extends Controller
 
         $ProjectName = Project::findOrfail($initiative->project_id);
         $ProjectTitle = $ProjectName->project_title;
+        $ProjectId = $ProjectName->id;
         $GoalId = $ProjectName->goal_id;
 
         $GoalName = Goal::findOrfail($GoalId);
         $GoalTitle = $GoalName->goal_title;
+        $GoalID =  $GoalName->id;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor'));
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId'));
       }else{
         return view('errors.401');
       }
