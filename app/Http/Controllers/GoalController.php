@@ -46,8 +46,12 @@ class GoalController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $GoalTitle = 'Goals';
         $user = Auth::user();
+=======
+        $title = 'Goals';
+>>>>>>> 2f4b4a9f9b9716b0f736a671f04a14a0c86e2a05
         // $goals = Goal::paginate(6);
         // $user = User::all();
         if($user->hasRole('Responsible'))
@@ -69,7 +73,7 @@ class GoalController extends Controller
               return view('errors.401');
           }
           if ($user->hasPermissionTo('view goals')) {
-              return view('goal.index',compact('goals','GoalTitle'));
+              return view('goal.index',compact('goals','GoalTitle','GoalID'));
           }else{
               return view('errors.401');
           }

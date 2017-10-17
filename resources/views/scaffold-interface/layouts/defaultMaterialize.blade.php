@@ -57,22 +57,27 @@
     <div class="nav-wrapper blue-grey darken-1">
       <div class="col s12">
         <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
-        <a href="{!!url("goal")!!}" class="breadcrumb">
+
 					@isset($GoalTitle)
-          {!!$GoalTitle!!}
-		      @endisset</a>
-        <a href="{!!url("project")!!}" class="breadcrumb">
+						<a href="{!!url("project/list/".$GoalID)!!}" class="breadcrumb">
+          		{!!$GoalTitle!!}
+						</a>
+		      @endisset
 					@isset($ProjectTitle)
-          {!!$ProjectTitle!!}
-		      @endisset</a>
-<a href="{!!url("initiative")!!}" class="breadcrumb">
+						<a href="{!!url("initiative/list/".$ProjectId)!!}" class="breadcrumb">
+          		{!!$ProjectTitle!!}
+						</a>
+		      @endisset
 					@isset($initiative->initiative_title)
-        {!!$initiative->initiative_title!!}
-		      @endisset</a>
-<a href="{!!url("action_plan")!!}" class="breadcrumb">
-	       @isset($action_plan->action_plan_title)
-      {!!$action_plan->action_plan_title!!}
-		      @endisset</a>
+						<a href="{!!url("initiative")!!}" class="breadcrumb">
+        			{!!$initiative->initiative_title!!}
+						</a>
+		      @endisset
+					@isset($action_plan->action_plan_title)
+						<a href="{!!url("action_plan")!!}" class="breadcrumb">
+      				{!!$action_plan->action_plan_title!!}
+						</a>
+		      @endisset
       </div>
     </div>
   </nav>
