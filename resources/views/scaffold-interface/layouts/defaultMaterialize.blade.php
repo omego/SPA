@@ -23,12 +23,27 @@
 			<li><a href="{!!url("project")!!}">Projects</a></li>
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+
+			<li>	<a href="{{url('logout')}}" class="btn btn-default btn-flat grey white-text"
+					onclick="event.preventDefault();
+				document.getElementById('logout-form').submit();">Sign out</a>
+				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+		</li>
 		</ul>
 		<ul class="side-nav" id="mobile-demo">
 			<li><a href="{!!url("goal")!!}">Goals</a></li>
 			<li><a href="{!!url("project")!!}">Projects</a></li>
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+			<li>	<a href="{{url('logout')}}" class="btn btn-default btn-flat grey white-text"
+					onclick="event.preventDefault();
+				document.getElementById('logout-form').submit();">Sign out</a>
+				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+		</li>
 		</ul>
 	</div>
 </nav>

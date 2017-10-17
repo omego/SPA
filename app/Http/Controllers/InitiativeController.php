@@ -18,6 +18,7 @@ use Spatie\Permission\Models\Permission;
 use Pusher;
 use App\Project;
 use App\Goal;
+use App\User;
 
 
 /**
@@ -170,6 +171,7 @@ class InitiativeController extends Controller
         $action_plans = Action_plan::where('initiative_id', $id)->paginate(6);
         //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
+        $AssignedUser = User::findOrfail($initiative->user_id);
 
 
         $ProjectName = Project::findOrfail($initiative->project_id);
@@ -180,7 +182,7 @@ class InitiativeController extends Controller
         $GoalTitle = $GoalName->goal_title;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor'));
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','AssignedUser'));
       }else{
         return view('errors.401');
       }

@@ -47,10 +47,14 @@ class GoalController extends Controller
     public function index()
     {
         $GoalTitle = 'Goals';
+        $user = Auth::user();
         // $goals = Goal::paginate(6);
         // $user = User::all();
+        if($user->hasRole('Responsible'))
+        {
+            return redirect('action_plan');
+        }
 
-          $user = Auth::user();
           // $permissions = $user->permissions;
           // $role = Role::where('name', 'Admin')->first();
           if ($user->hasRole('Admin')) {
