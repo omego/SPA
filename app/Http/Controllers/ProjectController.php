@@ -37,7 +37,22 @@ class ProjectController extends Controller
     public function index()
     {
         $title = 'Projects';
-        $projects = Project::paginate(6);
+        $user = Auth::user();
+
+        if ($user->hasRole('Responsible')) {
+          return redirect('action_plan');
+        }elseif ($user->hasRole('Admin')) {
+          $projects = Project::paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $user = Auth::user();
+          $userId = $user->id;
+          $projects = Project::whereHas('users', function ($q) use ($userId) {
+              $q->where('user_id', $userId);
+          })->paginate(6);
+        }else{
+            return view('errors.401');
+        }
+
         if (Auth::check()) {
           $user = Auth::user();
           $permissions = $user->permissions;

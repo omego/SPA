@@ -40,7 +40,19 @@ class InitiativeController extends Controller
     public function index()
     {
         $title = 'Index - initiative';
-        $initiatives = Initiative::paginate(6);
+        $user = Auth::user();
+
+        if ($user->hasRole('Responsible')) {
+          return redirect('action_plan');
+        }elseif ($user->hasRole('Admin')) {
+          $initiatives = Initiative::paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $userId = $user->id;
+          $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+        }else{
+            return view('errors.401');
+        }
+
         if (Auth::check()) {
           $user = Auth::user();
           $permissions = $user->permissions;
