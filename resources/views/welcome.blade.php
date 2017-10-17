@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>SPA</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 43px;
             }
 
             .links > a {
@@ -62,6 +62,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
         </style>
     </head>
     <body>
@@ -78,16 +79,19 @@
             @endif
 
             <div class="content">
+              <div class="m-b-md">
+              <img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Stratigic Plan" style="width:100px;height:100px;">
+              <img src="{{url('uploads/vlogo.jpg')}}" alt="Vision 2030" style="width:152px;height:100px;">
+            </div>
                 <div class="title m-b-md">
-                    Laravel
+                    Stratigic Plan Application
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{!!url("goal")!!}">Goals</a>
+                    <a href="{!!url("project")!!}">Projects</a>
+                    <a href="{!!url("initiative")!!}">Initiatives</a>
+                    <a href="{!!url("action_plan")!!}">Action Plans</a>
                 </div>
             </div>
         </div>

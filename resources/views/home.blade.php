@@ -9,6 +9,12 @@
 
                 <div class="panel-body">
                     You are logged in!
+                    <ul>
+                      <li><a href="{!!url("goal")!!}">Goals</a></li>
+                			<li><a href="{!!url("project")!!}">Projects</a></li>
+                			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
+                			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
