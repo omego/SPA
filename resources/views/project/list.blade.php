@@ -7,8 +7,27 @@
      <div class="col s12">
        <div class="card">
          <div class="card-content">
+    @php
+           $InitiativeCount = DB::table('goals')
+       ->join('projects', 'goals.id', '=', 'projects.goal_id')
+       ->join('initiatives', 'projects.id', '=', 'initiatives.project_id')
+       ->select('initiatives.*', 'initiatives.initiative_title')
+       ->where('goals.id', '=', $GoalID)
+       ->get();
+
+
+     $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
+     $InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
+     $InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
+     $InitiativePercent = $InitiativeCountedAll == 0 ? 0 : (($InitiativeCounted / $InitiativeCountedAll) * 100);
+   @endphp
            <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$Goal_created_at!!}</span>
+           <span class="left new badge     @if ($InitiativePercent <= 20) red darken-2
+               @elseif ($InitiativePercent <= 50) yellow darken-2
+               @elseif ($InitiativePercent <= 80) orange
+               @elseif ($InitiativePercent <= 100) green
+                 @endif" data-badge-caption="">{!!round($InitiativePercent)!!}%</span>
          </div>
            <span class="card-title"><h4>{!!$GoalTitle!!}</h4></span>
            <p>{!!$Goal_Discerption!!}</p>

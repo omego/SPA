@@ -46,11 +46,17 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $GoalTitle = 'Goals';
+
+        $user = Auth::user();
+
+        $title = 'Goals';
         // $goals = Goal::paginate(6);
         // $user = User::all();
+        if($user->hasRole('Responsible'))
+        {
+            return redirect('action_plan');
+        }
 
-          $user = Auth::user();
           // $permissions = $user->permissions;
           // $role = Role::where('name', 'Admin')->first();
           if ($user->hasRole('Admin')) {
@@ -65,7 +71,7 @@ class GoalController extends Controller
               return view('errors.401');
           }
           if ($user->hasPermissionTo('view goals')) {
-              return view('goal.index',compact('goals','GoalTitle'));
+              return view('goal.index',compact('goals','GoalTitle','GoalID'));
           }else{
               return view('errors.401');
           }
@@ -160,7 +166,7 @@ class GoalController extends Controller
         $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
         $InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
         $InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
-        $InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
+        $InitiativePercent = $InitiativeCountedAll == 0 ? 0 : (($InitiativeCounted / $InitiativeCountedAll) * 100);
         echo $InitiativePercent;
         // echo $InitiativeCounted, $InitiativeNotCounted;
         $user = Auth::user();

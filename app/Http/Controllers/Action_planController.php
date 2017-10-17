@@ -40,7 +40,14 @@ class Action_planController extends Controller
     public function index()
     {
         $title = 'Index - action_plan';
-        $action_plans = Action_plan::paginate(6);
+        $user = Auth::user();
+
+        if ($user->hasRole('Responsible')) {
+          $userId = $user->id;
+          $action_plans = Action_plan::where('user_id', $userId)->paginate(6);
+        }elseif ($user->hasRole('Admin')) {
+          $action_plans = Action_plan::paginate(6);
+        }
         if (Auth::check()) {
           $user = Auth::user();
           $permissions = $user->permissions;

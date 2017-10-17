@@ -26,6 +26,7 @@
              <a href = '#' class = 'viewEdit' data-link = '/initiative/{!!$initiative->id!!}/edit'>edit</a>
            @endcan
           <span class= "new badge" data-badge-caption="">Updated: {!!$initiative->updated_at->diffForHumans()!!}</span>
+          <span class= "new badge" data-badge-caption="">Assigned to: {!!$AssignedUser->name!!}</span>
          </div>
        </div>
      </div>
