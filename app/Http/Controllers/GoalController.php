@@ -160,7 +160,7 @@ class GoalController extends Controller
         $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
         $InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
         $InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
-        $InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
+        $InitiativePercent = $InitiativeCountedAll == 0 ? 0 : (($InitiativeCounted / $InitiativeCountedAll) * 100);
         echo $InitiativePercent;
         // echo $InitiativeCounted, $InitiativeNotCounted;
         $user = Auth::user();

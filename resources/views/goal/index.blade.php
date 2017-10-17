@@ -29,7 +29,7 @@
 $InitiativeCounted = $InitiativeCount->where('status', '=', 'Accomplished')->count();
 $InitiativeNotCounted = $InitiativeCount->where('status', '=', 'Not Accomplished')->count();
 $InitiativeCountedAll = ($InitiativeCounted + $InitiativeNotCounted);
-$InitiativePercent = (($InitiativeCounted / $InitiativeCountedAll) * 100);
+$InitiativePercent = $InitiativeCountedAll == 0 ? 0 : (($InitiativeCounted / $InitiativeCountedAll) * 100);
 @endphp
 
             <a href="#" class="viewShow collection-item" data-link = '/goal/{!!$goal->id!!}'><span class= "new badge

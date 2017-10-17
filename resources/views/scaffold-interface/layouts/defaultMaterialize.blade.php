@@ -39,18 +39,29 @@
   		<div class="row">
   		<div class="container">
   		  <nav>
-    <div class="nav-wrapper grey">
+    <div class="nav-wrapper blue-grey darken-1">
       <div class="col s12">
         <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
-        <a href="{!!url("goal")!!}" class="breadcrumb">@isset($GoalTitle)
-    {!!$GoalTitle!!}
-@endisset</a>
-        <a href="#" class="breadcrumb">@isset($ProjectTitle)
-    {!!$ProjectTitle!!}
-@endisset</a>
+        <a href="{!!url("goal")!!}" class="breadcrumb">
+					@isset($GoalTitle)
+          {!!$GoalTitle!!}
+		      @endisset</a>
+        <a href="{!!url("project")!!}" class="breadcrumb">
+					@isset($ProjectTitle)
+          {!!$ProjectTitle!!}
+		      @endisset</a>
+<a href="{!!url("initiative")!!}" class="breadcrumb">
+					@isset($initiative->initiative_title)
+        {!!$initiative->initiative_title!!}
+		      @endisset</a>
+<a href="{!!url("action_plan")!!}" class="breadcrumb">
+	       @isset($action_plan->action_plan_title)
+      {!!$action_plan->action_plan_title!!}
+		      @endisset</a>
       </div>
     </div>
-  </nav></div></div>
+  </nav>
+</div></div>
 		@yield('content')
 		<div id="modal1" class="modal">
 			<div class = "row AjaxisModal">
@@ -97,5 +108,15 @@
 		});
 
 		</script>
+
+		<footer class="page-footer white grey-text text-darken-3">
+
+	<div class="footer-copyright white grey-text">
+		<div class="container">
+		© {!!date('Y')!!} KSAU-HS Copyright
+		<a class="right grey-text" href="#!">version 0.6b</a>
+		</div>
+	</div>
+</footer>
 	</body>
 </html>

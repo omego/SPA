@@ -77,6 +77,9 @@
         </div>
         <div class="input-field col s12">
             <select name = 'user_id'>
+              @if (empty($initiative->user_id))
+                <option value="@php echo Null; @endphp">(Unassigned)</option>
+              @endif
                 @foreach($users as $key => $value)
                 @if ($key == $initiative->user_id)
                 <option selected value="{{$key}}">{{$value}}</option>
