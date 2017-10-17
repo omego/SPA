@@ -40,7 +40,19 @@ class InitiativeController extends Controller
     public function index()
     {
         $title = 'Index - initiative';
-        $initiatives = Initiative::paginate(6);
+        $user = Auth::user();
+
+        if ($user->hasRole('Responsible')) {
+          return redirect('action_plan');
+        }elseif ($user->hasRole('Admin')) {
+          $initiatives = Initiative::paginate(6);
+        }elseif ($user->hasRole('Owner')) {
+          $userId = $user->id;
+          $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+        }else{
+            return view('errors.401');
+        }
+
         if (Auth::check()) {
           $user = Auth::user();
           $permissions = $user->permissions;
@@ -55,22 +67,23 @@ class InitiativeController extends Controller
 
     public function list($id,Request $request)
     {
+        $title = 'list - initiative';
         $user = Auth::user();
         // $permissions = $user->permissions;
         // $role = Role::where('name', 'Admin')->first();
         if ($user->hasRole('Admin')) {
-        $initiatives = Initiative::where('project_id', $id)->paginate(6);
+          $initiatives = Initiative::where('project_id', $id)->paginate(6);
         }elseif ($user->hasRole('Owner')) {
-          $user = Auth::user();
+          // $user = Auth::user();
           $userId = $user->id;
-        $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+        $initiatives = Initiative::where('user_id', $userId)->where('project_id', $id)->paginate(6);
         }else{
             return view('errors.401');
         }
 
 
-        // $title = 'list - initiative';
-        $initiatives = Initiative::where('project_id', $id)->paginate(6);
+
+        // $initiatives = Initiative::where('project_id', $id)->paginate(6);
 
         $ProjectName = Project::findOrfail($id);
         $ProjectTitle = $ProjectName->project_title;
@@ -173,7 +186,12 @@ class InitiativeController extends Controller
         $action_plans = Action_plan::where('initiative_id', $id)->paginate(6);
         //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
-        $AssignedUser = User::findOrfail($initiative->user_id);
+        if (isset($initiative->user_id)) {
+          $AssignedUser = User::findOrfail($initiative->user_id);
+        }elseif (is_null($initiative->user_id)){
+          $AssignedUser = User::findOrfail($initiative->user_id);
+        }
+
 
 
         $ProjectName = Project::findOrfail($initiative->project_id);

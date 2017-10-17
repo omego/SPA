@@ -13,19 +13,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Initiative extends Model
 {
-	
+
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-    
-	
+
+
     protected $table = 'initiatives';
 
-	
+
 	public function project()
 	{
 		return $this->belongsTo('App\Project','project_id');
 	}
+	public function action_plan()
+	{
+		return $this->hasMany('App\Action_plan','initiative_id');
+	}
 
-	
 }
