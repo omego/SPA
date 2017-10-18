@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Index')
+@section('title','Show Project')
 @section('content')
 
 <div class = 'container'>
@@ -9,6 +9,9 @@
          <div class="card-content">
            <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$ProjectName->created_at->diffForHumans()!!}</span>
+           <span class= "new badge" data-badge-caption="">
+             Updated: {!!$ProjectName->updated_at->diffForHumans()!!}
+           </span>
          </div>
            <span class="card-title"><h4>{!!$ProjectTitle!!}</h4></span>
            <p>{!!$ProjectName->project_discerption!!}</p>
@@ -20,7 +23,14 @@
            @can('edit projects')
              <a href = '#' class = 'viewEdit' data-link = '/project/{!!$ProjectName->id!!}/edit'>edit</a>
            @endcan
-          <span class= "new badge" data-badge-caption="">Updated: {!!$ProjectName->updated_at->diffForHumans()!!}</span>
+           @foreach($userProjects as $userProject)
+          <span class= "new badge grey" data-badge-caption="">
+            {{$userProject->name}}
+          </span>
+          @endforeach
+          <span class= "new badge" data-badge-caption="">
+          Assigned to:
+        </span>
          </div>
        </div>
      </div>

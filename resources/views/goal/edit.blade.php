@@ -7,7 +7,7 @@
         Edit goal
     </h1>
     <form method = 'get' action = '{!!url("goal")!!}'>
-        <button class = 'btn blue'>goal Index</button>
+        <button class = 'btn blue'>Goals</button>
     </form>
     <br>
     <form method = 'POST' action = '{!! url("goal")!!}/{!!$goal->

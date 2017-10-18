@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Pusher;
+use App\User;
 
 
 /**
@@ -41,14 +42,20 @@ class Action_planController extends Controller
     {
         $title = 'Index - action_plan';
         $user = Auth::user();
-
+        $userId = $user->id;
         if ($user->hasRole('Responsible')) {
           $userId = $user->id;
           $action_plans = Action_plan::where('user_id', $userId)->paginate(6);
         }elseif ($user->hasRole('Admin')) {
           $action_plans = Action_plan::paginate(6);
         }elseif ($user->hasRole('Owner')) {
-          $action_plans = Action_plan::paginate(6);
+          // $action_plans = Action_plan::paginate(6);
+          $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+          foreach ($initiatives as $initiative) {
+            echo $initiative->id;
+            $action_plans = Initiative::find($initiative->id)->action_plan()->paginate(6);
+          }
+
         }
         if (Auth::check()) {
           $user = Auth::user();
@@ -165,12 +172,14 @@ class Action_planController extends Controller
             return URL::to('action_plan/'.$id);
 
         }
-
-
-
         $action_plan = Action_plan::findOrfail($id);
+        if (isset($action_plan->user_id)) {
+          $AssignedUser = User::findOrfail($action_plan->user_id);
+        }elseif (is_null($action_plan->user_id)){
+          $AssignedUser = Null;
+        }
         if ($user->hasPermissionTo('view action plans')) {
-        return view('action_plan.show',compact('title','action_plan'));
+        return view('action_plan.show',compact('title','action_plan','AssignedUser'));
       }else{
         return view('errors.401');
       }

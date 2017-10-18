@@ -93,10 +93,11 @@ class InitiativeController extends Controller
         $GoalName = Goal::findOrfail($GoalId);
         $GoalTitle = $GoalName->goal_title;
         $GoalID =  $GoalName->id;
+        $userProjects = $ProjectName->users;
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId'));
+        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects'));
       }else{
         return view('errors.401');
       }
@@ -189,7 +190,7 @@ class InitiativeController extends Controller
         if (isset($initiative->user_id)) {
           $AssignedUser = User::findOrfail($initiative->user_id);
         }elseif (is_null($initiative->user_id)){
-          $AssignedUser = User::findOrfail($initiative->user_id);
+          $AssignedUser = Null;
         }
 
 
