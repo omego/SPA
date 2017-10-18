@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Show')
+@section('title','Show Initiative')
 @section('content')
 
 
@@ -11,6 +11,7 @@
          <div class="card-content">
            <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$initiative->created_at->diffForHumans()!!}</span>
+           <span class= "new badge" data-badge-caption="">Updated: {!!$initiative->updated_at->diffForHumans()!!}</span>
            <span class="left new badge @if ($initiative->status == 'Accomplished') green
                                    @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
              {!!$initiative->status!!}</span>
@@ -25,11 +26,12 @@
            @can('edit initiatives')
              <a href = '#' class = 'viewEdit' data-link = '/initiative/{!!$initiative->id!!}/edit'>edit</a>
            @endcan
-          <span class= "new badge" data-badge-caption="">Updated: {!!$initiative->updated_at->diffForHumans()!!}</span>
 
             @isset($AssignedUser->name)
-              <span class= "new badge" data-badge-caption="">Assigned to:
+              <span class= "new badge grey" data-badge-caption="">
               {!!$AssignedUser->name!!}
+            </span>
+            <span class= "new badge" data-badge-caption="">Assigned to:
             </span>
             @endisset
          </div>

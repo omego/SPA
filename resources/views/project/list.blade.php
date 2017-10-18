@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','list')
+@section('title','Show Goal')
 @section('content')
 
 <div class = 'container'>
@@ -23,6 +23,7 @@
    @endphp
            <div class="row">
            <span class= "new badge grey" data-badge-caption="">Created: {!!$Goal_created_at!!}</span>
+           <span class= "new badge" data-badge-caption="">Updated: {!!$Goal_updated_at!!}</span>
            <span class="left new badge     @if ($InitiativePercent <= 20) red darken-2
                @elseif ($InitiativePercent <= 50) yellow darken-2
                @elseif ($InitiativePercent <= 80) orange
@@ -39,7 +40,14 @@
            @can('edit goals')
              <a href = '#' class = 'viewEdit' data-link = '/goal/{!!$GoalID!!}/edit'>edit</a>
            @endcan
-          <span class= "new badge" data-badge-caption="">Updated: {!!$Goal_updated_at!!}</span>
+          @foreach($userGoals as $userGoal)
+          <span class= "new badge grey" data-badge-caption="">
+            {{$userGoal->name}}
+          </span>
+          @endforeach
+          <span class= "new badge" data-badge-caption="">
+          Assigned to:
+        </span>
          </div>
        </div>
      </div>

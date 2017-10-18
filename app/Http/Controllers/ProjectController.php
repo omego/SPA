@@ -88,8 +88,11 @@ class ProjectController extends Controller
         $Goal_Discerption = $GoalName->goal_discerption;
         $Goal_created_at = $GoalName->created_at->diffForHumans();
         $Goal_updated_at = $GoalName->updated_at->diffForHumans();
+
+        $userGoals = $GoalName->users;
+
         if ($user->hasPermissionTo('view projects')) {
-            return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at'));
+            return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at','userGoals'));
         }else{
             return view('errors.401');
         }
