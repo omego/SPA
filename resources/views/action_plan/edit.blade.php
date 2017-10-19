@@ -72,6 +72,7 @@
  </p>
  @endcan
  <br>
+ @hasrole('Admin')
         <div class="input-field col s12">
             <select name = 'initiative_id'>
                 @foreach($initiatives as $key => $value)
@@ -84,6 +85,8 @@
             </select>
             <label>initiatives Select</label>
         </div>
+@endhasrole
+@can('edit initiatives')
         <div class="input-field col s12">
             <select name = 'user_id'>
                 @if (empty($action_plan->user_id))
@@ -100,6 +103,7 @@
             </select>
             <label>Assigned user</label>
         </div>
+@endcan
         <button class = 'btn red' type ='submit'>Update</button>
     </form>
 
