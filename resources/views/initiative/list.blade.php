@@ -8,13 +8,13 @@
        <div class="card">
          <div class="card-content">
            <div class="row">
-           <span class= "new badge grey" data-badge-caption="">Created: {!!$ProjectName->created_at->diffForHumans()!!}</span>
+           <span class= "new badge grey" data-badge-caption="">Created: {{ $ProjectName->created_at->diffForHumans() }}</span>
            <span class= "new badge" data-badge-caption="">
-             Updated: {!!$ProjectName->updated_at->diffForHumans()!!}
+             Updated: {{ $ProjectName->updated_at->diffForHumans() }}
            </span>
          </div>
-           <span class="card-title"><h4>{!!$ProjectTitle!!}</h4></span>
-           <p>{!!$ProjectName->project_discerption!!}</p>
+           <span class="card-title"><h4>{{ $ProjectTitle }}</h4></span>
+           <p>{{ $ProjectName->project_discerption }}</p>
          </div>
          <div class="card-action">
            @can('delete projects')
@@ -38,7 +38,7 @@
 
 
     <h4 class="center">
-        Initiatives under {!!$ProjectTitle!!}
+        Initiatives under {{ $ProjectTitle }}
     </h4>
     <div class="row">
       @can('create initiatives')
@@ -54,11 +54,11 @@
         <div class="collection">
             @foreach($initiatives as $initiative)
               <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'>
-                {{-- <span class= "new badge" data-badge-caption="">{!!$initiative->updated_at->diffForHumans()!!}</span> --}}
+                {{-- <span class= "new badge" data-badge-caption="">{{ $initiative->updated_at->diffForHumans() }}</span> --}}
                 <span class="new badge @if ($initiative->status == 'Accomplished') green
                 @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
-                  {!!$initiative->status!!}</span>
-                {!!$initiative->initiative_title!!}
+                  {{ $initiative->status }}</span>
+                {{ $initiative->initiative_title }}
               </a>
             @endforeach
       </div>

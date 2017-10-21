@@ -19,7 +19,7 @@
                 <td>
                     <b><i>file_name : </i></b>
                 </td>
-                <td>{!!$initiative_attachment->file_name!!}</td>
+                <td>{{ $initiative_attachment->file_name }}</td>
             </tr>
             <tr>
                 <td>
@@ -27,7 +27,7 @@
                         <i>initiative_title : </i>
                         <b>
                         </td>
-                        <td>{!!$initiative_attachment->initiative->initiative_title!!}</td>
+                        <td>{{ $initiative_attachment->initiative->initiative_title }}</td>
                     </tr>
                     <tr>
                         <td>
@@ -35,7 +35,7 @@
                                 <i>initiative_description : </i>
                                 <b>
                                 </td>
-                                <td>{!!$initiative_attachment->initiative->initiative_description!!}</td>
+                                <td>{{ $initiative_attachment->initiative->initiative_description }}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -43,7 +43,7 @@
                                         <i>kpi_previous : </i>
                                         <b>
                                         </td>
-                                        <td>{!!$initiative_attachment->initiative->kpi_previous!!}</td>
+                                        <td>{{ $initiative_attachment->initiative->kpi_previous }}</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -51,7 +51,7 @@
                                                 <i>kpi_current : </i>
                                                 <b>
                                                 </td>
-                                                <td>{!!$initiative_attachment->initiative->kpi_current!!}</td>
+                                                <td>{{ $initiative_attachment->initiative->kpi_current }}</td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -59,7 +59,7 @@
                                                         <i>kpi_target : </i>
                                                         <b>
                                                         </td>
-                                                        <td>{!!$initiative_attachment->initiative->kpi_target!!}</td>
+                                                        <td>{{ $initiative_attachment->initiative->kpi_target }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>
@@ -67,7 +67,7 @@
                                                                 <i>status : </i>
                                                                 <b>
                                                                 </td>
-                                                                <td>{!!$initiative_attachment->initiative->status!!}</td>
+                                                                <td>{{ $initiative_attachment->initiative->status }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -75,7 +75,7 @@
                                                                         <i>why_if_not : </i>
                                                                         <b>
                                                                         </td>
-                                                                        <td>{!!$initiative_attachment->initiative->why_if_not!!}</td>
+                                                                        <td>{{ $initiative_attachment->initiative->why_if_not }}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -83,7 +83,7 @@
                                                                                 <i>dod_note : </i>
                                                                                 <b>
                                                                                 </td>
-                                                                                <td>{!!$initiative_attachment->initiative->dod_note!!}</td>
+                                                                                <td>{{ $initiative_attachment->initiative->dod_note }}</td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
@@ -91,7 +91,7 @@
                                                                                         <i>created_at : </i>
                                                                                         <b>
                                                                                         </td>
-                                                                                        <td>{!!$initiative_attachment->initiative->created_at!!}</td>
+                                                                                        <td>{{ $initiative_attachment->initiative->created_at }}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>
@@ -99,7 +99,7 @@
                                                                                                 <i>updated_at : </i>
                                                                                                 <b>
                                                                                                 </td>
-                                                                                                <td>{!!$initiative_attachment->initiative->updated_at!!}</td>
+                                                                                                <td>{{ $initiative_attachment->initiative->updated_at }}</td>
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td>
@@ -107,7 +107,7 @@
                                                                                                         <i>deleted_at : </i>
                                                                                                         <b>
                                                                                                         </td>
-                                                                                                        <td>{!!$initiative_attachment->initiative->deleted_at!!}</td>
+                                                                                                        <td>{{ $initiative_attachment->initiative->deleted_at }}</td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
