@@ -276,7 +276,7 @@ class InitiativeController extends Controller
 
         $initiative->save();
 
-        return redirect('initiative');
+        return redirect('initiative/'.$request->id);
     }
 
     /**

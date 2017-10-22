@@ -99,3 +99,9 @@ Route::group(['middleware'=> 'web'],function(){
   Route::get('initiative_attachment/{id}/delete','\App\Http\Controllers\Initiative_attachmentController@destroy');
   Route::get('initiative_attachment/{id}/deleteMsg','\App\Http\Controllers\Initiative_attachmentController@DeleteMsg');
 });
+
+//roles has permissions Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::post('scaffold-roles/addPermission','\App\Http\Controllers\ScaffoldInterface\RoleController@addPermission');
+  Route::get('scaffold-roles/removePermission/{permission}/{role_id}','\App\Http\Controllers\ScaffoldInterface\RoleController@revokePermission');
+});
