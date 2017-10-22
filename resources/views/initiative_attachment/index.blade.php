@@ -32,20 +32,20 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($initiative_attachments as $initiative_attachment) 
+            @foreach($initiative_attachments as $initiative_attachment)
             <tr>
-                <td>{!!$initiative_attachment->file_name!!}</td>
-                <td>{!!$initiative_attachment->initiative->initiative_title!!}</td>
-                <td>{!!$initiative_attachment->initiative->initiative_description!!}</td>
-                <td>{!!$initiative_attachment->initiative->kpi_previous!!}</td>
-                <td>{!!$initiative_attachment->initiative->kpi_current!!}</td>
-                <td>{!!$initiative_attachment->initiative->kpi_target!!}</td>
-                <td>{!!$initiative_attachment->initiative->status!!}</td>
-                <td>{!!$initiative_attachment->initiative->why_if_not!!}</td>
-                <td>{!!$initiative_attachment->initiative->dod_note!!}</td>
-                <td>{!!$initiative_attachment->initiative->created_at!!}</td>
-                <td>{!!$initiative_attachment->initiative->updated_at!!}</td>
-                <td>{!!$initiative_attachment->initiative->deleted_at!!}</td>
+                <td>{{ $initiative_attachment->file_name }}</td>
+                <td>{{ $initiative_attachment->initiative->initiative_title }}</td>
+                <td>{{ $initiative_attachment->initiative->initiative_description }}</td>
+                <td>{{ $initiative_attachment->initiative->kpi_previous }}</td>
+                <td>{{ $initiative_attachment->initiative->kpi_current }}</td>
+                <td>{{ $initiative_attachment->initiative->kpi_target }}</td>
+                <td>{{ $initiative_attachment->initiative->status }}</td>
+                <td>{{ $initiative_attachment->initiative->why_if_not }}</td>
+                <td>{{ $initiative_attachment->initiative->dod_note }}</td>
+                <td>{{ $initiative_attachment->initiative->created_at }}</td>
+                <td>{{ $initiative_attachment->initiative->updated_at }}</td>
+                <td>{{ $initiative_attachment->initiative->deleted_at }}</td>
                 <td>
                     <div class = 'row'>
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/initiative_attachment/{!!$initiative_attachment->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
@@ -54,7 +54,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $initiative_attachments->render() !!}

@@ -20,7 +20,7 @@
       <div class="collection">
             @foreach($projects as $project)
               <a href="#" class="viewShow collection-item" data-link = '/project/{!!$project->id!!}'><span class= "new badge" data-badge-caption="">{!!$project->updated_at->diffForHumans()!!}</span>
-                {!!$project->project_title!!}
+                {{ $project->project_title }}
               </a>
             @endforeach
           </div>

@@ -136,13 +136,6 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2017-10-09 09:54:26',
                 'updated_at' => '2017-10-09 09:54:26',
             ),
-            17 => 
-            array (
-                'id' => 30,
-                'name' => 'dod comment',
-                'created_at' => '2017-10-16 15:47:56',
-                'updated_at' => '2017-10-16 15:47:56',
-            ),
         ));
         
         

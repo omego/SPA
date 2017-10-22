@@ -6,6 +6,17 @@
     <h1>
         Create goal
     </h1>
+
+    @if ($errors->any())
+    <div class="card red white-text center">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <form method = 'get' action = '{!!url("goal")!!}'>
         <button class = 'btn blue'>goal Index</button>
     </form>
@@ -13,14 +24,15 @@
     <form method = 'POST' action = '{!!url("goal")!!}'>
         <input type = 'hidden' name = '_token' value = '{{ Session::token() }}'>
         <div class="input-field col s6">
-            <input id="goal_title" name = "goal_title" type="text" class="validate">
+            <input id="goal_title" name = "goal_title" type="text" class="validate" required>
             <label for="goal_title">goal_title</label>
         </div>
         <div class="input-field col s6">
-            <input id="goal_discerption" name = "goal_discerption" type="text" class="validate">
+            <input id="goal_discerption" name = "goal_discerption" type="text" class="validate" required>
             <label for="goal_discerption">goal_discerption</label>
         </div>
         <button class = 'btn red' type ='submit'>Create</button>
+        {!! csrf_field() !!}
     </form>
 </div>
 @endsection

@@ -19,7 +19,7 @@
                 <td>
                     <b><i>file_name : </i></b>
                 </td>
-                <td>{!!$action_plan_attachment->file_name!!}</td>
+                <td>{{ $action_plan_attachment->file_name }}</td>
             </tr>
             <tr>
                 <td>
@@ -27,7 +27,7 @@
                         <i>action_plan_title : </i>
                         <b>
                         </td>
-                        <td>{!!$action_plan_attachment->action_plan->action_plan_title!!}</td>
+                        <td>{{ $action_plan_attachment->action_plan->action_plan_title }}</td>
                     </tr>
                     <tr>
                         <td>
@@ -35,7 +35,7 @@
                                 <i>action_plan_updates : </i>
                                 <b>
                                 </td>
-                                <td>{!!$action_plan_attachment->action_plan->action_plan_updates!!}</td>
+                                <td>{{ $action_plan_attachment->action_plan->action_plan_updates }}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -43,7 +43,7 @@
                                         <i>action_plan_risks : </i>
                                         <b>
                                         </td>
-                                        <td>{!!$action_plan_attachment->action_plan->action_plan_risks!!}</td>
+                                        <td>{{ $action_plan_attachment->action_plan->action_plan_risks }}</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -51,7 +51,7 @@
                                                 <i>action_plan_resources : </i>
                                                 <b>
                                                 </td>
-                                                <td>{!!$action_plan_attachment->action_plan->action_plan_resources!!}</td>
+                                                <td>{{ $action_plan_attachment->action_plan->action_plan_resources }}</td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -59,7 +59,7 @@
                                                         <i>action_plan_start : </i>
                                                         <b>
                                                         </td>
-                                                        <td>{!!$action_plan_attachment->action_plan->action_plan_start!!}</td>
+                                                        <td>{{ $action_plan_attachment->action_plan->action_plan_start }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>
@@ -67,7 +67,7 @@
                                                                 <i>action_plan_end : </i>
                                                                 <b>
                                                                 </td>
-                                                                <td>{!!$action_plan_attachment->action_plan->action_plan_end!!}</td>
+                                                                <td>{{ $action_plan_attachment->action_plan->action_plan_end }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
@@ -75,7 +75,7 @@
                                                                         <i>action_plan_approval : </i>
                                                                         <b>
                                                                         </td>
-                                                                        <td>{!!$action_plan_attachment->action_plan->action_plan_approval!!}</td>
+                                                                        <td>{{ $action_plan_attachment->action_plan->action_plan_approval }}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -83,7 +83,7 @@
                                                                                 <i>created_at : </i>
                                                                                 <b>
                                                                                 </td>
-                                                                                <td>{!!$action_plan_attachment->action_plan->created_at!!}</td>
+                                                                                <td>{{ $action_plan_attachment->action_plan->created_at }}</td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
@@ -91,7 +91,7 @@
                                                                                         <i>updated_at : </i>
                                                                                         <b>
                                                                                         </td>
-                                                                                        <td>{!!$action_plan_attachment->action_plan->updated_at!!}</td>
+                                                                                        <td>{{ $action_plan_attachment->action_plan->updated_at }}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>
@@ -99,7 +99,7 @@
                                                                                                 <i>deleted_at : </i>
                                                                                                 <b>
                                                                                                 </td>
-                                                                                                <td>{!!$action_plan_attachment->action_plan->deleted_at!!}</td>
+                                                                                                <td>{{ $action_plan_attachment->action_plan->deleted_at }}</td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>

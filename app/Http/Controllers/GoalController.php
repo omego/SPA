@@ -104,6 +104,11 @@ class GoalController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'goal_title' => 'required|min:5|max:191|string',
+      'goal_discerption' => 'required|string',
+  ]);
         $goal = new Goal();
 
 
@@ -131,6 +136,7 @@ class GoalController extends Controller
         $pusher->trigger('my-channel', 'my-event', $data);
 
         return redirect('goal');
+
     }
 
     /**

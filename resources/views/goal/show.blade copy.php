@@ -19,13 +19,13 @@
                 <td>
                     <b><i>goal_title : </i></b>
                 </td>
-                <td>{!!$goal->goal_title!!}</td>
+                <td>{{ $goal->goal_title }}</td>
             </tr>
             <tr>
                 <td>
                     <b><i>goal_discerption : </i></b>
                 </td>
-                <td>{!!$goal->goal_discerption!!}</td>
+                <td>{{ $goal->goal_discerption }}</td>
             </tr>
         </tbody>
     </table>

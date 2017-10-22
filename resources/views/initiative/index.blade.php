@@ -22,9 +22,9 @@
               <a href="#" class="viewShow collection-item" data-link = '/initiative/{!!$initiative->id!!}'>
                 <span class="new badge @if ($initiative->status == 'Accomplished') green
                                         @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
-                  {!!$initiative->status!!}</span>
+                  {{ $initiative->status }}</span>
                 {{-- <span class= "new badge" data-badge-caption="">{!!$initiative->updated_at->diffForHumans()!!}</span> --}}
-                {!!$initiative->initiative_title!!}
+                {{ $initiative->initiative_title }}
               </a>
             @endforeach
           </div>

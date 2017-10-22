@@ -19,13 +19,13 @@
                 <td>
                     <b><i>project_title : </i></b>
                 </td>
-                <td>{!!$project->project_title!!}</td>
+                <td>{{ $project->project_title }}</td>
             </tr>
             <tr>
                 <td>
                     <b><i>project_discerption : </i></b>
                 </td>
-                <td>{!!$project->project_discerption!!}</td>
+                <td>{{ $project->project_discerption }}</td>
             </tr>
             <tr>
                 <td>
@@ -33,7 +33,7 @@
                         <i>goal_title : </i>
                         <b>
                         </td>
-                        <td>{!!$project->goal->goal_title!!}</td>
+                        <td>{{ $project->goal->goal_title }}</td>
                     </tr>
                     <tr>
                         <td>
@@ -41,7 +41,7 @@
                                 <i>goal_discerption : </i>
                                 <b>
                                 </td>
-                                <td>{!!$project->goal->goal_discerption!!}</td>
+                                <td>{{ $project->goal->goal_discerption }}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -49,7 +49,7 @@
                                         <i>created_at : </i>
                                         <b>
                                         </td>
-                                        <td>{!!$project->goal->created_at!!}</td>
+                                        <td>{{ $project->goal->created_at }}</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -57,7 +57,7 @@
                                                 <i>updated_at : </i>
                                                 <b>
                                                 </td>
-                                                <td>{!!$project->goal->updated_at!!}</td>
+                                                <td>{{ $project->goal->updated_at }}</td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -65,7 +65,7 @@
                                                         <i>deleted_at : </i>
                                                         <b>
                                                         </td>
-                                                        <td>{!!$project->goal->deleted_at!!}</td>
+                                                        <td>{{ $project->goal->deleted_at }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
