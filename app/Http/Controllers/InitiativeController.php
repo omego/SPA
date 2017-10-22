@@ -81,10 +81,6 @@ class InitiativeController extends Controller
             return view('errors.401');
         }
 
-
-
-        // $initiatives = Initiative::where('project_id', $id)->paginate(6);
-
         $ProjectName = Project::findOrfail($id);
         $ProjectTitle = $ProjectName->project_title;
         $GoalId = $ProjectName->goal_id;
@@ -97,7 +93,7 @@ class InitiativeController extends Controller
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects'));
+        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects','initiativesTitle'));
       }else{
         return view('errors.401');
       }
@@ -187,6 +183,7 @@ class InitiativeController extends Controller
         $action_plans = Action_plan::where('initiative_id', $id)->paginate(6);
         //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
+        $initiativesTitle = $initiative->initiative_title;
         if (isset($initiative->user_id)) {
           $AssignedUser = User::findOrfail($initiative->user_id);
         }elseif (is_null($initiative->user_id)){
@@ -205,7 +202,7 @@ class InitiativeController extends Controller
         $GoalID =  $GoalName->id;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser'));
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
       }else{
         return view('errors.401');
       }
