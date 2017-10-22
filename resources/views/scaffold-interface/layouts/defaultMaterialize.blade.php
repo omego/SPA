@@ -79,12 +79,12 @@
 						</a>
 		      @endisset
 					@isset($initiativesTitle)
-						<a href="{!!url("initiative")!!}" class="breadcrumb">
+						<a href="{!!url("initiative/".$initiative->id)!!}" class="breadcrumb">
         			{{ $initiativesTitle }}
 						</a>
 		      @endisset
 					@isset($action_plan_title)
-						<a href="{!!url("action_plan")!!}" class="breadcrumb">
+						<a href="{!!url("action_plan/". $action_plan->id)!!}" class="breadcrumb">
       				{{ $action_plan_title }}
 						</a>
 		      @endisset

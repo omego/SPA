@@ -196,7 +196,7 @@ class Action_planController extends Controller
           $AssignedUser = Null;
         }
         if ($user->hasPermissionTo('view action plans')) {
-        return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId'));
+        return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
       }else{
         return view('errors.401');
       }
