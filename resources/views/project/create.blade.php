@@ -20,6 +20,7 @@
     </form>
     <br>
     <form method = 'POST' action = '{!!url("project")!!}'>
+      {{ csrf_field() }}
         <input type = 'hidden' name = '_token' value = '{{ Session::token() }}'>
         <div class="input-field col s6">
             <input id="project_title" name = "project_title" type="text" class="validate" required>

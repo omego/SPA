@@ -97,6 +97,13 @@ class Action_planController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'action_plan_title' => 'required|min:5|max:191|string',
+      'action_plan_start' => 'required|date',
+      'action_plan_end' => 'required|date',
+  ]);
+
         $action_plan = new Action_plan();
 
 

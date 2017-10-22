@@ -124,6 +124,14 @@ class InitiativeController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'initiative_title' => 'required|min:5|max:191|string',
+      'initiative_description' => 'required|string',
+      'kpi_previous' => 'required|string|max:11',
+      'kpi_current' => 'required|string|max:11',
+      'kpi_target' => 'required|string|max:11',
+  ]);
         $initiative = new Initiative();
 
 

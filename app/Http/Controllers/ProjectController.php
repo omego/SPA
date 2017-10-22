@@ -126,6 +126,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'project_title' => 'required|min:5|max:191|string',
+      'project_discerption' => 'required|string',
+  ]);
         $project = new Project();
 
 
