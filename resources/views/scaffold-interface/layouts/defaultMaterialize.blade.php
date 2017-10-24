@@ -136,7 +136,25 @@
 
 			);
 		});
+</script>
+<script>
+// autocomplete input start
 
+$(function() {
+  $('input.autocomplete').autocomplete({
+    data: {
+      "Strategic Goal": null,
+      "Project": null,
+			"Initiative": null,
+			"Action Plan": null,
+      "KSAU-HS": '{{url('uploads/logo-color.png')}}',
+    }
+  });
+
+
+});
+
+// autocomplete input end
 		</script>
 
 		<footer class="page-footer white grey-text text-darken-3">
