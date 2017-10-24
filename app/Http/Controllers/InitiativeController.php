@@ -170,7 +170,8 @@ class InitiativeController extends Controller
                          'test-event',
                         ['message' => 'A new initiative has been created !!']);
 
-        return redirect('initiative');
+        // return redirect('initiative');
+        return redirect('initiative/'. $initiative->id);
     }
 
     /**

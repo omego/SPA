@@ -156,7 +156,8 @@ class ProjectController extends Controller
                          'test-event',
                         ['message' => 'A new project has been created !!']);
 
-        return redirect('project');
+  
+        return redirect('initiative/list/'. $project->id);
     }
 
     /**

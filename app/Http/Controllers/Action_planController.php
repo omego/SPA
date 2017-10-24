@@ -161,7 +161,7 @@ class Action_planController extends Controller
                          'test-event',
                         ['message' => 'A new action_plan has been created !!']);
 
-        return redirect('initiative/'. $action_plan->initiative_id);
+        return redirect('action_plan/'. $action_plan->id);
     }
 
     /**
