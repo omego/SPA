@@ -273,11 +273,11 @@ class InitiativeController extends Controller
 
         $initiative->why_if_not = $request->why_if_not;
 
-        $initiative->dod_note = $request->dod_note;
+        $initiative->dod_note = empty($request->dod_note) ? $initiative->dod_note : $request->dod_note;
 
-        $initiative->project_id = $request->project_id;
+        $initiative->project_id = empty($request->project_id) ? $initiative->project_id : $request->project_id;
 
-        $initiative->user_id = $request->user_id;
+        $initiative->user_id = empty($request->user_id) ? $initiative->user_id : $request->user_id;
 
 
         $initiative->save();

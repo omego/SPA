@@ -266,9 +266,9 @@ class Action_planController extends Controller
 
         $action_plan->action_plan_approval = $request->action_plan_approval;
 
-        $action_plan->user_id = $request->user_id;
+        $action_plan->user_id = empty($request->user_id) ? $action_plan->user_id : $request->user_id;
 
-        $action_plan->initiative_id = $request->initiative_id;
+        $action_plan->initiative_id = empty($request->initiative_id) ? $action_plan->initiative_id : $request->initiative_id;
 
         // $action_plan_attachment = new Action_plan_attachment();
         //
