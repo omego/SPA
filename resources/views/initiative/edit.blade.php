@@ -73,7 +73,7 @@
             <label for="dod_note">DOD Comment</label>
         </div>
             @endcan
-            
+
         <div class="input-field col s12">
             <select name = 'project_id'>
                 @foreach($projects as $key => $value)
@@ -101,7 +101,7 @@
             </select>
             <label>Assigned user</label>
         </div>
-        
+
         <button class = 'btn red' type ='submit'>Update</button>
     </form>
 

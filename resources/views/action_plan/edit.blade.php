@@ -71,7 +71,6 @@
  </p>
  @endcan
  <br>
- 
         <div class="input-field col s12">
             <select name = 'initiative_id'>
                 @foreach($initiatives as $key => $value)
@@ -84,7 +83,6 @@
             </select>
             <label>initiatives Select</label>
         </div>
-
 
         <div class="input-field col s12">
             <select name = 'user_id'>
