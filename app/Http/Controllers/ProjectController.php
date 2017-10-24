@@ -126,6 +126,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'project_title' => 'required|min:5|max:191|string',
+      'project_discerption' => 'required|string',
+  ]);
         $project = new Project();
 
 
@@ -151,7 +156,8 @@ class ProjectController extends Controller
                          'test-event',
                         ['message' => 'A new project has been created !!']);
 
-        return redirect('project');
+  
+        return redirect('initiative/list/'. $project->id);
     }
 
     /**

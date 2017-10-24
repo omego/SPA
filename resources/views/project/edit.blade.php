@@ -6,6 +6,15 @@
     <h1>
         Edit project
     </h1>
+    @if ($errors->any())
+    <div class="card red white-text center">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method = 'get' action = '{!!url("project")!!}'>
         <button class = 'btn blue'>project Index</button>
     </form>
@@ -15,12 +24,12 @@
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
             <input id="project_title" name = "project_title" type="text" class="validate" value="{!!$project->
-            project_title!!}">
+            project_title!!}" required>
             <label for="project_title">project_title</label>
         </div>
         <div class="input-field col s6">
             <input id="project_discerption" name = "project_discerption" type="text" class="validate" value="{!!$project->
-            project_discerption!!}">
+            project_discerption!!}" required>
             <label for="project_discerption">project_discerption</label>
         </div>
         <!-- <div class="input-field col s12">

@@ -19,13 +19,13 @@
                 <td>
                     <b><i>goal_title : </i></b>
                 </td>
-                <td>{!!$goal->goal_title!!}</td>
+                <td>{{ $goal->goal_title }}</td>
             </tr>
             <tr>
                 <td>
                     <b><i>goal_discerption : </i></b>
                 </td>
-                <td>{!!$goal->goal_discerption!!}</td>
+                <td>{{ $goal->goal_discerption }}</td>
             </tr>
             <tr><td>P#</td>
                 <td>
@@ -36,7 +36,7 @@
                 <td>
 <!--                 @foreach($goal->initiatives as $initiative)
                             @if ($initiative->status == 'Accomplished')
-                                {!!$initiative->status!!}
+                                {{ $initiative->status }}
                             @endif
                 @endforeach
                 {!!$InitiativeCounted!!} -->

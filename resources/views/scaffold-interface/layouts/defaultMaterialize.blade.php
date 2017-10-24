@@ -70,22 +70,22 @@
 
 					@isset($GoalTitle)
 						<a href="{!!url("project/list/".$GoalID)!!}" class="breadcrumb">
-          		{!!$GoalTitle!!}
+          		{{ $GoalTitle }}
 						</a>
 		      @endisset
 					@isset($ProjectTitle)
 						<a href="{!!url("initiative/list/".$ProjectId)!!}" class="breadcrumb">
-          		{!!$ProjectTitle!!}
+          		{{ $ProjectTitle }}
 						</a>
 		      @endisset
-					@isset($initiative->initiative_title)
-						<a href="{!!url("initiative")!!}" class="breadcrumb">
-        			{!!$initiative->initiative_title!!}
+					@isset($initiativesTitle)
+						<a href="{!!url("initiative/".$initiative->id)!!}" class="breadcrumb">
+        			{{ $initiativesTitle }}
 						</a>
 		      @endisset
-					@isset($action_plan->action_plan_title)
-						<a href="{!!url("action_plan")!!}" class="breadcrumb">
-      				{!!$action_plan->action_plan_title!!}
+					@isset($action_plan_title)
+						<a href="{!!url("action_plan/". $action_plan->id)!!}" class="breadcrumb">
+      				{{ $action_plan_title }}
 						</a>
 		      @endisset
       </div>
@@ -136,7 +136,25 @@
 
 			);
 		});
+</script>
+<script>
+// autocomplete input start
 
+$(function() {
+  $('input.autocomplete').autocomplete({
+    data: {
+      "Strategic Goal": null,
+      "Project": null,
+			"Initiative": null,
+			"Action Plan": null,
+      "KSAU-HS": '{{url('uploads/logo-color.png')}}',
+    }
+  });
+
+
+});
+
+// autocomplete input end
 		</script>
 
 		<footer class="page-footer white grey-text text-darken-3">
@@ -144,7 +162,7 @@
 	<div class="footer-copyright white grey-text">
 		<div class="container">
 		© {!!date('Y')!!} KSAU-HS Copyright
-		<a class="right grey-text" href="#!">version 0.7b</a>
+		<a class="right grey-text" href="#!">version 0.8.2b</a>
 		</div>
 	</div>
 </footer>

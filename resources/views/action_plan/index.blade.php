@@ -24,8 +24,8 @@
                 <span class="new badge @if ($action_plan->action_plan_approval == 'Approved') green
                 @elseif ($action_plan->action_plan_approval == 'Pending') orange
                 @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
-                  {!!$action_plan->action_plan_approval!!}</span>
-                {!!$action_plan->action_plan_title!!}
+                  {{ $action_plan->action_plan_approval }}</span>
+                {{ $action_plan->action_plan_title }}
               </a>
             @endforeach
           </div>

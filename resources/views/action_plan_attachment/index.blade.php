@@ -31,19 +31,19 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($action_plan_attachments as $action_plan_attachment) 
+            @foreach($action_plan_attachments as $action_plan_attachment)
             <tr>
-                <td>{!!$action_plan_attachment->file_name!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_title!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_updates!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_risks!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_resources!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_start!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_end!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->action_plan_approval!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->created_at!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->updated_at!!}</td>
-                <td>{!!$action_plan_attachment->action_plan->deleted_at!!}</td>
+                <td>{{ $action_plan_attachment->file_name }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_title }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_updates }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_risks }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_resources }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_start }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_end }}</td>
+                <td>{{ $action_plan_attachment->action_plan->action_plan_approval }}</td>
+                <td>{{ $action_plan_attachment->action_plan->created_at }}</td>
+                <td>{{ $action_plan_attachment->action_plan->updated_at }}</td>
+                <td>{{ $action_plan_attachment->action_plan->deleted_at }}</td>
                 <td>
                     <div class = 'row'>
                         <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/action_plan_attachment/{!!$action_plan_attachment->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
@@ -52,7 +52,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $action_plan_attachments->render() !!}

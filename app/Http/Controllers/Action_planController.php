@@ -20,6 +20,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Pusher;
 use App\User;
+use App\Project;
+use App\Goal;
 
 
 /**
@@ -95,6 +97,13 @@ class Action_planController extends Controller
      */
     public function store(Request $request)
     {
+
+      $this->validate($request, [
+      'action_plan_title' => 'required|min:5|max:191|string',
+      'action_plan_start' => 'required|date',
+      'action_plan_end' => 'required|date',
+  ]);
+
         $action_plan = new Action_plan();
 
 
@@ -152,7 +161,7 @@ class Action_planController extends Controller
                          'test-event',
                         ['message' => 'A new action_plan has been created !!']);
 
-        return redirect('initiative/'. $action_plan->initiative_id);
+        return redirect('action_plan/'. $action_plan->id);
     }
 
     /**
@@ -173,13 +182,28 @@ class Action_planController extends Controller
 
         }
         $action_plan = Action_plan::findOrfail($id);
+        $action_plan_title = $action_plan->action_plan_title;
+
+
+        $initiative = Initiative::findOrfail($action_plan->initiative_id);
+        $initiativesTitle = $initiative->initiative_title;
+
+        $ProjectName = Project::findOrfail($initiative->project_id);
+        $ProjectTitle = $ProjectName->project_title;
+        $ProjectId = $ProjectName->id;
+        $GoalId = $ProjectName->goal_id;
+
+        $GoalName = Goal::findOrfail($GoalId);
+        $GoalTitle = $GoalName->goal_title;
+        $GoalID =  $GoalName->id;
+
         if (isset($action_plan->user_id)) {
           $AssignedUser = User::findOrfail($action_plan->user_id);
         }elseif (is_null($action_plan->user_id)){
           $AssignedUser = Null;
         }
         if ($user->hasPermissionTo('view action plans')) {
-        return view('action_plan.show',compact('title','action_plan','AssignedUser'));
+        return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
       }else{
         return view('errors.401');
       }

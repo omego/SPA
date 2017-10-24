@@ -3,24 +3,46 @@
 @section('content')
 
 <div class = 'container'>
-    <h1>
-        Create goal
-    </h1>
-    <form method = 'get' action = '{!!url("goal")!!}'>
+
+    @if ($errors->any())
+    <div class="card red white-text center">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    {{-- <form method = 'get' action = '{!!url("goal")!!}'>
         <button class = 'btn blue'>goal Index</button>
     </form>
-    <br>
+    <br> --}}
     <form method = 'POST' action = '{!!url("goal")!!}'>
+      {{ csrf_field() }}
         <input type = 'hidden' name = '_token' value = '{{ Session::token() }}'>
-        <div class="input-field col s6">
-            <input id="goal_title" name = "goal_title" type="text" class="validate">
-            <label for="goal_title">goal_title</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="goal_discerption" name = "goal_discerption" type="text" class="validate">
-            <label for="goal_discerption">goal_discerption</label>
-        </div>
-        <button class = 'btn red' type ='submit'>Create</button>
+
+        <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                      <span class="card-title">Create Goal</span>
+                      <div class="input-field col s12">
+                          <input id="goal_title" name = "goal_title" type="text" value="{{ old('goal_title') }}" class="validate autocomplete" data-length="191" autocomplete="off" required>
+                          <label for="goal_title">Goal Title</label>
+                      </div>
+                      <div class="input-field col s12">
+                          <textarea id="goal_discerption" name = "goal_discerption" type="text" value="{{ old('goal_discerption') }}" class="validate materialize-textarea" required></textarea>
+                          <label for="goal_discerption">Goal Description</label>
+                      </div>
+                      <button class = 'btn red' type ='submit'>Create</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
     </form>
+
 </div>
 @endsection

@@ -6,36 +6,46 @@
     <h1>
         Edit initiative
     </h1>
+    @if ($errors->any())
+    <div class="card red white-text center">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method = 'get' action = '{!!url("initiative")!!}'>
         <button class = 'btn blue'>initiative Index</button>
     </form>
     <br>
     <form enctype="multipart/form-data" method = 'POST' action = '{!! url("initiative")!!}/{!!$initiative->
         id!!}/update'>
+        {{ csrf_field() }}
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="input-field col s6">
             <input id="initiative_title" name = "initiative_title" type="text" class="validate" value="{!!$initiative->
-            initiative_title!!}">
+            initiative_title!!}" required>
             <label for="initiative_title">initiative_title</label>
         </div>
         <div class="input-field col s6">
             <input id="initiative_description" name = "initiative_description" type="text" class="validate" value="{!!$initiative->
-            initiative_description!!}">
+            initiative_description!!}" required>
             <label for="initiative_description">initiative_description</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_previous" name = "kpi_previous" type="text" class="validate" value="{!!$initiative->
-            kpi_previous!!}">
+            kpi_previous!!}" required>
             <label for="kpi_previous">kpi_previous</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_current" name = "kpi_current" type="text" class="validate" value="{!!$initiative->
-            kpi_current!!}">
+            kpi_current!!}" required>
             <label for="kpi_current">kpi_current</label>
         </div>
         <div class="input-field col s6">
             <input id="kpi_target" name = "kpi_target" type="text" class="validate" value="{!!$initiative->
-            kpi_target!!}">
+            kpi_target!!}" required>
             <label for="kpi_target">kpi_target</label>
         </div>
 <!--         <div class="input-field col s6">
@@ -91,6 +101,7 @@
             </select>
             <label>Assigned user</label>
         </div>
+
         <button class = 'btn red' type ='submit'>Update</button>
     </form>
 
