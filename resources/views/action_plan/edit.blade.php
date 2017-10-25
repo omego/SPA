@@ -7,7 +7,7 @@
       Edit Action Plan
   </h1>
   @if ($errors->any())
-  <div class="card red white-text center">
+  <div class="card deep-orange darken-4 white-text center">
       <ul>
           @foreach ($errors->all() as $error)
               <li>{{ $error }}</li>

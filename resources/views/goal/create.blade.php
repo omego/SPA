@@ -5,7 +5,7 @@
 <div class = 'container'>
 
     @if ($errors->any())
-    <div class="card red white-text center">
+    <div class="card deep-orange darken-4 white-text center">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -32,7 +32,7 @@
                           <label for="goal_title">Goal Title</label>
                       </div>
                       <div class="input-field col s12">
-                          <textarea id="goal_discerption" name = "goal_discerption" type="text" value="{{ old('goal_discerption') }}" class="validate materialize-textarea" required></textarea>
+                          <textarea id="goal_discerption" name = "goal_discerption" type="text" class="validate materialize-textarea" required>{{ old('goal_discerption') }}</textarea>
                           <label for="goal_discerption">Goal Description</label>
                       </div>
                       <button class = 'btn' type ='submit'>Create</button>
