@@ -43,7 +43,13 @@ class InitiativeController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('Responsible')) {
-          return redirect('action_plan');
+          $user = Auth::user();
+          $userId = $user->id;
+
+          $initiatives = Initiative::whereHas('action_plan', function($q) use ($userId) {
+              $q->where('user_id', $userId);
+          })->paginate(6);
+
         }elseif ($user->hasRole('Admin')) {
           $initiatives = Initiative::paginate(6);
         }elseif ($user->hasRole('Owner')) {
