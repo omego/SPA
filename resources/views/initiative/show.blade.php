@@ -16,7 +16,7 @@
                                    @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
              {{ $initiative->status }}</span>
            </div>
-           <span class="card-title"><h4>{{ $initiative->initiative_title }}</h4></span>
+           <span class="card-title"><h5>{{ $initiative->initiative_title }}</h5></span>
            <p>{{ $initiative->initiative_description }}</p>
          </div>
          <div class="card-action">
@@ -78,13 +78,9 @@
           </ul>
       </div>
       <div class="col s12">
-        <h4 class="center"> Action Plans under {{ $initiative->initiative_title }} </h4>
-      </div>
-      <div class="col s12">
+        <h5 class="grey-text text-darken-2"> Action Plans under Initiative: {{ $initiative->initiative_title }} </h5>
         @can('create action plans')
-          <form class = 'col s4' method = 'get' action = '{!!url("action_plan")!!}/create'>
-              <button class = 'btn red' type = 'submit'>Create New Action Plan</button>
-          </form>
+          <a href = '{!!url("action_plan")!!}/create' class = 'orange-text text-accent-2 light'>+ NEW ACTION PLAN</a>
         @endcan
       </div>
       <div class="row">

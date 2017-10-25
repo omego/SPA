@@ -30,7 +30,7 @@
                @elseif ($InitiativePercent <= 100) green
                  @endif" data-badge-caption="">{!!round($InitiativePercent)!!}%</span>
          </div>
-           <span class="card-title"><h4>{{ $GoalTitle }}</h4></span>
+           <span class="card-title"><h5>{{ $GoalTitle }}</h5></span>
            <p>{{ $Goal_Discerption }}</p>
          </div>
          <div class="card-action">
@@ -53,22 +53,13 @@
      </div>
    </div>
 
-    <h4 class="center">
-        Projects under {{ $GoalTitle }}
-    </h4>
     <div class="row">
+      <div class="col s12">
+      <h5 class="grey-text text-darken-2">Projects under Goal: {{ $GoalTitle }}</h5>
       @can('create projects')
-        <form class = 'col s4' method = 'get' action = '{!!url("project")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New Project</button>
-        </form>
-
+        <a href = '{!!url("project")!!}/create' class = 'orange-text text-accent-2 light'>+ NEW PROJECT</a>
       @endcan
-        {{-- <ul id="dropdown" class="dropdown-content">
-            <li><a href="http://localhost:8888/spa/public/goal">Goal</a></li>
-        </ul>
-
-        <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a> --}}
-
+    </div>
     </div>
   <div class="collection">
             @foreach($projects as $project)

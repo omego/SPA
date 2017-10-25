@@ -35,7 +35,7 @@
                           <textarea id="goal_discerption" name = "goal_discerption" type="text" value="{{ old('goal_discerption') }}" class="validate materialize-textarea" required></textarea>
                           <label for="goal_discerption">Goal Description</label>
                       </div>
-                      <button class = 'btn red' type ='submit'>Create</button>
+                      <button class = 'btn' type ='submit'>Create</button>
                     </div>
                   </div>
                 </div>

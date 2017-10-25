@@ -7,11 +7,11 @@
         Goals
     </h4>
     <div class="row">
+      <div class="col s12">
         @can('create goals')
-        <form class = 'col s3' method = 'get' action = '{!!url("goal")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New Goal</button>
-        </form>
+          <a href = '{!!url("goal")!!}/create' class = 'orange-text text-accent-2 light'>+ NEW GOAL</a>
       @endcan
+    </div>
     </div>
     <div class="collection">
             @foreach($goals as $goal)

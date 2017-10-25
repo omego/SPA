@@ -42,7 +42,7 @@
                           </select>
                           <label>Select a Goal</label>
                       </div>
-                      <button class = 'btn red' type ='submit'>Create</button>
+                      <button class = 'btn' type ='submit'>Create</button>
                     </div>
                   </div>
                 </div>
