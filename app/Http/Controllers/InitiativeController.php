@@ -326,6 +326,9 @@ class InitiativeController extends Controller
      	$initiative->delete();
         return URL::to('initiative');
     }
+
+    // Initiative Files Attachment Start
+
     public function addInitiativeFile(Request $request)
 {
     $initiative = Initiative::findOrfail($request->initiative_id);
@@ -359,4 +362,6 @@ class InitiativeController extends Controller
 
     return redirect('initiative/'.$request->initiative_id. '/edit');
 }
+// Initiative Files Attachment End
+
 }

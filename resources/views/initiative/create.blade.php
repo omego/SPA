@@ -36,15 +36,15 @@
                       </div>
 
                       <div class="input-field col s4">
-                          <input id="kpi_previous" name = "kpi_previous" type="text" value="{{ old('kpi_previous') }}" class="validate" required>
+                          <input id="kpi_previous" name = "kpi_previous" type="text" value="{{ old('kpi_previous') }}" class="validate" data-length="11" required>
                           <label for="kpi_previous">kpi_previous</label>
                       </div>
                       <div class="input-field col s4">
-                          <input id="kpi_current" name = "kpi_current" type="text" value="{{ old('kpi_current') }}" class="validate" required>
+                          <input id="kpi_current" name = "kpi_current" type="text" value="{{ old('kpi_current') }}" class="validate" data-length="11" required>
                           <label for="kpi_current">kpi_current</label>
                       </div>
                       <div class="input-field col s4">
-                          <input id="kpi_target" name = "kpi_target" type="text" value="{{ old('kpi_target') }}" class="validate" required>
+                          <input id="kpi_target" name = "kpi_target" type="text" value="{{ old('kpi_target') }}" class="validate" data-length="11" required>
                           <label for="kpi_target">kpi_target</label>
                       </div>
 
