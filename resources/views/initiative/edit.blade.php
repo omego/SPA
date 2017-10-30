@@ -48,21 +48,25 @@
                           <label for="kpi_target">KPI Target</label>
                       </div>
 
+                      <div class="col s6">
+                      Status:<br>
+                <input name="status" type="radio" class="with-gap" id="status2" checked="checked" value="Not Accomplished" {{ $initiative->status == 'Not Accomplished' ? 'checked' : '' }} />
+                 <label for="status2">Not Accomplished</label>
+                 <br>
+                 <input name="status" type="radio" class="with-gap" id="status1" value="Accomplished" {{ $initiative->status == 'Accomplished' ? 'checked' : '' }} />
+                 <label for="status1">Accomplished</label>
 
-                        Status:<br>
-                  <input name="status" type="radio" class="with-gap" id="status2" checked="checked" value="Not Accomplished" {{ $initiative->status == 'Not Accomplished' ? 'checked' : '' }} />
-                   <label for="status2">Not Accomplished</label>
-                   <br>
-                   <input name="status" type="radio" class="with-gap" id="status1" value="Accomplished" {{ $initiative->status == 'Accomplished' ? 'checked' : '' }} />
-                   <label for="status1">Accomplished</label>
-
-               <br><br>
+            </div>
 
                        <div class="input-field col s6">
                          <textarea id="why_if_not" name = "why_if_not" type="text" class="validate materialize-textarea">{!!$initiative->
                          why_if_not!!}</textarea>
                          <label for="why_if_not">Why?(If Not Accomplished)</label>
                          </div>
+
+
+
+
                          @can('dod comment')
                          <div class="input-field col s6">
                          <textarea id="dod_note" name = "dod_note" type="text" class="validate materialize-textarea"> {!!$initiative->
@@ -86,7 +90,7 @@
                      <div class="input-field col s6">
                          <select name = 'user_id'>
                            @if (empty($initiative->user_id))
-                             {{-- <option value="@php echo Null; @endphp">(Unassigned)</option> --}}
+                             <option value="@php echo Null; @endphp">(Unassigned)</option>
                            @endif
                              @foreach($users as $key => $value)
                              @if ($key == $initiative->user_id)
@@ -99,9 +103,11 @@
                          <label>Assigne User</label>
                      </div>
                      @endhasrole
-                     <div class="col s12">
+
+
+
                       <button class = 'btn' type ='submit'>Update</button>
-                      </div>
+
                     </div>
                   </div>
                 </div>
