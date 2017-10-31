@@ -5,7 +5,7 @@
 <div class = 'container'>
 
     @if ($errors->any())
-    <div class="card red white-text center">
+    <div class="card deep-orange darken-4 white-text center">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -31,20 +31,20 @@
                           <label for="initiative_title">Initiative Title</label>
                       </div>
                       <div class="input-field col s12">
-                          <textarea id="initiative_description" name = "initiative_description" type="text" value="{{ old('initiative_description') }}" class="validate materialize-textarea" required></textarea>
+                          <textarea id="initiative_description" name = "initiative_description" type="text" class="validate materialize-textarea" required>{{ old('initiative_description') }}</textarea>
                           <label for="initiative_description">Initiative Description</label>
                       </div>
 
                       <div class="input-field col s4">
-                          <input id="kpi_previous" name = "kpi_previous" type="text" value="{{ old('kpi_previous') }}" class="validate" required>
+                          <input id="kpi_previous" name = "kpi_previous" type="text" value="{{ old('kpi_previous') }}" class="validate" data-length="11" required>
                           <label for="kpi_previous">kpi_previous</label>
                       </div>
                       <div class="input-field col s4">
-                          <input id="kpi_current" name = "kpi_current" type="text" value="{{ old('kpi_current') }}" class="validate" required>
+                          <input id="kpi_current" name = "kpi_current" type="text" value="{{ old('kpi_current') }}" class="validate" data-length="11" required>
                           <label for="kpi_current">kpi_current</label>
                       </div>
                       <div class="input-field col s4">
-                          <input id="kpi_target" name = "kpi_target" type="text" value="{{ old('kpi_target') }}" class="validate" required>
+                          <input id="kpi_target" name = "kpi_target" type="text" value="{{ old('kpi_target') }}" class="validate" data-length="11" required>
                           <label for="kpi_target">kpi_target</label>
                       </div>
 
@@ -57,7 +57,7 @@
                           <label>Select a Project</label>
 
                       </div>
-                      <button class = 'btn red' type ='submit'>Create</button>
+                      <button class = 'btn' type ='submit'>Create</button>
                     </div>
                   </div>
                 </div>

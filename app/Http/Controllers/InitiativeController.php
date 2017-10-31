@@ -43,7 +43,13 @@ class InitiativeController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('Responsible')) {
-          return redirect('action_plan');
+          $user = Auth::user();
+          $userId = $user->id;
+
+          $initiatives = Initiative::whereHas('action_plan', function($q) use ($userId) {
+              $q->where('user_id', $userId);
+          })->paginate(6);
+
         }elseif ($user->hasRole('Admin')) {
           $initiatives = Initiative::paginate(6);
         }elseif ($user->hasRole('Owner')) {
@@ -273,11 +279,11 @@ class InitiativeController extends Controller
 
         $initiative->why_if_not = $request->why_if_not;
 
-        $initiative->dod_note = $request->dod_note;
+        $initiative->dod_note = empty($request->dod_note) ? $initiative->dod_note : $request->dod_note;
 
-        $initiative->project_id = $request->project_id;
+        $initiative->project_id = empty($request->project_id) ? $initiative->project_id : $request->project_id;
 
-        $initiative->user_id = $request->user_id;
+        $initiative->user_id = empty($request->user_id) ? $initiative->user_id : $request->user_id;
 
 
         $initiative->save();
@@ -320,6 +326,9 @@ class InitiativeController extends Controller
      	$initiative->delete();
         return URL::to('initiative');
     }
+
+    // Initiative Files Attachment Start
+
     public function addInitiativeFile(Request $request)
 {
     $initiative = Initiative::findOrfail($request->initiative_id);
@@ -353,4 +362,6 @@ class InitiativeController extends Controller
 
     return redirect('initiative/'.$request->initiative_id. '/edit');
 }
+// Initiative Files Attachment End
+
 }

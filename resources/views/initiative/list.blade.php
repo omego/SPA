@@ -13,7 +13,7 @@
              Updated: {{ $ProjectName->updated_at->diffForHumans() }}
            </span>
          </div>
-           <span class="card-title"><h4>{{ $ProjectTitle }}</h4></span>
+           <span class="card-title"><h5>{{ $ProjectTitle }}</h5></span>
            <p>{{ $ProjectName->project_discerption }}</p>
          </div>
          <div class="card-action">
@@ -37,15 +37,16 @@
    </div>
 
 
-    <h4 class="center">
-        Initiatives under {{ $ProjectTitle }}
-    </h4>
+
     <div class="row">
+      <div class="col s12">
+      <h5 class="grey-text text-darken-2">
+          Initiatives under Project: {{ $ProjectTitle }}
+      </h5>
       @can('create initiatives')
-        <form class = 'col s4' method = 'get' action = '{!!url("initiative")!!}/create'>
-            <button class = 'btn red' type = 'submit'>Create New Initiative</button>
-        </form>
+        <a href = '{!!url("initiative")!!}/create' class = 'orange-text text-accent-2 light'>+ NEW INITIATIVE</a>
       @endcan
+    </div>
         {{-- <ul id="dropdown" class="dropdown-content">
             <li><a href="http://localhost:8888/spa/public/project">Project</a></li>
         </ul>

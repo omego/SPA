@@ -54,7 +54,7 @@ class GoalController extends Controller
         // $user = User::all();
         if($user->hasRole('Responsible'))
         {
-            return redirect('action_plan');
+            return redirect('initiative');
         }
 
           // $permissions = $user->permissions;

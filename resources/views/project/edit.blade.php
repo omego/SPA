@@ -3,11 +3,9 @@
 @section('content')
 
 <div class = 'container'>
-    <h1>
-        Edit project
-    </h1>
+
     @if ($errors->any())
-    <div class="card red white-text center">
+    <div class="card deep-orange darken-4 white-text center">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -15,49 +13,91 @@
         </ul>
     </div>
     @endif
-    <form method = 'get' action = '{!!url("project")!!}'>
-        <button class = 'btn blue'>project Index</button>
-    </form>
-    <br>
+
+
     <form method = 'POST' action = '{!! url("project")!!}/{!!$project->
         id!!}/update'>
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-        <div class="input-field col s6">
-            <input id="project_title" name = "project_title" type="text" class="validate" value="{!!$project->
-            project_title!!}" required>
-            <label for="project_title">project_title</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="project_discerption" name = "project_discerption" type="text" class="validate" value="{!!$project->
-            project_discerption!!}" required>
-            <label for="project_discerption">project_discerption</label>
-        </div>
-        <!-- <div class="input-field col s12">
-            <select name = 'goal_id'>
-                @foreach($goals as $key => $value)
-                <option value="{{$key}}">{{$value}}</option>
-                @endforeach
-            </select>
-            <label>goals Select</label>
-        </div> -->
-        <div class="input-field col s12">
-            <select name = 'goal_id'>
-                @foreach($goals as $key => $value)
-                @if ($key == $project->goal_id)
-                <option selected value="{{$key}}">{{$value}}</option>
-                @else
-                <option value="{{$key}}">{{$value}}</option>
-                @endif
-                @endforeach
-            </select>
-            <label>goals Select</label>
-        </div>
-        <button class = 'btn red' type ='submit'>Update</button>
 
-
+        <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                      <span class="card-title">Edit Project</span>
+                      <div class="input-field col s12">
+                          <input id="project_title" name = "project_title" type="text" value="{!!$project->project_title!!}" class="validate autocomplete" data-length="191" autocomplete="off" required>
+                          <label for="project_title">Project Title</label>
+                      </div>
+                      <div class="input-field col s12">
+                          <textarea id="project_discerption" name = "project_discerption" type="text" class="validate materialize-textarea" required>{!!$project->project_discerption!!}</textarea>
+                          <label for="project_discerption">Project Description</label>
+                      </div>
+                      <div class="input-field col s12">
+                          <select name = 'goal_id'>
+                              @foreach($goals as $key => $value)
+                              @if ($key == $project->goal_id)
+                              <option selected value="{{$key}}">{{$value}}</option>
+                              @else
+                              <option value="{{$key}}">{{$value}}</option>
+                              @endif
+                              @endforeach
+                          </select>
+                          <label>Select a Goal</label>
+                      </div>
+                      <button class = 'btn' type ='submit'>Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </form>
 
-        <!-- assign projects to users -->
+            <!-- assign projects to users -->
+
+                <div class="col s12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h5>Assign users to Project: {!!$project->project_title!!}</h5>
+                </div>
+                <div class="row">
+                <div class="col s4">
+                <div class="box-body">
+                    <form action="{{url('project/addUserProjects')}}" method = "post">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name = "project_id" value = "{{$project->id}}">
+                        <div class="form-group">
+                            <select name="user_id" id="" class = "form-control">
+                                @foreach($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col s4">
+                        <div class="form-group">
+                            <button class = 'btn btn-primary'>Assign</button>
+                        </div>
+                      </div>
+
+
+                    </form>
+
+
+                    <div class="col s12">
+                    @foreach($userProjects as $userProject)
+                      <a class='waves-effect waves-light btn grey hoverable' href='{{url('project/removeUserProjects')}}/{{$userProject->id}}/{{$project->id}}' data-activates='project-assign'><i class="material-icons left">cancel</i>{{$userProject->name}}</a>
+                    @endforeach
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+
+
+
+                    <!-- Assign Users To Project -->
+
+
+        {{-- <!-- assign projects to users -->
 
             <div class="col-md-6">
         <div class="box box-primary">
@@ -97,8 +137,7 @@
         </div>
     </div>
 
-</select>
-
+</select> --}}
 
 </div>
 @endsection
