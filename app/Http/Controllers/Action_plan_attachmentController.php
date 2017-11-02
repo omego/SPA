@@ -28,7 +28,7 @@ class Action_plan_attachmentController extends Controller
     public function index()
     {
         $title = 'Index - action_plan_attachment';
-        $action_plan_attachments = Action_plan_attachment::paginate(6);
+        $action_plan_attachments = Action_plan_attachment::paginate(20);
         return view('action_plan_attachment.index',compact('action_plan_attachments','title'));
     }
 

@@ -50,7 +50,7 @@ class GoalController extends Controller
         $user = Auth::user();
 
         $title = 'Goals';
-        // $goals = Goal::paginate(6);
+        // $goals = Goal::paginate(20);
         // $user = User::all();
         if($user->hasRole('Responsible'))
         {
@@ -60,13 +60,13 @@ class GoalController extends Controller
           // $permissions = $user->permissions;
           // $role = Role::where('name', 'Admin')->first();
           if ($user->hasRole('Admin')) {
-            $goals = Goal::paginate(6);
+            $goals = Goal::paginate(20);
           }elseif ($user->hasRole('Owner')) {
             $user = Auth::user();
             $userId = $user->id;
             $goals = Goal::whereHas('users', function ($q) use ($userId) {
                 $q->where('user_id', $userId);
-            })->paginate(6);
+            })->paginate(20);
           }else{
               return view('errors.401');
           }
