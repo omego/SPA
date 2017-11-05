@@ -99,7 +99,7 @@ class Action_planController extends Controller
     {
 
       $this->validate($request, [
-      'action_plan_title' => 'required|min:5|max:191|string',
+      'action_plan_title' => 'required|max:191|string',
       'action_plan_start' => 'required|date',
       'action_plan_end' => 'required|date',
   ]);

@@ -27,7 +27,7 @@
                       <span class="card-title">Create Action Plan</span>
                       <div class="input-field col s12">
                           <input id="action_plan_title" name = "action_plan_title" type="text" value="{{ old('action_plan_title') }}" class="validate autocomplete" data-length="191" autocomplete="off" required>
-                          <label for="action_plan_title">Action Plan Title</label>
+                          <label for="action_plan_title">Action Plan Number</label>
                       </div>
                       <div class="input-field col s6">
                           <input id="action_plan_start" name = "action_plan_start" type="text" value="{{ old('action_plan_start') }}" class="datepicker" required>

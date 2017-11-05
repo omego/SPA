@@ -106,7 +106,7 @@ class GoalController extends Controller
     {
 
       $this->validate($request, [
-      'goal_title' => 'required|min:5|max:191|string',
+      'goal_title' => 'required|max:191|string',
       'goal_discerption' => 'required|string',
   ]);
         $goal = new Goal();

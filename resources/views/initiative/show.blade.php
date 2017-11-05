@@ -46,21 +46,28 @@
     </form>
     </div> --}}
 
+    <div class="col s12">
+        <ul class="collection">
+      <li class="collection-item grey-text text-darken-3 active grey lighten-2">KPI Description</li>
+              <li class="collection-item">{{ $initiative->kpi_description }}</li>
+            </ul>
+    </div>
+
           <div class="col s4">
             <ul class="collection">
-            <li class="collection-item active center">KPI Previous</li>
+            <li class="collection-item active center">KPI Previous<br>{{ $initiative->kpi_previous_date }}</li>
             <li class="collection-item center">{{ $initiative->kpi_previous }}</li>
         </ul>
         </div>
         <div class="col s4">
         <ul class="collection">
-            <li class="collection-item active center">KPI Current</li>
+            <li class="collection-item active center">KPI Current<br>{{ $initiative->kpi_current_date }}</li>
             <li class="collection-item center">{{ $initiative->kpi_current }}</li>
         </ul>
         </div>
         <div class="col s4">
         <ul class="collection">
-            <li class="collection-item active center">KPI Target</li>
+            <li class="collection-item active center">KPI Target<br>{{ $initiative->kpi_target_date }}</li>
             <li class="collection-item center">{{ $initiative->kpi_target }}</li>
           </ul>
           </div>

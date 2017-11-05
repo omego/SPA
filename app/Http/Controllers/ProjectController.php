@@ -128,7 +128,7 @@ class ProjectController extends Controller
     {
 
       $this->validate($request, [
-      'project_title' => 'required|min:5|max:191|string',
+      'project_title' => 'required|max:191|string',
       'project_discerption' => 'required|string',
   ]);
         $project = new Project();

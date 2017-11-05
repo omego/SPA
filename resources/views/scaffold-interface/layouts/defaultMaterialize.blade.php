@@ -163,7 +163,7 @@ $(function() {
 	<div class="footer-copyright white grey-text">
 		<div class="container">
 		© {!!date('Y')!!} KSAU-HS Copyright
-		<a class="right grey-text" href="#!">version 0.8.3b</a>
+		<a class="right grey-text" href="#!">version 0.8.4b</a>
 		</div>
 	</div>
 </footer>

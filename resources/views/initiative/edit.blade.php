@@ -26,12 +26,18 @@
                       <span class="card-title">Edit Initiative</span>
                       <div class="input-field col s12">
                           <input id="initiative_title" name = "initiative_title" type="text" value="{!!$initiative->initiative_title!!}" class="validate autocomplete" data-length="191" autocomplete="off" required>
-                          <label for="initiative_title">Initiative Title</label>
+                          <label for="initiative_title">Initiative Number</label>
                       </div>
                       <div class="input-field col s12">
                           <textarea id="initiative_description" name = "initiative_description" type="text" class="validate materialize-textarea" required>{!!$initiative->initiative_description!!}</textarea>
                           <label for="initiative_description">Initiative Description</label>
                       </div>
+
+                      <div class="input-field col s12">
+                          <textarea id="kpi_description" name = "kpi_description" type="text" class="validate materialize-textarea">{!!$initiative->kpi_description!!}</textarea>
+                          <label for="kpi_description">KPI Description</label>
+                      </div>
+
                       <div class="input-field col s4">
                           <input id="kpi_previous" name = "kpi_previous" type="text" class="validate center" value="{!!$initiative->
                           kpi_previous!!}" required>
@@ -46,6 +52,22 @@
                           <input id="kpi_target" name = "kpi_target" type="text" class="validate center" value="{!!$initiative->
                           kpi_target!!}" required>
                           <label for="kpi_target">KPI Target</label>
+                      </div>
+
+                      <div class="input-field col s4">
+                          <input id="kpi_previous_date" name = "kpi_previous_date" type="text" class="datepicker center" value="{!!$initiative->
+                          kpi_previous_date!!}">
+                          <label for="kpi_previous_date">KPI Previous (Date)</label>
+                      </div>
+                      <div class="input-field col s4">
+                          <input id="kpi_current_date" name = "kpi_current_date" type="text" class="datepicker center" value="{!!$initiative->
+                          kpi_current_date!!}">
+                          <label for="kpi_current_date">KPI Current (Date)</label>
+                      </div>
+                      <div class="input-field col s4">
+                          <input id="kpi_target_date" name = "kpi_target_date" type="text" class="datepicker center" value="{!!$initiative->
+                          kpi_target_date!!}">
+                          <label for="kpi_target_date">KPI Target (Date)</label>
                       </div>
 
                       <div class="col s6">
