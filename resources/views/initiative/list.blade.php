@@ -13,7 +13,7 @@
              Updated: {{ $ProjectName->updated_at->diffForHumans() }}
            </span>
          </div>
-           <span class="card-title"><h5>{{ $ProjectTitle }}</h5></span>
+           <span class="card-title"><h5>Project {{ $ProjectTitle }}</h5></span>
            <p>{{ $ProjectName->project_discerption }}</p>
          </div>
          <div class="card-action">
@@ -59,7 +59,7 @@
                 <span class="new badge @if ($initiative->status == 'Accomplished') green
                 @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
                   {{ $initiative->status }}</span>
-                {{ $initiative->initiative_title }}
+                Initiative {{ $initiative->initiative_title }}
               </a>
             @endforeach
       </div>

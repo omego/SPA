@@ -71,22 +71,22 @@
 
 					@isset($GoalTitle)
 						<a href="{!!url("project/list/".$GoalID)!!}" class="breadcrumb">
-          		{{ $GoalTitle }}
+          		Strategic Goal {{ $GoalTitle }}
 						</a>
 		      @endisset
 					@isset($ProjectTitle)
 						<a href="{!!url("initiative/list/".$ProjectId)!!}" class="breadcrumb">
-          		{{ $ProjectTitle }}
+          		Project {{ $ProjectTitle }}
 						</a>
 		      @endisset
 					@isset($initiativesTitle)
 						<a href="{!!url("initiative/".$initiative->id)!!}" class="breadcrumb">
-        			{{ $initiativesTitle }}
+        			Initiative {{ $initiativesTitle }}
 						</a>
 		      @endisset
 					@isset($action_plan_title)
 						<a href="{!!url("action_plan/". $action_plan->id)!!}" class="breadcrumb">
-      				{{ $action_plan_title }}
+      				Action Plan {{ $action_plan_title }}
 						</a>
 		      @endisset
       </div>

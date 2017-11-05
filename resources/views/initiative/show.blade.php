@@ -16,7 +16,7 @@
                                    @elseif ($initiative->status == 'Not Accomplished') grey darken-1 @endif" data-badge-caption="">
              {{ $initiative->status }}</span>
            </div>
-           <span class="card-title"><h5>{{ $initiative->initiative_title }}</h5></span>
+           <span class="card-title"><h5>Initiative {{ $initiative->initiative_title }}</h5></span>
            <p>{{ $initiative->initiative_description }}</p>
          </div>
          <div class="card-action">
@@ -101,7 +101,7 @@
               @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
                 {{ $action_plan->action_plan_approval }}</span>
               {{-- <span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span> --}}
-                {{ $action_plan->action_plan_title }}
+                Action Plan {{ $action_plan->action_plan_title }}
               </a>
 
             @endforeach

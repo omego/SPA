@@ -30,7 +30,7 @@
                @elseif ($InitiativePercent <= 100) green
                  @endif" data-badge-caption="">{!!round($InitiativePercent)!!}%</span>
          </div>
-           <span class="card-title"><h5>{{ $GoalTitle }}</h5></span>
+           <span class="card-title"><h5>Strategic Goal {{ $GoalTitle }}</h5></span>
            <p>{{ $Goal_Discerption }}</p>
          </div>
          <div class="card-action">
@@ -64,7 +64,7 @@
   <div class="collection">
             @foreach($projects as $project)
               <a href="#" class="viewShow collection-item" data-link = '/project/{!!$project->id!!}'><span class= "new badge" data-badge-caption="">{{ $project->updated_at->diffForHumans() }}</span>
-                {{ $project->project_title }}
+                Project {{ $project->project_title }}
               </a>
 
             @endforeach
