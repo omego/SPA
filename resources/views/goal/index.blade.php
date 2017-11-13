@@ -40,7 +40,7 @@ $InitiativePercent = $InitiativeCountedAll == 0 ? 0 : (($InitiativeCounted / $In
                 @endif" data-badge-caption="">{!!round($InitiativePercent)!!}%</span>
 
 
-            {{ $goal->goal_title }}
+            Strategic Goal {{ $goal->goal_title }}
             <div class="progress grey">
                 <div class="determinate
                 @if ($InitiativePercent <= 20) red darken-2

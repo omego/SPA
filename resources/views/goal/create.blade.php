@@ -29,7 +29,7 @@
                       <span class="card-title">Create Goal</span>
                       <div class="input-field col s12">
                           <input id="goal_title" name = "goal_title" type="text" value="{{ old('goal_title') }}" class="validate autocomplete" data-length="191" autocomplete="off" required>
-                          <label for="goal_title">Goal Title</label>
+                          <label for="goal_title">Goal Number</label>
                       </div>
                       <div class="input-field col s12">
                           <textarea id="goal_discerption" name = "goal_discerption" type="text" class="validate materialize-textarea" required>{{ old('goal_discerption') }}</textarea>

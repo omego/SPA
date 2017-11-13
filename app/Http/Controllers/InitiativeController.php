@@ -48,13 +48,13 @@ class InitiativeController extends Controller
 
           $initiatives = Initiative::whereHas('action_plan', function($q) use ($userId) {
               $q->where('user_id', $userId);
-          })->paginate(6);
+          })->paginate(20);
 
         }elseif ($user->hasRole('Admin')) {
-          $initiatives = Initiative::paginate(6);
+          $initiatives = Initiative::paginate(20);
         }elseif ($user->hasRole('Owner')) {
           $userId = $user->id;
-          $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+          $initiatives = Initiative::where('user_id', $userId)->paginate(20);
         }else{
             return view('errors.401');
         }
@@ -78,11 +78,11 @@ class InitiativeController extends Controller
         // $permissions = $user->permissions;
         // $role = Role::where('name', 'Admin')->first();
         if ($user->hasRole('Admin')) {
-          $initiatives = Initiative::where('project_id', $id)->paginate(6);
+          $initiatives = Initiative::where('project_id', $id)->paginate(20);
         }elseif ($user->hasRole('Owner')) {
           // $user = Auth::user();
           $userId = $user->id;
-        $initiatives = Initiative::where('user_id', $userId)->where('project_id', $id)->paginate(6);
+        $initiatives = Initiative::where('user_id', $userId)->where('project_id', $id)->paginate(20);
         }else{
             return view('errors.401');
         }
@@ -132,7 +132,7 @@ class InitiativeController extends Controller
     {
 
       $this->validate($request, [
-      'initiative_title' => 'required|min:5|max:191|string',
+      'initiative_title' => 'required|max:191|string',
       'initiative_description' => 'required|string',
       'kpi_previous' => 'required|string|max:11',
       'kpi_current' => 'required|string|max:11',
@@ -146,6 +146,8 @@ class InitiativeController extends Controller
 
         $initiative->initiative_description = $request->initiative_description;
 
+        $initiative->kpi_description = $request->kpi_description;
+
 
         $initiative->kpi_previous = $request->kpi_previous;
 
@@ -154,6 +156,15 @@ class InitiativeController extends Controller
 
 
         $initiative->kpi_target = $request->kpi_target;
+
+
+        $initiative->kpi_previous_date = $request->kpi_previous_date;
+
+
+        $initiative->kpi_current_date = $request->kpi_current_date;
+
+
+        $initiative->kpi_target_date = $request->kpi_target_date;
 
         $initiative->status = "Not Accomplished";
 
@@ -195,7 +206,7 @@ class InitiativeController extends Controller
         {
             return URL::to('initiative/'.$id);
         }
-        $action_plans = Action_plan::where('initiative_id', $id)->paginate(6);
+        $action_plans = Action_plan::where('initiative_id', $id)->paginate(20);
         //return view('action_plan.index',compact('action_plans','title'));
         $initiative = Initiative::findOrfail($id);
         $initiativesTitle = $initiative->initiative_title;
@@ -269,11 +280,19 @@ class InitiativeController extends Controller
 
         $initiative->initiative_description = $request->initiative_description;
 
+        $initiative->kpi_description = $request->kpi_description;
+
         $initiative->kpi_previous = $request->kpi_previous;
 
         $initiative->kpi_current = $request->kpi_current;
 
         $initiative->kpi_target = $request->kpi_target;
+
+        $initiative->kpi_previous_date = $request->kpi_previous_date;
+
+        $initiative->kpi_current_date = $request->kpi_current_date;
+
+        $initiative->kpi_target_date = $request->kpi_target_date;
 
         $initiative->status = $request->status;
 

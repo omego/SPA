@@ -32,7 +32,7 @@
                       <div class="input-field col s12">
                           <input id="action_plan_title" name = "action_plan_title" type="text" value="{!!$action_plan->
                           action_plan_title!!}" class="validate autocomplete" data-length="191" autocomplete="off" required>
-                          <label for="action_plan_title">Action Plan Title</label>
+                          <label for="action_plan_title">Action Plan Number</label>
                       </div>
                       <div class="input-field col s6">
                           <input id="action_plan_updates" name = "action_plan_updates" type="text" class="validate" value="{!!$action_plan->

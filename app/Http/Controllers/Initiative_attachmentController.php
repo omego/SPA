@@ -28,7 +28,7 @@ class Initiative_attachmentController extends Controller
     public function index()
     {
         $title = 'Index - initiative_attachment';
-        $initiative_attachments = Initiative_attachment::paginate(6);
+        $initiative_attachments = Initiative_attachment::paginate(20);
         return view('initiative_attachment.index',compact('initiative_attachments','title'));
     }
 

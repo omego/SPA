@@ -42,13 +42,13 @@ class ProjectController extends Controller
         if ($user->hasRole('Responsible')) {
           return redirect('action_plan');
         }elseif ($user->hasRole('Admin')) {
-          $projects = Project::paginate(6);
+          $projects = Project::paginate(20);
         }elseif ($user->hasRole('Owner')) {
           $user = Auth::user();
           $userId = $user->id;
           $projects = Project::whereHas('users', function ($q) use ($userId) {
               $q->where('user_id', $userId);
-          })->paginate(6);
+          })->paginate(20);
         }else{
             return view('errors.401');
         }
@@ -72,13 +72,13 @@ class ProjectController extends Controller
         // $permissions = $user->permissions;
         // $role = Role::where('name', 'Admin')->first();
         if ($user->hasRole('Admin')) {
-          $projects = Project::where('goal_id', $id)->paginate(6);
+          $projects = Project::where('goal_id', $id)->paginate(20);
         }elseif ($user->hasRole('Owner')) {
           $user = Auth::user();
           $userId = $user->id;
           $projects = Project::whereHas('users', function ($q) use ($userId) {
               $q->where('user_id', $userId);
-          })->paginate(6);
+          })->paginate(20);
         }else{
             return view('errors.401');
         }
@@ -128,7 +128,7 @@ class ProjectController extends Controller
     {
 
       $this->validate($request, [
-      'project_title' => 'required|min:5|max:191|string',
+      'project_title' => 'required|max:191|string',
       'project_discerption' => 'required|string',
   ]);
         $project = new Project();

@@ -71,22 +71,22 @@
 
 					@isset($GoalTitle)
 						<a href="{!!url("project/list/".$GoalID)!!}" class="breadcrumb">
-          		{{ $GoalTitle }}
+          		Strategic Goal {{ $GoalTitle }}
 						</a>
 		      @endisset
 					@isset($ProjectTitle)
 						<a href="{!!url("initiative/list/".$ProjectId)!!}" class="breadcrumb">
-          		{{ $ProjectTitle }}
+          		Project {{ $ProjectTitle }}
 						</a>
 		      @endisset
 					@isset($initiativesTitle)
 						<a href="{!!url("initiative/".$initiative->id)!!}" class="breadcrumb">
-        			{{ $initiativesTitle }}
+        			Initiative {{ $initiativesTitle }}
 						</a>
 		      @endisset
 					@isset($action_plan_title)
 						<a href="{!!url("action_plan/". $action_plan->id)!!}" class="breadcrumb">
-      				{{ $action_plan_title }}
+      				Action Plan {{ $action_plan_title }}
 						</a>
 		      @endisset
       </div>
@@ -163,7 +163,7 @@ $(function() {
 	<div class="footer-copyright white grey-text">
 		<div class="container">
 		© {!!date('Y')!!} KSAU-HS Copyright
-		<a class="right grey-text" href="#!">version 0.8.3b</a>
+		<a class="right grey-text" href="#!">version 0.8.4b</a>
 		</div>
 	</div>
 </footer>

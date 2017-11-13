@@ -47,15 +47,15 @@ class Action_planController extends Controller
         $userId = $user->id;
         if ($user->hasRole('Responsible')) {
           $userId = $user->id;
-          $action_plans = Action_plan::where('user_id', $userId)->paginate(6);
+          $action_plans = Action_plan::where('user_id', $userId)->paginate(20);
         }elseif ($user->hasRole('Admin')) {
-          $action_plans = Action_plan::paginate(6);
+          $action_plans = Action_plan::paginate(20);
         }elseif ($user->hasRole('Owner')) {
-          // $action_plans = Action_plan::paginate(6);
-          $initiatives = Initiative::where('user_id', $userId)->paginate(6);
+          // $action_plans = Action_plan::paginate(20);
+          $initiatives = Initiative::where('user_id', $userId)->paginate(20);
           foreach ($initiatives as $initiative) {
             echo $initiative->id;
-            $action_plans = Initiative::find($initiative->id)->action_plan()->paginate(6);
+            $action_plans = Initiative::find($initiative->id)->action_plan()->paginate(20);
           }
 
         }
@@ -99,7 +99,7 @@ class Action_planController extends Controller
     {
 
       $this->validate($request, [
-      'action_plan_title' => 'required|min:5|max:191|string',
+      'action_plan_title' => 'required|max:191|string',
       'action_plan_start' => 'required|date',
       'action_plan_end' => 'required|date',
   ]);

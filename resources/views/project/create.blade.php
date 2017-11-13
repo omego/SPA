@@ -28,7 +28,7 @@
                       <span class="card-title">Create Project</span>
                       <div class="input-field col s12">
                           <input id="project_title" name = "project_title" type="text" value="{{ old('project_title') }}" class="validate autocomplete" data-length="191" autocomplete="off" required>
-                          <label for="project_title">Project Title</label>
+                          <label for="project_title">Project Number</label>
                       </div>
                       <div class="input-field col s12">
                           <textarea id="project_discerption" name = "project_discerption" type="text" class="validate materialize-textarea" required>{{ old('project_discerption') }}</textarea>

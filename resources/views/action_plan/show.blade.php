@@ -29,7 +29,7 @@
               @endcan
           </div>
           </div>
-          <span class="card-title"><h5>{{ $action_plan->action_plan_title }}</h5></span>
+          <span class="card-title"><h5>Action Plan {{ $action_plan->action_plan_title }}</h5></span>
           </div>
         <div class="card-action">
           @can('delete action plans')
