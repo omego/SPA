@@ -16,7 +16,7 @@
 <nav>
 	<div class="nav-wrapper grey darken-3">
 		<div class="col s12">
-		<a href='{!!url("goal")!!}' class="brand-logo"><img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Stratigic Plan" style="width:60px;height:60px;"></a>
+		<a href='{!!url("goal")!!}' class="brand-logo"><img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Strategic Plan" style="width:60px;height:60px;"></a>
 	</div>
 	<div class="col s2 right hide-on-med-and-down">
 		<!-- Dropdown Trigger -->
