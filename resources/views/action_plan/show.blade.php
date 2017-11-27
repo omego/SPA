@@ -25,6 +25,14 @@
                         <button class = 'waves-effect waves-light btn pulse'>Approve</button>
                     </div>
                 </form>
+                @elseif($action_plan->action_plan_approval == 'Approved by Owner')
+                <form enctype="multipart/form-data" action="{{url('action_plan/ApproveActionplan')}}" method = "post">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name = "action_plan_id" value = "{{$action_plan->id}}">
+                    <div class="form-group">
+                        <button class = 'waves-effect waves-light btn pulse'>Approve</button>
+                    </div>
+                </form>
                 @endif
               @endcan
           </div>

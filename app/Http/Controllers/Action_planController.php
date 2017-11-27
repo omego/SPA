@@ -10,6 +10,8 @@ use App\Action_plan_attachment;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use App\Mail\ActionPlanApproved;
+use App\Mail\ActionPlanOwnerApproval;
+use App\Mail\ActionPlanDODApproval;
 use App\Mail;
 use App\Initiative;
 
@@ -187,7 +189,10 @@ class Action_planController extends Controller
 
         $initiative = Initiative::findOrfail($action_plan->initiative_id);
         $initiativesTitle = $initiative->initiative_title;
+        $initiativesOwnerId = $initiative->user_id;
+        $initiativesOwnerEmail = User::findOrfail($initiativesOwnerId);
 
+        // echo $initiativesOwnerEmail->email;
         $ProjectName = Project::findOrfail($initiative->project_id);
         $ProjectTitle = $ProjectName->project_title;
         $ProjectId = $ProjectName->id;
@@ -270,42 +275,16 @@ class Action_planController extends Controller
 
         $action_plan->initiative_id = empty($request->initiative_id) ? $action_plan->initiative_id : $request->initiative_id;
 
-        // $action_plan_attachment = new Action_plan_attachment();
-        //
-        //
-        // $action_plan_attachment->action_plan_id = $request->id;
-        //
-        //
-        // $file = $request->file('file_name');
-        //
-        // //File Name
-        // $file->getClientOriginalName();
-        //
-        // //Display File Extension
-        // $file->getClientOriginalExtension();
-        //
-        // //Display File Real Path
-        // $file->getRealPath();
-        //
-        // //Display File Size
-        // $file->getSize();
-        //
-        // //Display File Mime Type
-        // $file->getMimeType();
-        //
-        // //Move Uploaded File
-        // $destinationPath = 'uploads';
-        // $file->move($destinationPath,$file->getClientOriginalName());
-        //
-        // $filename = $file->getClientOriginalName();
-        //
-        // $action_plan_attachment->file_name = 'uploads/' . $filename;
-        //
-        // $action_plan_attachment->save();
+        $initiative = Initiative::findOrfail($action_plan->initiative_id);
+        $initiativesTitle = $initiative->initiative_title;
+        $initiativesOwnerId = $initiative->user_id;
+        $initiativesOwnerEmail = User::findOrfail($initiativesOwnerId);
+
+        if ($action_plan->action_plan_approval == 'Pending') {
+          \Mail::to($initiativesOwnerEmail->email)->send(new ActionPlanOwnerApproval);
+        }
 
         $action_plan->save();
-
-        // \Mail::to('test@test.com')->send(new ActionPlanApproved);
 
         $options = array(
           'cluster' => 'ap2',
@@ -403,10 +382,14 @@ class Action_planController extends Controller
         public function ApproveActionplan(Request $request)
     {
         $action_plan = Action_plan::findOrfail($request->action_plan_id);
-        if ($action_plan->action_plan_approval != 'Approved') {
-          $action_plan->action_plan_approval = 'Approved';
+        if ($action_plan->action_plan_approval != 'Approved by Owner') {
+          $action_plan->action_plan_approval = 'Approved by Owner';
           $action_plan->save();
-          \Mail::to('test@test.com')->send(new ActionPlanApproved);
+          \Mail::to('dod@test.com')->send(new ActionPlanDODApproval);
+        }elseif ($action_plan->action_plan_approval == 'Approved by Owner') {
+                  $action_plan->action_plan_approval = 'Approved by DOD';
+                  $action_plan->save();
+          // \Mail::to('dod@test.com')->send(new ActionPlanDODApproval);
         }
 
 
