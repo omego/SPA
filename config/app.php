@@ -169,7 +169,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-
+        Subfission\Cas\CasServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -230,6 +230,9 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
+
+        'Cas' => Subfission\Cas\Facades\Cas::class,
+
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 

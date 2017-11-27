@@ -15,16 +15,17 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        $user = User::all()->count();
-        if (!($user == 1)) {
-            if (!Auth::user()->hasPermissionTo('Create Goals')) //If user does //not have this permission
-        {
-                abort('401');
-            }
-        }
 
-        return $next($request);
-    }
+     public function handle($request, Closure $next)
+     {
+         if( ! cas()->checkAuthentication() )
+         {
+             if ($request->ajax()) {
+                 return response('Unauthorized.', 401);
+             }
+             cas()->authenticate();
+         }
+         session()->put('cas_user', cas()->user() );
+         return $next($request);
+     }
 }

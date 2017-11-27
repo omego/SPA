@@ -15,9 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware'=> 'casauth'],function(){
+  Route::get('/home', 'HomeController@index')->name('home');
+});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/login', function () {
+   return cas()->authenticate();
+});
 
 Route::group(['middleware'=> 'web'],function(){
 });
