@@ -11,8 +11,9 @@
           <div class="row">
           <span class= "new badge grey" data-badge-caption="">Created: {{ $action_plan->created_at->diffForHumans() }}</span>
           <span class= "new badge" data-badge-caption="">Updated: {{ $action_plan->updated_at->diffForHumans() }}</span>
-          <span class="left new badge @if ($action_plan->action_plan_approval == 'Approved') green
-          @elseif ($action_plan->action_plan_approval == 'Pending') orange
+          <span class="left new badge @if ($action_plan->action_plan_approval == 'Approved by DOD') green
+          @elseif ($action_plan->action_plan_approval == 'Approved by Owner') orange
+          @elseif ($action_plan->action_plan_approval == 'Pending') yellow darken-2
           @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
             {{ $action_plan->action_plan_approval }}</span>
             <div class="col s6">
@@ -25,7 +26,10 @@
                         <button class = 'waves-effect waves-light btn pulse'>Approve</button>
                     </div>
                 </form>
-                @elseif($action_plan->action_plan_approval == 'Approved by Owner')
+                @endcan
+              @endif
+                @hasrole('Admin')
+                @if($action_plan->action_plan_approval == 'Approved by Owner')
                 <form enctype="multipart/form-data" action="{{url('action_plan/ApproveActionplan')}}" method = "post">
                     {!! csrf_field() !!}
                     <input type="hidden" name = "action_plan_id" value = "{{$action_plan->id}}">
@@ -34,7 +38,9 @@
                     </div>
                 </form>
                 @endif
-              @endcan
+                @endhasrole
+
+
           </div>
           </div>
           <span class="card-title"><h5>Action Plan {{ $action_plan->action_plan_title }}</h5></span>

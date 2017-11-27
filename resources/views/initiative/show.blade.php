@@ -96,8 +96,9 @@
             @foreach($action_plans as $action_plan)
 
             <a href="#" class="viewShow collection-item" data-link = '/action_plan/{!!$action_plan->id!!}'>
-              <span class="new badge @if ($action_plan->action_plan_approval == 'Approved') green
-              @elseif ($action_plan->action_plan_approval == 'Pending') orange
+              <span class="new badge @if ($action_plan->action_plan_approval == 'Approved by DOD') green
+              @elseif ($action_plan->action_plan_approval == 'Approved by Owner') orange
+              @elseif ($action_plan->action_plan_approval == 'Pending') yellow darken-2
               @elseif ($action_plan->action_plan_approval == 'Draft') grey darken-1 @endif" data-badge-caption="">
                 {{ $action_plan->action_plan_approval }}</span>
               {{-- <span class= "new badge" data-badge-caption="">{!!$action_plan->created_at->diffForHumans()!!}</span> --}}

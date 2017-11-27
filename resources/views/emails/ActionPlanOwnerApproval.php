@@ -19,7 +19,7 @@
 
 <div class = 'container'>
     <h1>
-        a new Action plan has been approved.
+        A new Action plan needs your approval.
     </h1>
 </div>
 </body>

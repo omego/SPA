@@ -19,7 +19,7 @@
 
 <div class = 'container'>
     <h1>
-        a new Action plan has been approved.
+        Action plan{{ $action_plan->action_plan_title }} needs your approval.
     </h1>
 </div>
 </body>

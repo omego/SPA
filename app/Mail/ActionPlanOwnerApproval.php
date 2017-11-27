@@ -28,6 +28,7 @@ class ActionPlanOwnerApproval extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.ActionPlanOwnerApproval');
+        return $this->subject('Action Plan Approval Required')
+        ->view('emails.ActionPlanOwnerApproval');
     }
 }

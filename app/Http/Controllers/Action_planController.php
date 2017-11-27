@@ -283,6 +283,9 @@ class Action_planController extends Controller
         if ($action_plan->action_plan_approval == 'Pending') {
           \Mail::to($initiativesOwnerEmail->email)->send(new ActionPlanOwnerApproval);
         }
+        elseif ($action_plan->action_plan_approval == 'Approved by Owner') {
+          \Mail::to('dod@test.com')->send(new ActionPlanDODApproval);
+        }
 
         $action_plan->save();
 
