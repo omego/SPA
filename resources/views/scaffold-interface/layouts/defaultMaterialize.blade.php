@@ -35,17 +35,19 @@
 </div>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="right hide-on-med-and-down">
-			<li><a href="{!!url("goal")!!}">Goals</a></li>
+			<li><a href="{!!url("goal")!!}">Home</a></li>
+			{{-- <li><a href="{!!url("goal")!!}">Goals</a></li>
 			<li><a href="{!!url("project")!!}">Projects</a></li>
-			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
+			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
 
 		</ul>
 		<ul class="side-nav collection" id="mobile-demo">
 			<li class="collection-item active center">{{Auth::user()->name}}</li>
-			<li><a href="{!!url("goal")!!}">Goals</a></li>
+			<li><a href="{!!url("goal")!!}">Home</a></li>
+			{{-- <li><a href="{!!url("goal")!!}">Goals</a></li>
 			<li><a href="{!!url("project")!!}">Projects</a></li>
-			<li><a href="{!!url("initiative")!!}">Initiatives</a></li>
+			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
 			<li><a> {{Auth::user()->name}}</a> </li>
 			<li><a href="{{url('logout')}}" class="btn btn-default btn-flat grey white-text"

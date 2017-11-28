@@ -24,9 +24,9 @@ class ActionPlanDODApproval extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Action_plan $action_plan)
     {
-          //
+          $this->action_plan = $action_plan;
     }
 
     /**
