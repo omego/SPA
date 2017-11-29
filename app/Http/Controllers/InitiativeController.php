@@ -235,7 +235,6 @@ class InitiativeController extends Controller
             }else {
                 return view('errors.401');
               }
-
           }else{
             return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
           }
