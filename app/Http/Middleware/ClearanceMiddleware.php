@@ -13,18 +13,29 @@ class ClearanceMiddleware {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {        
+    public function handle($request, Closure $next) {
         if (Auth::user()->hasPermissionTo('view goals')) //If user has this //permission
     {
             return $next($request);
         }
 
-        if ($request->is('goal/create'))//If user is creating a post
+        if ($request->is('scaffold-users'))//If user is creating a post
          {
-            if (!Auth::user()->hasPermissionTo('Create Goals'))
+            if (!Auth::user()->hasPermissionTo('edit users'))
+         {
+                return view('errors.401');
+            }
+         else {
+                return $next($request);
+            }
+        }
+
+        if ($request->is('initiative/*/edit'))//If user is editing initiative
+         {
+            if (!Auth::user()->hasPermissionTo('edit initiatives'))
          {
                 abort('401');
-            } 
+            }
          else {
                 return $next($request);
             }
@@ -43,8 +54,8 @@ class ClearanceMiddleware {
          {
             if (!Auth::user()->hasPermissionTo('Delete Goals')) {
                 abort('401');
-            } 
-         else 
+            }
+         else
          {
                 return $next($request);
             }

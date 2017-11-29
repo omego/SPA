@@ -62,19 +62,25 @@
                       <div class="col s12">
                         Status: <br>
                         <p>
-                    <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval3" checked="checked" value="Draft" {{ $action_plan->action_plan_approval == 'Draft' ? 'checked' : '' }} />
-                     <label for="action_plan_approval3">Draft</label>
+                    <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval4" checked="checked" value="Draft" {{ $action_plan->action_plan_approval == 'Draft' ? 'checked' : '' }} />
+                     <label for="action_plan_approval4">Draft</label>
                    </p>
                    <p>
-                     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval2" value="Pending" {{ $action_plan->action_plan_approval == 'Pending' ? 'checked' : '' }} />
-                     <label for="action_plan_approval2">Pending</label>
+                     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval3" value="Pending" {{ $action_plan->action_plan_approval == 'Pending' ? 'checked' : '' }} />
+                     <label for="action_plan_approval3">Pending</label>
                    </p>
                    @can('approve action plans')
                    <p>
-                     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval1" value="Approved" {{ $action_plan->action_plan_approval == 'Approved' ? 'checked' : '' }} />
-                     <label for="action_plan_approval1">Approved</label>
+                     <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval2" value="Approved by Owner" {{ $action_plan->action_plan_approval == 'Approved by Owner' ? 'checked' : '' }} />
+                     <label for="action_plan_approval2">Approved by Owner</label>
                  </p>
                  @endcan
+                 @hasrole('Admin')
+                 <p>
+                   <input name="action_plan_approval" type="radio" class="with-gap" id="action_plan_approval1" value="Approved by DOD" {{ $action_plan->action_plan_approval == 'Approved by DOD' ? 'checked' : '' }} />
+                   <label for="action_plan_approval1">Approved by DOD</label>
+               </p>
+               @endhasrole
                  <br>
 
                     </div>

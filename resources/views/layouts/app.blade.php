@@ -30,7 +30,7 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/goal') }}">
                       <img src="{{url('uploads/logo-color.png')}}"
-                      alt="KSAU-HS Stratigic Plan"
+                      alt="KSAU-HS Strategic Plan"
                       style="width:60px;height:60px;">
                     </a>
                 </div>

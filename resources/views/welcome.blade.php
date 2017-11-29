@@ -80,11 +80,11 @@
 
             <div class="content">
               <div class="m-b-md">
-              <img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Stratigic Plan" style="width:100px;height:100px;">
+              <img src="{{url('uploads/logo-color.png')}}" alt="KSAU-HS Strategic Plan" style="width:100px;height:100px;">
               <img src="{{url('uploads/vlogo.jpg')}}" alt="Vision 2030" style="width:152px;height:100px;">
             </div>
                 <div class="title m-b-md">
-                    Stratigic Plan Application
+                    Strategic Plan Application
                 </div>
 
                 <div class="links">

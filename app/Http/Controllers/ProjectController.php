@@ -76,8 +76,8 @@ class ProjectController extends Controller
         }elseif ($user->hasRole('Owner')) {
           $user = Auth::user();
           $userId = $user->id;
-          $projects = Project::whereHas('users', function ($q) use ($userId) {
-              $q->where('user_id', $userId);
+          $projects = Project::whereHas('users', function ($q) use ($id, $userId) {
+              $q->where('goal_id', $id)->where('user_id', $userId);
           })->paginate(20);
         }else{
             return view('errors.401');
@@ -92,7 +92,7 @@ class ProjectController extends Controller
         $userGoals = $GoalName->users;
 
         if ($user->hasPermissionTo('view projects')) {
-            return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at','userGoals'));
+            return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at','userGoals','id'));
         }else{
             return view('errors.401');
         }
@@ -156,7 +156,7 @@ class ProjectController extends Controller
                          'test-event',
                         ['message' => 'A new project has been created !!']);
 
-  
+
         return redirect('initiative/list/'. $project->id);
     }
 
