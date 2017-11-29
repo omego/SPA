@@ -201,6 +201,7 @@ class InitiativeController extends Controller
     public function show($id,Request $request)
     {
         $title = 'Show - initiative';
+        $user = Auth::user();
 
         if($request->ajax())
         {
@@ -228,6 +229,16 @@ class InitiativeController extends Controller
         $GoalID =  $GoalName->id;
         $user = Auth::user();
         if ($user->hasPermissionTo('view initiatives')) {
+          if ($user->hasRole('Owner')) {
+            if ($initiative->user_id == $user->id){
+              return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
+            }else {
+                return view('errors.401');
+              }
+
+          }else{
+            return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
+          }
         return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
       }else{
         return view('errors.401');
@@ -262,7 +273,12 @@ class InitiativeController extends Controller
 
         $initiative_files = Initiative_attachment::where('initiative_id', $id)->get();
 
-        return view('initiative.edit',compact('title','initiative' ,'projects','users','initiative_files') );
+        if ($user->hasPermissionTo('edit initiatives')) {
+          return view('initiative.edit',compact('title','initiative' ,'projects','users','initiative_files') );
+        }else{
+          return view('errors.401');
+        }
+
     }
 
     /**
