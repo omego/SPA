@@ -288,7 +288,7 @@ class Action_planController extends Controller
         $initiativesTitle = $initiative->initiative_title;
         $initiativesOwnerId = $initiative->user_id;
         $initiativesOwnerEmail = User::findOrfail($initiativesOwnerId);
-        $DodEmail = "alserihim@ksau-hs.edu.sa";
+        $DodEmail = "spa@ksau-hs.edu.sa";
 
         if ($action_plan->action_plan_approval == 'Pending') {
           \Mail::to($initiativesOwnerEmail->email)->send(new ActionPlanOwnerApproval($action_plan));
@@ -395,7 +395,7 @@ class Action_planController extends Controller
         public function ApproveActionplan(Request $request)
     {
         $action_plan = Action_plan::findOrfail($request->action_plan_id);
-        $DodEmail = "alserihim@ksau-hs.edu.sa";
+        $DodEmail = "spa@ksau-hs.edu.sa";
         if ($action_plan->action_plan_approval != 'Approved by Owner') {
           $action_plan->action_plan_approval = 'Approved by Owner';
           $action_plan->save();
