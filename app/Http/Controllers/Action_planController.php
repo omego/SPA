@@ -20,7 +20,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Pusher;
+// use Pusher;
 use App\User;
 use App\Project;
 use App\Goal;
@@ -153,15 +153,15 @@ class Action_planController extends Controller
 
         $action_plan->push();
 
-        $pusher = App::make('pusher');
-
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new action_plan has been created !!']);
+        // $pusher = App::make('pusher');
+        //
+        // //default pusher notification.
+        // //by default channel=test-channel,event=test-event
+        // //Here is a pusher notification example when you create a new resource in storage.
+        // //you can modify anything you want or use it wherever.
+        // $pusher->trigger('test-channel',
+        //                  'test-event',
+        //                 ['message' => 'A new action_plan has been created !!']);
 
         return redirect('action_plan/'. $action_plan->id);
     }
@@ -299,19 +299,19 @@ class Action_planController extends Controller
 
         $action_plan->save();
 
-        $options = array(
-          'cluster' => 'ap2',
-          'encrypted' => true
-        );
-        $pusher = new Pusher(
-          env("PUSHER_APP_KEY"),
-          env("PUSHER_APP_SECRET"),
-          env("PUSHER_APP_ID"),
-          $options
-        );
-
-        $data['message'] = $action_plan->action_plan_title . ' needs your approval';
-        $pusher->trigger('my-channel', 'my-event', $data);
+        // $options = array(
+        //   'cluster' => 'ap2',
+        //   'encrypted' => true
+        // );
+        // $pusher = new Pusher(
+        //   env("PUSHER_APP_KEY"),
+        //   env("PUSHER_APP_SECRET"),
+        //   env("PUSHER_APP_ID"),
+        //   $options
+        // );
+        //
+        // $data['message'] = $action_plan->action_plan_title . ' needs your approval';
+        // $pusher->trigger('my-channel', 'my-event', $data);
 
         return redirect('action_plan/'. $action_plan->id);
     }
