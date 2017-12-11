@@ -40,9 +40,9 @@ class Action_plan_attachmentController extends Controller
     public function create()
     {
         $title = 'Create - action_plan_attachment';
-        
+
         $action_plans = Action_plan::all()->pluck('action_plan_title','id');
-        
+
         return view('action_plan_attachment.create',compact('title','action_plans'  ));
     }
 
@@ -55,8 +55,8 @@ class Action_plan_attachmentController extends Controller
     public function store(Request $request)
     {
         $action_plan_attachment = new Action_plan_attachment();
-        
-        
+
+
         $action_plan_attachment->action_plan_id = $request->action_plan_id;
 
 
@@ -82,20 +82,20 @@ class Action_plan_attachmentController extends Controller
         $file->move($destinationPath,$file->getClientOriginalName());
 
         $filename = $file->getClientOriginalName();
-        
+
         $action_plan_attachment->file_name = $filename;
 
         $action_plan_attachment->save();
 
-        $pusher = App::make('pusher');
-
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new action_plan_attachment has been created !!']);
+        // $pusher = App::make('pusher');
+        //
+        // //default pusher notification.
+        // //by default channel=test-channel,event=test-event
+        // //Here is a pusher notification example when you create a new resource in storage.
+        // //you can modify anything you want or use it wherever.
+        // $pusher->trigger('test-channel',
+        //                  'test-event',
+        //                 ['message' => 'A new action_plan_attachment has been created !!']);
 
         return redirect('action_plan_attachment');
     }
@@ -134,10 +134,10 @@ class Action_plan_attachmentController extends Controller
             return URL::to('action_plan_attachment/'. $id . '/edit');
         }
 
-        
+
         $action_plans = Action_plan::all()->pluck('action_plan_title','id');
 
-        
+
         $action_plan_attachment = Action_plan_attachment::findOrfail($id);
         return view('action_plan_attachment.edit',compact('title','action_plan_attachment' ,'action_plans' ) );
     }
@@ -152,13 +152,13 @@ class Action_plan_attachmentController extends Controller
     public function update($id,Request $request)
     {
         $action_plan_attachment = Action_plan_attachment::findOrfail($id);
-    	
+
         $action_plan_attachment->file_name = $request->file_name;
-        
-        
+
+
         $action_plan_attachment->action_plan_id = $request->action_plan_id;
 
-        
+
         $action_plan_attachment->save();
 
         return redirect('action_plan_attachment');
