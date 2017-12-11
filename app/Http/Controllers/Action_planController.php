@@ -288,12 +288,13 @@ class Action_planController extends Controller
         $initiativesTitle = $initiative->initiative_title;
         $initiativesOwnerId = $initiative->user_id;
         $initiativesOwnerEmail = User::findOrfail($initiativesOwnerId);
+        $DodEmail = "alserihim@ksau-hs.edu.sa";
 
         if ($action_plan->action_plan_approval == 'Pending') {
           \Mail::to($initiativesOwnerEmail->email)->send(new ActionPlanOwnerApproval($action_plan));
         }
         elseif ($action_plan->action_plan_approval == 'Approved by Owner') {
-          \Mail::to('dod@test.com')->send(new ActionPlanDODApproval($action_plan));
+          \Mail::to($DodEmail)->send(new ActionPlanDODApproval($action_plan));
         }
 
         $action_plan->save();
@@ -394,10 +395,11 @@ class Action_planController extends Controller
         public function ApproveActionplan(Request $request)
     {
         $action_plan = Action_plan::findOrfail($request->action_plan_id);
+        $DodEmail = "alserihim@ksau-hs.edu.sa";
         if ($action_plan->action_plan_approval != 'Approved by Owner') {
           $action_plan->action_plan_approval = 'Approved by Owner';
           $action_plan->save();
-          \Mail::to('dod@test.com')->send(new ActionPlanDODApproval($action_plan));
+          \Mail::to($DodEmail)->send(new ActionPlanDODApproval($action_plan));
         }elseif ($action_plan->action_plan_approval == 'Approved by Owner') {
                   $action_plan->action_plan_approval = 'Approved by DOD';
                   $action_plan->save();
