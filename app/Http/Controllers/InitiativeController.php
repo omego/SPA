@@ -15,7 +15,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Pusher;
+// use Pusher;
 use App\Project;
 use App\Goal;
 use App\User;
@@ -177,15 +177,15 @@ class InitiativeController extends Controller
 
         $initiative->save();
 
-        $pusher = App::make('pusher');
-
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new initiative has been created !!']);
+        // $pusher = App::make('pusher');
+        //
+        // //default pusher notification.
+        // //by default channel=test-channel,event=test-event
+        // //Here is a pusher notification example when you create a new resource in storage.
+        // //you can modify anything you want or use it wherever.
+        // $pusher->trigger('test-channel',
+        //                  'test-event',
+        //                 ['message' => 'A new initiative has been created !!']);
 
         // return redirect('initiative');
         return redirect('initiative/'. $initiative->id);

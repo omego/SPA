@@ -13,7 +13,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Pusher;
+// use Pusher;
 use App\Goal;
 
 
@@ -146,15 +146,15 @@ class ProjectController extends Controller
 
         $project->save();
 
-        $pusher = App::make('pusher');
-
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new project has been created !!']);
+        // $pusher = App::make('pusher');
+        //
+        // //default pusher notification.
+        // //by default channel=test-channel,event=test-event
+        // //Here is a pusher notification example when you create a new resource in storage.
+        // //you can modify anything you want or use it wherever.
+        // $pusher->trigger('test-channel',
+        //                  'test-event',
+        //                 ['message' => 'A new project has been created !!']);
 
 
         return redirect('initiative/list/'. $project->id);

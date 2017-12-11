@@ -40,9 +40,9 @@ class Initiative_attachmentController extends Controller
     public function create()
     {
         $title = 'Create - initiative_attachment';
-        
+
         $initiatives = Initiative::all()->pluck('initiative_title','id');
-        
+
         return view('initiative_attachment.create',compact('title','initiatives'  ));
     }
 
@@ -56,25 +56,25 @@ class Initiative_attachmentController extends Controller
     {
         $initiative_attachment = new Initiative_attachment();
 
-        
+
         $initiative_attachment->file_name = $request->file_name;
 
-        
-        
+
+
         $initiative_attachment->initiative_id = $request->initiative_id;
 
-        
+
         $initiative_attachment->save();
 
-        $pusher = App::make('pusher');
-
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new initiative_attachment has been created !!']);
+        // $pusher = App::make('pusher');
+        //
+        // //default pusher notification.
+        // //by default channel=test-channel,event=test-event
+        // //Here is a pusher notification example when you create a new resource in storage.
+        // //you can modify anything you want or use it wherever.
+        // $pusher->trigger('test-channel',
+        //                  'test-event',
+        //                 ['message' => 'A new initiative_attachment has been created !!']);
 
         return redirect('initiative_attachment');
     }
@@ -113,10 +113,10 @@ class Initiative_attachmentController extends Controller
             return URL::to('initiative_attachment/'. $id . '/edit');
         }
 
-        
+
         $initiatives = Initiative::all()->pluck('initiative_title','id');
 
-        
+
         $initiative_attachment = Initiative_attachment::findOrfail($id);
         return view('initiative_attachment.edit',compact('title','initiative_attachment' ,'initiatives' ) );
     }
@@ -131,13 +131,13 @@ class Initiative_attachmentController extends Controller
     public function update($id,Request $request)
     {
         $initiative_attachment = Initiative_attachment::findOrfail($id);
-    	
+
         $initiative_attachment->file_name = $request->file_name;
-        
-        
+
+
         $initiative_attachment->initiative_id = $request->initiative_id;
 
-        
+
         $initiative_attachment->save();
 
         return redirect('initiative_attachment');

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Pusher;
+// use Pusher;
 use App\Project;
 use App\Initiative;
 use Auth;
@@ -121,19 +121,19 @@ class GoalController extends Controller
 
         $goal->save();
 
-        $options = array(
-          'cluster' => 'ap2',
-          'encrypted' => true
-        );
-        $pusher = new Pusher(
-          env("PUSHER_APP_KEY"),
-          env("PUSHER_APP_SECRET"),
-          env("PUSHER_APP_ID"),
-          $options
-        );
-
-        $data['message'] = $request->goal_title . ' created';
-        $pusher->trigger('my-channel', 'my-event', $data);
+        // $options = array(
+        //   'cluster' => 'ap2',
+        //   'encrypted' => true
+        // );
+        // $pusher = new Pusher(
+        //   env("PUSHER_APP_KEY"),
+        //   env("PUSHER_APP_SECRET"),
+        //   env("PUSHER_APP_ID"),
+        //   $options
+        // );
+        //
+        // $data['message'] = $request->goal_title . ' created';
+        // $pusher->trigger('my-channel', 'my-event', $data);
 
         return redirect('project/list/'. $goal->id);
 
