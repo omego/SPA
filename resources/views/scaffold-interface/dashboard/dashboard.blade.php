@@ -1,3 +1,4 @@
+@hasrole('Admin')
 @extends('scaffold-interface.layouts.app')
 @section('title','Dashboard')
 @section('content')
@@ -71,3 +72,4 @@
 	</div>
 </section>
 @endsection
+@endhasrole
