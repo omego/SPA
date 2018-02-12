@@ -105,3 +105,11 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('scaffold-roles/addPermission','\App\Http\Controllers\ScaffoldInterface\RoleController@addPermission');
   Route::get('scaffold-roles/removePermission/{permission}/{role_id}','\App\Http\Controllers\ScaffoldInterface\RoleController@revokePermission');
 });
+
+//admin Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('admin','\App\Http\Controllers\AdminController');
+  Route::post('admin/{id}/update','\App\Http\Controllers\AdminController@update');
+  Route::get('admin/{id}/delete','\App\Http\Controllers\AdminController@destroy');
+  Route::get('admin/{id}/deleteMsg','\App\Http\Controllers\AdminController@DeleteMsg');
+});
