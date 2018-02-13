@@ -40,6 +40,9 @@
 			<li><a href="{!!url("project")!!}">Projects</a></li>
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+			@hasrole('Admin')
+			<li class="teal"><a href="{!!url("admin")!!}">Admin</a></li>
+			@endhasrole
 
 		</ul>
 		<ul class="side-nav collection" id="mobile-demo">
@@ -49,6 +52,9 @@
 			<li><a href="{!!url("project")!!}">Projects</a></li>
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
+			@hasrole('Admin')
+			<li class="teal"><a href="{!!url("admin")!!}">Admin</a></li>
+			@endhasrole
 			<li><a> {{Auth::user()->name}}</a> </li>
 			<li><a href="{{url('logout')}}" class="btn btn-default btn-flat grey white-text"
 					onclick="event.preventDefault();

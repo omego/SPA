@@ -1,57 +1,42 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Index')
+@section('title','Users')
 @section('content')
 
 <div class = 'container'>
   <section class="content">
   <div class="box box-primary">
   <div class="box-header">
-  	<h3>All Users</h3>
+  	<h4>Users</h4>
   </div>
-  	<div class="box-body">
-  		<a href="{{url('/scaffold-users/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> New</a>
-  		<table class = "table table-hover">
-  		<thead>
-  			<th>Name</th>
-  			<th>Email</th>
-  			<th>Roles</th>
-  			<th>Permissions</th>
-  			<th>Actions</th>
-  		</thead>
-  		<tbody>
-  			@foreach($users as $user)
-  			<tr>
-  				<td>{{$user->name}}</td>
-  				<td>{{$user->email}}</td>
-  				<td>
-  				@if(!empty($user->roles))
-  					@foreach($user->roles as $role)
-  					<small class = 'label bg-blue'>{{$role->name}}</small>
-  					@endforeach
-  				@else
-  					<small class = 'label bg-red'>No Roles</small>
-  				@endif
-  				</td>
-  				<td>
-  				@if(!empty($user->permissions))
-  					@foreach($user->permissions as $permission)
-  					<small class = 'label bg-orange'>{{$permission->name}}</small>
-  					@endforeach
-  				@else
-  					<small class = 'label bg-red'>No Permissions</small>
-  				@endif
-  				</td>
-  				<td>
-  					<a href="{{url('/scaffold-users/edit')}}/{{$user->id}}" class = 'btn btn-primary btn-sm'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-  					<a href="{{url('scaffold-users/delete')}}/{{$user->id}}" class = "btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-  				</td>
-  			</tr>
-  			@endforeach
-  		</tbody>
-  	</table>
+  <div class="row">
+    <div class="col s12">
+        <a href = '{{url('/admin/create')}}' class = 'orange-text text-accent-2 light'>+ NEW USER</a>
   </div>
-  </div>
-  </section>
+  <div class="col s12">
+    <div class="collection">
+      @foreach($users as $user)
+        <a href="{{url('/admin')}}/{{$user->id}}/edit" class="collection-item">
 
+            @if(!empty($user->roles))
+  					@foreach($user->roles as $role)
+  					<span class="new badge" data-badge-caption="">
+              {{$role->name}}
+            </span>
+  					@endforeach
+  				@else
+  				<span class="new badge grey" data-badge-caption="">
+            No Roles
+          </span>
+  				@endif
+            {{$user->name}}
+          </a>
+
+        @endforeach
+</div>
+</div>
+</div>
+
+  </section>
+</div>
 </div>
   @endsection

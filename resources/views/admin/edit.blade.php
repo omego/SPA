@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Edit')
+@section('title','Edit User')
 @section('content')
 
 <div class = 'container'>
@@ -7,7 +7,7 @@
   <section class="content">
   	<div class="box box-primary">
   		<div class="box-header">
-  			<h3>Edit User ({{$user->name}})</h3>
+  			<h4>Edit User ({{$user->name}})</h4>
   		</div>
   		<div class="box-body">
   			<form action="{{url('scaffold-users/update')}}" method = "post">

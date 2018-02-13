@@ -1,8 +1,17 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Create')
+@section('title','Create User')
 @section('content')
 
 <div class = 'container'>
+  @if ($errors->any())
+  <div class="card deep-orange darken-4 white-text center">
+      <ul>
+          @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+  </div>
+  @endif
   <section class="content">
   	<div class="box box-primary">
   		<div class="box-header">
