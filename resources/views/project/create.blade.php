@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
-@section('title','Create')
+@section('title','Create Project')
 @section('content')
 
 <div class = 'container'>
