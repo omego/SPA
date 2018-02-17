@@ -165,6 +165,6 @@ class UserController extends Controller
 
         $user->removeRole(str_slug($role, ' '));
 
-        return redirect('scaffold-users/edit/'.$user_id);
+        return redirect('admin/'.$user_id.'/edit');
     }
 }

@@ -109,7 +109,11 @@ Route::group(['middleware'=> 'web'],function(){
 //admin Routes
 Route::group(['middleware'=> 'web'],function(){
   Route::resource('admin','\App\Http\Controllers\AdminController');
+  Route::post('admin/create','\App\Http\Controllers\AdminController@create');
+  Route::post('admin/store','\App\Http\Controllers\AdminController@store');
   Route::post('admin/{id}/update','\App\Http\Controllers\AdminController@update');
   Route::get('admin/{id}/delete','\App\Http\Controllers\AdminController@destroy');
   Route::get('admin/{id}/deleteMsg','\App\Http\Controllers\AdminController@DeleteMsg');
+  Route::post('admin/addRole','\App\Http\Controllers\AdminController@addRole');
+  Route::get('admin/removeRole','\App\Http\Controllers\AdminController@revokeRole');
 });
