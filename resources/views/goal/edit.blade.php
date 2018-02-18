@@ -37,7 +37,7 @@
               </div>
     </form>
 
-            <!-- assign goals to users -->
+            <!-- Assign Users To Goal -->
 
                 <div class="col s12">
             <div class="box box-primary">

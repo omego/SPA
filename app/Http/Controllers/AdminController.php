@@ -7,6 +7,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rule;
 
 use Auth;
 
@@ -58,6 +59,12 @@ class AdminController extends Controller
      */
      public function store(Request $request)
      {
+
+       $this->validate($request, [
+       'email' => 'unique:users,email|required|max:191|string|email',
+       'name' => 'required|max:191|string',
+       'password' => 'required|min:6|string',
+       ]);
          $user = new \App\User();
 
          $user->email = $request->email;
@@ -97,6 +104,18 @@ class AdminController extends Controller
       */
      public function update(Request $request)
      {
+
+       $this->validate($request, [
+       'email' => [
+         'required',
+       Rule::unique('users')->ignore($request->user_id),
+        'email',
+        'max:191',
+        'string',
+     ],
+       'name' => 'required|max:191|string',
+       'password' => 'required|min:6|string',
+       ]);
          $user = \App\User::findOrfail($request->user_id);
 
          $user->email = $request->email;
