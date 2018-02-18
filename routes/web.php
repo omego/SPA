@@ -117,3 +117,8 @@ Route::group(['middleware'=> 'web'],function(){
   Route::post('admin/addRole','\App\Http\Controllers\AdminController@addRole');
   Route::get('admin/removeRole','\App\Http\Controllers\AdminController@revokeRole');
 });
+
+//Activitylog
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('activity','\App\Http\Controllers\ActivityController');
+  });

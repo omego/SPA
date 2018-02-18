@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Goal.
@@ -14,21 +15,24 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class Goal extends Model
 {
-	
+
 	use SoftDeletes;
 	use HasRoles;
+	use LogsActivity;
+
 	protected $guard_name = 'web'; // or whatever guard you want to use
 
 	protected $dates = ['deleted_at'];
-    
-	
+
     protected $table = 'goals';
+
+		protected static $logAttributes = ['goal_title', 'goal_description'];
 
     public function initiatives()
     {
     	return $this->hasManyThrough('App\Initiative','App\Project');
     }
-	
+
 
 	/**
      * user.

@@ -165,6 +165,7 @@ return [
         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
         Vinkla\Pusher\PusherServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
