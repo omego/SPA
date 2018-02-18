@@ -87,7 +87,7 @@ class AdminController extends Controller
      */
      public function edit($id)
      {
-         $user = \App\User::findOrfail($id);
+         $user = \App\User::whereNotIn('id', [1, 2])->findOrfail($id);
          $roles = Role::all()->pluck('name');
         // $permissions = Permission::all()->pluck('name');
          $userRoles = $user->roles;
