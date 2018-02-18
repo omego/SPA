@@ -36,7 +36,8 @@ class AdminController extends Controller
      */
      public function index()
      {
-         $users = \App\User::all();
+        $users = \App\User::whereNotIn('id', [1, 2])
+                  ->get();
 
          return view('admin.index', compact('users'));
      }

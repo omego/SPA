@@ -56,7 +56,9 @@
   						<div class="form-group">
   							<select name="role_name" id="" class = "form-control">
   								@foreach($roles as $role)
+                    @if($role != "SuperAdmin")
   								<option value="{{$role}}">{{$role}}</option>
+                    @endif
   								@endforeach
   							</select>
   						</div>
@@ -72,7 +74,9 @@
 
             <div class="col s12">
             @foreach($userRoles as $role)
+              @if($role->name != "SuperAdmin")
               <a class='waves-effect waves-light btn grey hoverable' href='{{url('scaffold-users/removeRole')}}/{{str_slug($role->name,'-')}}/{{$user->id}}' data-activates='goal-assign'><i class="material-icons left">cancel</i>{{$role->name}}</a>
+              @endif
             @endforeach
           </div>
 
