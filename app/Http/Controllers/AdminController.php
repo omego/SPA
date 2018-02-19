@@ -29,6 +29,7 @@ class AdminController extends Controller
   public function __construct() {
   $this->middleware(['auth', 'clearance']);
 }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,10 +37,17 @@ class AdminController extends Controller
      */
      public function index()
      {
-        $users = \App\User::whereNotIn('id', [1, 2])
-                  ->get();
-
+       $user = Auth::user();
+       if ($user->hasRole('SuperAdmin')) {
+         $users = \App\User::all();
          return view('admin.index', compact('users'));
+       }elseif ($user->hasRole('Admin')) {
+      $users = \App\User::whereNotIn('id', [1, 3])
+                ->get();
+       return view('admin.index', compact('users'));
+       }else{
+           return view('errors.401');
+       }
      }
 
     /**
@@ -49,9 +57,13 @@ class AdminController extends Controller
      */
      public function create()
      {
+       $user = Auth::user();
+       if ($user->hasAnyRole('Admin','SuperAdmin')) {
          return view('admin.create');
+     }else {
+       return view('errors.401');
      }
-
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -87,13 +99,23 @@ class AdminController extends Controller
      */
      public function edit($id)
      {
-         $user = \App\User::whereNotIn('id', [1, 2])->findOrfail($id);
+       $user = Auth::user();
+       if ($user->hasRole('SuperAdmin')) {
+         $user = \App\User::findOrfail($id);
+         $roles = Role::all()->pluck('name');
+         $userRoles = $user->roles;
+         return view('admin.edit', compact('user', 'roles', 'userRoles'));
+       }elseif ($user->hasRole('Admin')) {
+         $user = \App\User::whereNotIn('id', [1, 3])->findOrfail($id);
          $roles = Role::all()->pluck('name');
         // $permissions = Permission::all()->pluck('name');
          $userRoles = $user->roles;
       //   $userPermissions = $user->permissions;
+        return view('admin.edit', compact('user', 'roles', 'userRoles'));
+    }else{
+      return view('errors.401');
+    }
 
-         return view('admin.edit', compact('user', 'roles', 'userRoles'));
      }
 
      /**

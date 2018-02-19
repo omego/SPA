@@ -55,11 +55,13 @@
   						<input type="hidden" name = "user_id" value = "{{$user->id}}">
   						<div class="form-group">
   							<select name="role_name" id="" class = "form-control">
-  								@foreach($roles as $role)
+
+                  @foreach($roles as $role)
                     @if($role != "SuperAdmin")
   								<option value="{{$role}}">{{$role}}</option>
                     @endif
-  								@endforeach
+                  @endforeach
+
   							</select>
   						</div>
               </div>
