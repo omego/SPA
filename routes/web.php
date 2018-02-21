@@ -22,18 +22,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=> 'web'],function(){
 });
 
-Route::group(['middleware'=> 'web'],function(){
-});
-Route::group(['middleware'=> 'web'],function(){
-});
-
-Route::group(['middleware'=> 'web'],function(){
-});
-Route::group(['middleware'=> 'web'],function(){
+//Dashboard Routes
+Route::group(['middleware'=> 'IsSuperAdmin'],function(){
+  Route::get('/scaffold-dashboard','ScaffoldInterface\AppController@dashboard');
+  Route::resource('/scaffold-users','ScaffoldInterface\UserController');
+  Route::resource('/scaffold-permissions','ScaffoldInterface\PermissionController');
+  Route::resource('/scaffold-roles','ScaffoldInterface\RoleController');
 });
 
-Route::group(['middleware'=> 'web'],function(){
-});
 //goal Routes
 Route::group(['middleware'=> 'web'],function(){
   Route::resource('goal','\App\Http\Controllers\GoalController');

@@ -35,7 +35,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
+        'IsSuperAdmin' => [
+            \App\Http\Middleware\IsSuperAdmin::class,
+        ],
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -58,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
         'clearance' => \App\Http\Middleware\ClearanceMiddleware::class,
+        'IsSuperAdmin' => \App\Http\Middleware\IsSuperAdmin::class,
     ];
 }

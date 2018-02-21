@@ -70,7 +70,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    401 Access Denied
+                    {{ $exception->getMessage() }}
                 </div>
 
                 <div class="links">
