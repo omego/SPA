@@ -130,20 +130,24 @@ class AdminController extends Controller
 
        $this->validate($request, [
        'email' => [
-         'required',
+       'required',
        Rule::unique('users')->ignore($request->user_id),
         'email',
         'max:191',
         'string',
      ],
        'name' => 'required|max:191|string',
-       'password' => 'required|min:6|string',
+       'password' => 'nullable|between:6,20|string',
        ]);
          $user = \App\User::findOrfail($request->user_id);
 
          $user->email = $request->email;
          $user->name = $request->name;
-         $user->password = Hash::make($request->password);
+         if(!empty($request->input('password')))
+       {
+           $user->password = Hash::make($request->password);
+       }
+
 
          $user->save();
 

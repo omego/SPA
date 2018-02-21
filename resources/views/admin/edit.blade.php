@@ -31,7 +31,7 @@
                 				</div>
                         <div class="input-field col s12">
                           <label for="">Password</label>
-                					<input type="password" name = "password" class = "validate form-control" required>
+                					<input type="password" name = "password" class = "validate form-control">
                         </div>
                         <button class = 'btn' type ='submit'>Update</button>
                       </div>
