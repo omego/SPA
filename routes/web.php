@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/cas/login', function(){
+    cas()->authenticate();
+    return view('cas');
+});
+
+Route::get('/cas/logout', function(){
+    cas()->logout();
+    return view('cas');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
