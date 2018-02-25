@@ -47,7 +47,7 @@
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
 
-			<li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>{{Auth::user()->name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+			<li class="teal uppercase"><a class='dropdown-button' href='#' data-activates='dropdown1'>{{Auth::user()->name}}<i class="material-icons right">arrow_drop_down</i></a></li>
 
 
 		</ul>
