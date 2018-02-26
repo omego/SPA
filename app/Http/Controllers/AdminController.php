@@ -46,7 +46,7 @@ class AdminController extends Controller
                 ->get();
        return view('admin.index', compact('users'));
        }else{
-           return view('errors.401');
+           return abort(401, 'Unauthorized action.');
        }
      }
 
@@ -61,7 +61,7 @@ class AdminController extends Controller
        if ($user->hasAnyRole('Admin','SuperAdmin')) {
          return view('admin.create');
      }else {
-       return view('errors.401');
+       return abort(401, 'Unauthorized action.');
      }
     }
     /**
@@ -113,7 +113,7 @@ class AdminController extends Controller
       //   $userPermissions = $user->permissions;
         return view('admin.edit', compact('user', 'roles', 'userRoles'));
     }else{
-      return view('errors.401');
+      return abort(401, 'Unauthorized action.');
     }
 
      }
@@ -184,7 +184,7 @@ class AdminController extends Controller
 
          $user->removeRole(str_slug($role, ' '));
 
-         return redirect('admin/'.$request->user_id.'/edit');
+         return redirect('admin/'.$user_id.'/edit');
      }
 
     /**

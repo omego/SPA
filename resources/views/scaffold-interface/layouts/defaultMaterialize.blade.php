@@ -26,8 +26,8 @@
 <ul id='dropdown1' class='dropdown-content'>
 	@hasrole('Admin')
 	<li><a href="{!!url("admin")!!}">Users</a></li>
-	<li><a href="{!!url("activity")!!}">Activity</a></li>
-	<li><a href="#">Reports</a></li>
+	{{-- <li><a href="{!!url("activity")!!}">Activity</a></li> --}}
+	{{-- <li><a href="#">Reports</a></li> --}}
 	@endhasrole
 	<li class="divider"></li>
 <li><a href="{{url('logout')}}"

@@ -77,7 +77,7 @@
             <div class="col s12">
             @foreach($userRoles as $role)
               @if($role->name != "SuperAdmin")
-              <a class='waves-effect waves-light btn grey hoverable' href='{{url('scaffold-users/removeRole')}}/{{str_slug($role->name,'-')}}/{{$user->id}}' data-activates='goal-assign'><i class="material-icons left">cancel</i>{{$role->name}}</a>
+              <a class='waves-effect waves-light btn grey hoverable' href='{{url('admin/removeRole')}}/{{str_slug($role->name,'-')}}/{{$user->id}}' data-activates='goal-assign'><i class="material-icons left">cancel</i>{{$role->name}}</a>
               @endif
             @endforeach
           </div>

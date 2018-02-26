@@ -111,7 +111,7 @@ Route::group(['middleware'=> 'web'],function(){
   Route::get('admin/{id}/delete','\App\Http\Controllers\AdminController@destroy');
   Route::get('admin/{id}/deleteMsg','\App\Http\Controllers\AdminController@DeleteMsg');
   Route::post('admin/addRole','\App\Http\Controllers\AdminController@addRole');
-  Route::get('admin/removeRole','\App\Http\Controllers\AdminController@revokeRole');
+  Route::get('admin/removeRole/{role}/{user_id}','\App\Http\Controllers\AdminController@revokeRole');
 });
 
 //Activitylog

@@ -68,7 +68,7 @@ class Action_planController extends Controller
           if ($user->hasPermissionTo('view action plans')) {
         return view('action_plan.index',compact('action_plans','title'));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
   }
@@ -87,7 +87,7 @@ class Action_planController extends Controller
         if ($user->hasPermissionTo('create action plans')) {
         return view('action_plan.create',compact('title','initiatives'  ));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -213,13 +213,13 @@ class Action_planController extends Controller
             if ($action_plan->user_id == $user->id) {
               return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
             }else {
-              return view('errors.401');
+              return abort(401, 'Unauthorized action.');
             }
           }else {
             return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
           }
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -241,7 +241,7 @@ class Action_planController extends Controller
             if ($user->hasPermissionTo('edit action plans')) {
             return URL::to('action_plan/'. $id . '/edit');
           }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
           }
         }
 

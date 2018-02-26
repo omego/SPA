@@ -56,7 +56,7 @@ class InitiativeController extends Controller
           $userId = $user->id;
           $initiatives = Initiative::where('user_id', $userId)->paginate(20);
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
 
         if (Auth::check()) {
@@ -66,7 +66,7 @@ class InitiativeController extends Controller
           if ($user->hasPermissionTo('view initiatives')) {
         return view('initiative.index',compact('initiatives','title'));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
   }
@@ -84,7 +84,7 @@ class InitiativeController extends Controller
           $userId = $user->id;
         $initiatives = Initiative::where('user_id', $userId)->where('project_id', $id)->paginate(20);
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
 
         $ProjectName = Project::findOrfail($id);
@@ -101,7 +101,7 @@ class InitiativeController extends Controller
         if ($user->hasPermissionTo('view initiatives')) {
         return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects','initiativesTitle'));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
     /**
@@ -118,7 +118,7 @@ class InitiativeController extends Controller
         if ($user->hasPermissionTo('create initiatives')) {
         return view('initiative.create',compact('title','projects'  ));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -233,14 +233,14 @@ class InitiativeController extends Controller
             if ($initiative->user_id == $user->id){
               return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
             }else {
-                return view('errors.401');
+                return abort(401, 'Unauthorized action.');
               }
           }else{
             return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
           }
         return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -262,7 +262,7 @@ class InitiativeController extends Controller
             if ($user->hasPermissionTo('edit initiatives')) {
             return URL::to('initiative/'. $id . '/edit');
           }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
           }
         }
 
@@ -275,7 +275,7 @@ class InitiativeController extends Controller
         if ($user->hasPermissionTo('edit initiatives')) {
           return view('initiative.edit',compact('title','initiative' ,'projects','users','initiative_files') );
         }else{
-          return view('errors.401');
+          return abort(401, 'Unauthorized action.');
         }
 
     }
@@ -342,7 +342,7 @@ class InitiativeController extends Controller
             if ($user->hasPermissionTo('delete initiatives')) {
             return $msg;
           }else{
-                  return view('errors.401');
+                  return abort(401, 'Unauthorized action.');
           }
         }
       }

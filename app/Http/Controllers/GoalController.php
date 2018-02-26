@@ -68,12 +68,12 @@ class GoalController extends Controller
                 $q->where('user_id', $userId);
             })->paginate(20);
           }else{
-              return view('errors.401');
+              return abort(401, 'Unauthorized action.');
           }
           if ($user->hasPermissionTo('view goals')) {
               return view('goal.index',compact('goals','GoalTitle','GoalID'));
           }else{
-              return view('errors.401');
+              return abort(401, 'Unauthorized action.');
           }
     }
 
@@ -184,7 +184,7 @@ class GoalController extends Controller
             if ($user->id == $userGoal->id) {
               return view('goal.show',compact('title','goal','ProjectCount','InitiativeCounted','InitiativePercent'));
             }else {
-              return view('errors.401');
+              return abort(401, 'Unauthorized action.');
             }
         }
         // foreach ($userGoals as $userGoal) {
@@ -226,7 +226,7 @@ class GoalController extends Controller
         if ($user->hasPermissionTo('edit goals')) {
             return view('goal.edit',compact('title','goal','users','userGoals'));
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
     }
 
