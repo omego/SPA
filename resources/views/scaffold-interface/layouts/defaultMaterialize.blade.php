@@ -20,10 +20,16 @@
 	</div>
 	<div class="col s2 right hide-on-med-and-down">
 		<!-- Dropdown Trigger -->
-<a class='dropdown-button btn right' href='#' data-activates='dropdown1'>{{Auth::user()->name}}</a>
+{{-- <a class='dropdown-button btn right' href='#' data-activates='dropdown1'>{{Auth::user()->name}}</a> --}}
 
 <!-- Dropdown Structure -->
 <ul id='dropdown1' class='dropdown-content'>
+	@hasrole('Admin')
+	<li><a href="{!!url("admin")!!}">Users</a></li>
+	{{-- <li><a href="{!!url("activity")!!}">Activity</a></li> --}}
+	{{-- <li><a href="#">Reports</a></li> --}}
+	@endhasrole
+	<li class="divider"></li>
 <li><a href="{{url('logout')}}"
 		onclick="event.preventDefault();
 	document.getElementById('logout-form').submit();">Logout</a>
@@ -40,9 +46,9 @@
 			<li><a href="{!!url("project")!!}">Projects</a></li>
 			<li><a href="{!!url("initiative")!!}">Initiatives</a></li> --}}
 			<li><a href="{!!url("action_plan")!!}">Action Plans</a></li>
-			@hasrole('Admin')
-			<li class="teal"><a href="{!!url("admin")!!}">Admin</a></li>
-			@endhasrole
+
+			<li class="teal uppercase"><a class='dropdown-button' href='#' data-activates='dropdown1'>{{Auth::user()->name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+
 
 		</ul>
 		<ul class="side-nav collection" id="mobile-demo">
@@ -70,37 +76,7 @@
 
 {{-- Collapse Nav End --}}
 
-  		<div class="row">
-  		<div class="container">
-  		  <nav>
-    <div class="nav-wrapper grey darken-1">
-      <div class="col s12">
-        <a href="{!!url("goal")!!}" class="breadcrumb">Home</a>
 
-					@isset($GoalTitle)
-						<a href="{!!url("project/list/".$GoalID)!!}" class="breadcrumb">
-          		Strategic Goal {{ $GoalTitle }}
-						</a>
-		      @endisset
-					@isset($ProjectTitle)
-						<a href="{!!url("initiative/list/".$ProjectId)!!}" class="breadcrumb">
-          		Project {{ $ProjectTitle }}
-						</a>
-		      @endisset
-					@isset($initiativesTitle)
-						<a href="{!!url("initiative/".$initiative->id)!!}" class="breadcrumb">
-        			Initiative {{ $initiativesTitle }}
-						</a>
-		      @endisset
-					@isset($action_plan_title)
-						<a href="{!!url("action_plan/". $action_plan->id)!!}" class="breadcrumb">
-      				Action Plan {{ $action_plan_title }}
-						</a>
-		      @endisset
-      </div>
-    </div>
-  </nav>
-</div></div>
 		@yield('content')
 		<div id="modal1" class="modal">
 			<div class = "row AjaxisModal">

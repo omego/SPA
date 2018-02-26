@@ -1,7 +1,7 @@
 @extends('scaffold-interface.layouts.defaultMaterialize')
 @section('title','Show Action Plan')
 @section('content')
-
+@include('scaffold-interface.layouts.breadcrumbs')
 <div class = 'container'>
   <div class="row">
 

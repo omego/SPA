@@ -23,7 +23,7 @@ class ClearanceMiddleware {
          {
             if (!Auth::user()->hasPermissionTo('edit users'))
          {
-                return view('errors.401');
+                return abort(401, 'Unauthorized action.');
             }
          else {
                 return $next($request);

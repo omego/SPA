@@ -15,20 +15,25 @@
   <div class="col s12">
     <div class="collection">
       @foreach($users as $user)
+
         <a href="{{url('/admin')}}/{{$user->id}}/edit" class="collection-item">
 
             @if(!empty($user->roles))
   					@foreach($user->roles as $role)
+
   					<span class="new badge" data-badge-caption="">
               {{$role->name}}
             </span>
+
   					@endforeach
   				@else
   				<span class="new badge grey" data-badge-caption="">
             No Roles
           </span>
   				@endif
+
             {{$user->name}}
+
           </a>
 
         @endforeach

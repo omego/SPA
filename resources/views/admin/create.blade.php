@@ -13,30 +13,38 @@
   </div>
   @endif
   <section class="content">
-  	<div class="box box-primary">
-  		<div class="box-header">
-  			<h3>Create new user</h3>
-  		</div>
-  		<div class="box-body">
-  			<form action="{{url('scaffold-users/store')}}" method = "post">
+
+  			<form action="{{url('admin/store')}}" method = "post">
   				{!! csrf_field() !!}
-  				<input type="hidden" name = "user_id">
-  				<div class="form-group">
-  					<label for="">Email</label>
-  					<input type="email" name = "email" class = "form-control" placeholder = "Email">
-  				</div>
-  				<div class="form-group">
-  					<label for="">Name</label>
-  					<input type="text" name = "name" class = "form-control" placeholder = "Name">
-  				</div>
-  				<div class="form-group">
-  					<label for="">Password</label>
-  					<input type="password" name = "password" class = "form-control" placeholder = "Password">
-  				</div>
-  				<button class = "btn btn-primary" type="submit">Create</button>
-  			</form>
-  		</div>
-  	</div>
+  				<input type="hidden" name = "user_id" required>
+
+          <div class="row">
+                  <div class="col s12">
+                    <div class="card">
+                      <div class="card-content">
+                        <span class="card-title">Create User</span>
+                        <div class="input-field col s12">
+                          <label for="">Email</label>
+                          <input type="email" name = "email" class = "form-control" value="{{ old('email') }}" required>
+                        </div>
+                        <div class="input-field col s12">
+                          <label for="">Name</label>
+                					<input type="text" name = "name" class = "form-control" value="{{ old('name') }}" required>
+                        </div>
+                        <div class="input-field col s12">
+                          <label for="">Password</label>
+                					<input type="password" name = "password" class = "validate form-control" value="{{ old('password') }}" required>
+                        </div>
+                        <button class = 'btn' type ='submit'>Create</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+      </form>
+
+
   </section>
 </div>
 @endsection

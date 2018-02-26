@@ -50,7 +50,7 @@ class ProjectController extends Controller
               $q->where('user_id', $userId);
           })->paginate(20);
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
 
         if (Auth::check()) {
@@ -60,7 +60,7 @@ class ProjectController extends Controller
           if ($user->hasPermissionTo('view projects')) {
         return view('project.index',compact('projects','title'));
     }else{
-      return view('errors.401');
+      return abort(401, 'Unauthorized action.');
     }
   }
 }
@@ -80,7 +80,7 @@ class ProjectController extends Controller
               $q->where('goal_id', $id)->where('user_id', $userId);
           })->paginate(20);
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
         $GoalName = Goal::findOrfail($id);
         $GoalID =  $GoalName->id;
@@ -94,7 +94,7 @@ class ProjectController extends Controller
         if ($user->hasPermissionTo('view projects')) {
             return view('project.list',compact('projects','GoalTitle','GoalID','Goal_Discerption','Goal_created_at','Goal_updated_at','userGoals','id'));
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
 
         //return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','title'));
@@ -113,7 +113,7 @@ class ProjectController extends Controller
         if ($user->hasPermissionTo('create projects')) {
         return view('project.create',compact('title','goals'  ));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -181,7 +181,7 @@ class ProjectController extends Controller
         if ($user->hasPermissionTo('view projects')) {
         return view('project.show',compact('title','project'));
       }else{
-        return view('errors.401');
+        return abort(401, 'Unauthorized action.');
       }
     }
 
@@ -203,7 +203,7 @@ class ProjectController extends Controller
           if ($user->hasPermissionTo('edit projects')) {
             return URL::to('project/'. $id . '/edit');
           }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
           }
         }
 
@@ -218,7 +218,7 @@ class ProjectController extends Controller
         if ($user->hasPermissionTo('edit projects')) {
             return view('project.edit',compact('title','project' ,'goals' ,'users','userProjects'));
         }else{
-            return view('errors.401');
+            return abort(401, 'Unauthorized action.');
         }
 
         // $project = Project::findOrfail($id);
