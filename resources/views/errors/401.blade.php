@@ -1,4 +1,6 @@
-<!doctype html>
+@extends('scaffold-interface.layouts.defaultMaterialize')
+@section('title','Error')
+@section('content')
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -17,12 +19,12 @@
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
-                height: 100vh;
+                height: 77vh;
                 margin: 0;
             }
 
             .full-height {
-                height: 100vh;
+                height: 77vh;
             }
 
             .flex-center {
@@ -73,13 +75,14 @@
                     {{ $exception->getMessage() }}
                 </div>
 
-                <div class="links">
+                {{-- <div class="links">
                     <a href="{!!url("goal")!!}">Goals</a>
                     <a href="{!!url("project")!!}">Projects</a>
                     <a href="{!!url("initiative")!!}">Initiatives</a>
                     <a href="{!!url("action_plan")!!}">Action Plans</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>
 </html>
+@endsection
