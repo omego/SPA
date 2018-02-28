@@ -22,7 +22,7 @@
                       <div class="card-content">
                         <span class="card-title">Edit User</span>
                         <div class="input-field col s12">
-                          <label for="">Email</label>
+                          <label for="">KSAU-HS Email</label>
                           <input type="email" name = "email" value = "{{$user->email}}" class = "validate form-control" required>
                         </div>
                         <div class="input-field col s12">
