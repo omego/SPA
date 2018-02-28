@@ -74,7 +74,7 @@ class AdminController extends Controller
      {
 
        $this->validate($request, [
-       'email' => 'unique:users,email|required|max:191|string|email',
+       'email' => 'unique:users,email|required|max:191|string|email|regex:/^[A-Za-z0-9\.]*@(ksau-hs)[.](edu)[.](sa)$/',
        'name' => 'required|max:191|string',
        'password' => 'required|min:6|string',
        ]);
@@ -135,6 +135,7 @@ class AdminController extends Controller
         'email',
         'max:191',
         'string',
+        'regex:/^[A-Za-z0-9\.]*@(ksau-hs)[.](edu)[.](sa)$/',
      ],
        'name' => 'required|max:191|string',
        'password' => 'nullable|between:6,20|string',

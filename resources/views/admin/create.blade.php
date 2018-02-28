@@ -24,8 +24,8 @@
                       <div class="card-content">
                         <span class="card-title">Create User</span>
                         <div class="input-field col s12">
-                          <label for="">Email</label>
-                          <input type="email" name = "email" class = "form-control" value="{{ old('email') }}" required>
+                          <label for="">KSAU-HS Email</label>
+                          <input type="email" name = "email" class = "form-control validate" value="{{ old('email') }}" required>
                         </div>
                         <div class="input-field col s12">
                           <label for="">Name</label>
