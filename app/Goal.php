@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Activitylog\Traits\LogsActivity;
+// use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Goal.
@@ -18,7 +18,7 @@ class Goal extends Model
 
 	use SoftDeletes;
 	use HasRoles;
-	use LogsActivity;
+	// use LogsActivity;
 
 	protected $guard_name = 'web'; // or whatever guard you want to use
 
@@ -26,7 +26,7 @@ class Goal extends Model
 
     protected $table = 'goals';
 
-		protected static $logAttributes = ['goal_title', 'goal_description'];
+		// protected static $logAttributes = ['goal_title', 'goal_description'];
 
     public function initiatives()
     {
