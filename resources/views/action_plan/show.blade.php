@@ -98,6 +98,26 @@
           <li class="collection-item">{{ $action_plan->action_plan_updates }}</li>
         </ul>
         </div>
+
+        <div class="col s12">
+          <h5>
+              Attachments
+          </h5>
+        <table class = 'table'>
+            <thead>
+                <th>Name</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                @foreach($action_plan_files as $action_plan_file)
+                <tr>
+                  <td><a href="{{url('uploads/' .$action_plan_file->file_name)}}">{{$action_plan_file->file_name}}</a></td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+      </div>
         </div>
         </div>
         @endsection
