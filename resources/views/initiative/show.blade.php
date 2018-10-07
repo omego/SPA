@@ -87,7 +87,7 @@
       <div class="col s12">
         <h5 class="grey-text text-darken-2"> Action Plans under Initiative: {{ $initiative->initiative_title }} </h5>
         @can('create action plans')
-          <a href = '{!!url("action_plan")!!}/create' class = 'orange-text text-accent-2 light'>+ NEW ACTION PLAN</a>
+          <a href = '{!!url("action_plan")!!}/create?id={{$initiative->id}}' class = 'orange-text text-accent-2 light'>+ NEW ACTION PLAN</a>
         @endcan
       </div>
       <div class="row">

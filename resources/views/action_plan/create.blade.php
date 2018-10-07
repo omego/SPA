@@ -40,7 +40,12 @@
                       <div class="input-field col s12">
                           <select name = 'initiative_id'>
                               @foreach($initiatives as $key => $value)
-                              <option value="{{$key}}">{{$value}}</option>
+                              {{-- <option @if(request()->get('id')=='5') selected @endif value="{{$key}}">{{$value}}</option> --}}
+                                @if (request()->get('id') == $key)
+                                      <option value="{{ $key }}" selected>{{ $value }}</option>
+                                @else
+                                      <option value="{{ $key }}">{{ $value }}</option>
+                                @endif
                               @endforeach
                           </select>
                           <label>Select an Initiative</label>
