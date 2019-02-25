@@ -136,7 +136,7 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Select a File</span>
-                            <input id="file_name" name = "file_name" type="file" class="validate">
+                            <input id="file_name" name = "file_name" type="file" class="validate" required>
                     </div>
 
 
