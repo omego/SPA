@@ -208,15 +208,17 @@ class Action_planController extends Controller
           $AssignedUser = Null;
         }
 
+        $action_plan_files = Action_plan_attachment::where('action_plan_id', $id)->get();
+
         if ($user->hasPermissionTo('view action plans')) {
           if ($user->hasRole('Responsible')) {
             if ($action_plan->user_id == $user->id) {
-              return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
+              return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative','action_plan_files'));
             }else {
               return abort(401, 'Unauthorized action.');
             }
           }else {
-            return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative'));
+            return view('action_plan.show',compact('title','action_plan','AssignedUser','ProjectTitle','GoalTitle','initiativesTitle','action_plan_title','GoalID','ProjectId','initiative','action_plan_files'));
           }
       }else{
         return abort(401, 'Unauthorized action.');

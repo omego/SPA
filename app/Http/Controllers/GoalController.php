@@ -71,7 +71,7 @@ class GoalController extends Controller
               return abort(401, 'Unauthorized action.');
           }
           if ($user->hasPermissionTo('view goals')) {
-              return view('goal.index',compact('goals','GoalTitle','GoalID'));
+              return view('goal.index',compact('goals'));
           }else{
               return abort(401, 'Unauthorized action.');
           }

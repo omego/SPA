@@ -84,7 +84,7 @@
               <img src="{{url('uploads/vlogo.jpg')}}" alt="Vision 2030" style="width:152px;height:100px;">
             </div>
                 <div class="title m-b-md">
-                    Strategic Plan Application
+                    Strategy Tracking and Execution Program (STEP)
                 </div>
 
                 <div class="links">
