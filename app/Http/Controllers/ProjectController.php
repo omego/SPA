@@ -246,7 +246,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect('project');
+        return redirect('initiative/list/'. $project->id);
     }
 
     /**
