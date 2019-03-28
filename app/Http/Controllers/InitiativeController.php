@@ -99,7 +99,7 @@ class InitiativeController extends Controller
         // return view('project.list',compact('projects','title'));
         // return view('scaffold-interface.layouts.defaultMaterialize',compact('GoalTitle','ProjectTitle'));
         if ($user->hasPermissionTo('view initiatives')) {
-        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects','initiativesTitle'));
+        return view('initiative.list',compact('initiatives','GoalTitle','ProjectTitle','ProjectName','GoalID','ProjectId','userProjects'));
       }else{
         return abort(401, 'Unauthorized action.');
       }
@@ -231,14 +231,14 @@ class InitiativeController extends Controller
         if ($user->hasPermissionTo('view initiatives')) {
           if ($user->hasRole('Owner')) {
             if ($initiative->user_id == $user->id){
-              return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
+              return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','GoalID','ProjectId','AssignedUser'));
             }else {
                 return abort(401, 'Unauthorized action.');
               }
           }else{
-            return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
+            return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','GoalID','ProjectId','AssignedUser'));
           }
-        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','BadgeColor','GoalID','ProjectId','AssignedUser','initiativesTitle'));
+        return view('initiative.show',compact('title','initiative','action_plans','ProjectTitle','GoalTitle','GoalID','ProjectId','AssignedUser'));
       }else{
         return abort(401, 'Unauthorized action.');
       }
