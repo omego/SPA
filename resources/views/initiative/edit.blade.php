@@ -165,13 +165,22 @@
         <table class = 'table'>
             <thead>
                 <th>Name</th>
+                @can('edit initiatives')
                 <th>Action</th>
+                @endcan
             </thead>
             <tbody>
                 @foreach($initiative_files as $initiative_file)
                 <tr>
                   <td><a href="{{url('uploads/' .$initiative_file->file_name)}}">{{$initiative_file->file_name}}</a></td>
-                </tr>
+                  @can('edit initiatives')
+                <td>
+                <a href = '#modal1' class = 'delete modal-trigger waves-effect waves-light btn red darken-2' data-link = "/initiative_attachment/{!! $initiative_file->id !!}/deleteMsg">
+                  Delete
+                  </a>
+                  </td>
+                  @endcan
+                  </tr>
                 @endforeach
             </tbody>
         </table>

@@ -170,6 +170,6 @@ class Initiative_attachmentController extends Controller
     {
      	$initiative_attachment = Initiative_attachment::findOrfail($id);
      	$initiative_attachment->delete();
-        return URL::to('initiative_attachment');
+        return redirect()->back();
     }
 }
