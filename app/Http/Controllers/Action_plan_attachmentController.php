@@ -189,8 +189,9 @@ class Action_plan_attachmentController extends Controller
      */
     public function destroy($id)
     {
-     	$action_plan_attachment = Action_plan_attachment::findOrfail($id);
+         $action_plan_attachment = Action_plan_attachment::findOrfail($id);
+         //Storage::delete($action_plan_attachment->path);
      	$action_plan_attachment->delete();
-        return URL::to('action_plan_attachment');
+        return redirect()->back(); //URL::to('action_plan_attachment');
     }
 }
